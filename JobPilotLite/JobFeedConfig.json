@@ -1,6 +1,6 @@
 {
-  "remoteJobsURL": "",
-  "remoteJobIndexURL": "",
+  "remoteJobsURL": "https://sakariyalord.github.io/jobpilot-lite/LiveJobs.json",
+  "remoteJobIndexURL": "https://sakariyalord.github.io/jobpilot-lite/index.json",
   "minimumLiveJobs": 12000,
   "startupMinimumLiveJobs": 200,
   "refreshIntervalHours": 24,
