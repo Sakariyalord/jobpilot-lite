@@ -1,0 +1,2 @@
+id,company,title,city,remoteType,salary,tags,sourceURL,contactEmail,summary,requirements,visaFriendly,postedDaysAgo
+4D89D12A-0C76-45F6-A40D-F87AA8208E11,Northstar Health,Entry Level Data Analyst,"New York, NY",Hybrid,$68k-$82k,"SQL|Excel|Python|Analytics",https://example.com/northstar-data-analyst,careers@northstar.example,Analyze patient operations data and build weekly reporting dashboards for business teams.,"SQL and spreadsheet reporting experience|Comfortable summarizing data for business teams",true,1

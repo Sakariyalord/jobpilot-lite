@@ -1,0 +1,72 @@
+name: Daily Job Refresh
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 10 * * *"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Refresh verified public jobs
+        env:
+          JOB_FETCH_PAY_BATCH_SIZE: "64"
+          JOB_FETCH_PAY_TIMEOUT_MS: "8000"
+          JOB_FETCH_LEVER_BATCH_SIZE: "8"
+          JOB_VERIFY_TIMEOUT_MS: "30000"
+          JOB_VERIFY_RETRIES: "3"
+        run: node Tools/refresh-live-jobs.mjs Data/JobFeed/LiveJobs.json 12000 23000
+
+      - name: Build static app feed assets
+        run: node Tools/build-job-feed-assets.mjs Data/JobFeed/LiveJobs.json Data/JobFeed JobPilotLite/SeedJobs.json 800
+
+      - name: Validate full generated job data
+        env:
+          JOB_VALIDATE_MAX_VERIFICATION_AGE_HOURS: "36"
+          JOB_VALIDATE_MIN_LIVE_JOBS: "12000"
+        run: node Tools/validate-seed-jobs.mjs Data/JobFeed/LiveJobs.json
+
+      - name: Validate bundled startup job data
+        env:
+          JOB_VALIDATE_MAX_VERIFICATION_AGE_HOURS: "36"
+          JOB_VALIDATE_MIN_LIVE_JOBS: "500"
+        run: node Tools/validate-seed-jobs.mjs JobPilotLite/SeedJobs.json
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add JobPilotLite/SeedJobs.json Data/JobFeed Data/job-refresh-report.json
+          git diff --cached --quiet || git commit -m "Refresh verified job feed"
+          git push
+
+      - name: Upload job feed Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: Data/JobFeed
+
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy job feed to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

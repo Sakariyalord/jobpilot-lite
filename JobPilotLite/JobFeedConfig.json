@@ -1,0 +1,8 @@
+{
+  "remoteJobsURL": "",
+  "remoteJobIndexURL": "",
+  "minimumLiveJobs": 12000,
+  "startupMinimumLiveJobs": 200,
+  "refreshIntervalHours": 24,
+  "prefetchSliceLimit": 3
+}
