@@ -162,6 +162,14 @@ The refresh script writes to a temporary verified file first. It replaces `Data/
 
 The included GitHub Actions workflow `.github/workflows/daily-job-refresh.yml` runs the same refresh daily. It first tries to discover more public ATS sources, then fetches and verifies jobs, then publishes static JSON files. This uses GitHub's scheduled runner and commits static JSON files; it does not require an app server, database, cron VM, or paid backend. If source discovery fails, the workflow continues with the existing reliable source set.
 
+For higher-volume refreshes, `.github/workflows/scaled-job-refresh.yml` splits public ATS fetching into parallel platform/source batches, downloads the candidate artifacts, merges and deduplicates them with `Tools/merge-job-candidates.mjs`, then verifies only until the requested live-job target is reached. Use this workflow to raise the candidate pool without making one giant crawler job responsible for every source.
+
+To debug one fetch shard locally:
+
+```sh
+JOB_FETCH_SOURCES=ashby JOB_FETCH_SOURCE_BATCH_INDEX=0 JOB_FETCH_SOURCE_BATCH_TOTAL=4 node Tools/fetch-public-jobs.mjs /tmp/ashby-batch-0.json 2000
+```
+
 The same workflow also uploads `Data/JobFeed` to GitHub Pages, so the refreshed job feed can be served as static JSON at no app-server cost. In the GitHub repo settings, set Pages to use GitHub Actions as the build source.
 
 To make the App Store build dynamic, publish `Data/JobFeed` at a stable HTTPS URL and put the full-feed and index URLs in `JobPilotLite/JobFeedConfig.json`:
@@ -188,14 +196,15 @@ On launch, the app first shows cached or bundled startup jobs, then refreshes th
 Current data assets:
 
 - 800 verified live startup postings bundled into the app, about 1.2 MB
-- 12,441 verified live public job postings in `Data/JobFeed/LiveJobs.json`, about 20 MB
-- 31 static job slices in `Data/JobFeed/jobs`
-- 155 companies
-- 5,234 postings with public salary text or public pay transparency range
-- 630 postings with explicit public recruiting/careers email
-- 12,407 postings with extracted requirements/role standards
-- 7,578 Greenhouse postings, 4,134 Ashby postings, and 729 Lever postings
-- 12,441 postings with `liveStatus: "live"` from the latest public ATS and final source URL verification
+- 12,000 verified live public job postings in `Data/JobFeed/LiveJobs.json`, about 19 MB
+- 32 static job-detail slices in `Data/JobFeed/jobs`
+- 17 lightweight search index groups across 37 paged files in `Data/JobFeed/search`
+- 161 companies
+- 5,782 postings with public salary text or public pay transparency range
+- 741 postings with explicit public recruiting/careers email
+- 11,943 postings with extracted requirements/role standards
+- 6,811 Greenhouse postings, 4,104 Ashby postings, and 1,085 Lever postings
+- 12,000 postings with `liveStatus: "live"` from the latest public ATS and final source URL verification
 - Cross-industry categories include sales, software/IT, operations/logistics, customer success, design/product, marketing, manufacturing/field work, data, legal/compliance, finance/accounting, healthcare, education, HR/recruiting, retail/hospitality, and administrative roles
 
 ## MVP Validation Metrics

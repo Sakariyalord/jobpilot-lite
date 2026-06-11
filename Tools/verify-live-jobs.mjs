@@ -10,6 +10,7 @@ const checkedAt = new Date().toISOString();
 const concurrency = Number.parseInt(process.env.JOB_VERIFY_CONCURRENCY ?? "6", 10);
 const timeoutMs = Number.parseInt(process.env.JOB_VERIFY_TIMEOUT_MS ?? "15000", 10);
 const retryAttempts = Number.parseInt(process.env.JOB_VERIFY_RETRIES ?? "3", 10);
+const stopAfterLimit = (process.env.JOB_VERIFY_STOP_AFTER_LIMIT ?? "true").toLowerCase() !== "false";
 const ashbyBoardCache = new Map();
 
 function sleep(ms) {
@@ -387,7 +388,7 @@ async function verifyInBatches(items) {
   let nextIndex = 0;
 
   async function worker(workerId) {
-    while (nextIndex < items.length) {
+    while (nextIndex < items.length && (!stopAfterLimit || limit <= 0 || liveJobs.length < limit)) {
       const currentIndex = nextIndex;
       nextIndex += 1;
 
@@ -407,6 +408,7 @@ async function verifyInBatches(items) {
 
 const { liveJobs, reports } = await verifyInBatches(jobs);
 const selected = limit > 0 ? liveJobs.slice(0, limit) : liveJobs;
+const attemptedReports = reports.filter(Boolean);
 
 fs.mkdirSync("Data", { recursive: true });
 fs.writeFileSync(output, `${JSON.stringify(selected, null, 2)}\n`);
@@ -416,10 +418,11 @@ fs.writeFileSync(reportPath, `${JSON.stringify({
   output,
   requestedLimit: limit || null,
   inputJobs: jobs.length,
+  attemptedJobs: attemptedReports.length,
   liveJobs: liveJobs.length,
   writtenJobs: selected.length,
-  failedJobs: reports.filter((report) => !report.live).length,
-  reports
+  failedJobs: attemptedReports.filter((report) => !report.live).length,
+  reports: attemptedReports
 }, null, 2)}\n`);
 
 console.error(`Live jobs: ${liveJobs.length}/${jobs.length}`);

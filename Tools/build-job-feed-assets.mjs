@@ -7,8 +7,10 @@ const startupOutput = process.argv[4] ?? "JobPilotLite/SeedJobs.json";
 const startupLimit = Number.parseInt(process.argv[5] ?? "800", 10);
 
 const sliceDir = path.join(outputDir, "jobs");
+const searchDir = path.join(outputDir, "search");
 const liveOutput = path.join(outputDir, "LiveJobs.json");
 const indexOutput = path.join(outputDir, "index.json");
+const searchIndexOutput = path.join(searchDir, "index.json");
 
 const categoryRules = [
   ["software", "Software & IT", /\b(software|developer|backend|frontend|full.?stack|ios|android|mobile|cloud|devops|security|sre|infrastructure|platform|qa|test engineer)\b/i],
@@ -112,6 +114,87 @@ function writeJSON(file, value) {
   fs.writeFileSync(file, JSON.stringify(value));
 }
 
+function chunk(items, size) {
+  const chunks = [];
+  for (let index = 0; index < items.length; index += size) {
+    chunks.push(items.slice(index, index + size));
+  }
+  return chunks;
+}
+
+function compactJob(job) {
+  return {
+    id: job.id,
+    title: job.title,
+    company: job.company,
+    city: job.city,
+    remoteType: job.remoteType,
+    salary: job.salary && job.salary !== "Not listed" ? job.salary : null,
+    tags: (job.tags ?? []).slice(0, 8),
+    sourcePlatform: job.sourcePlatform,
+    category: categoryFor(job),
+    workMode: workModeFor(job),
+    opportunityType: opportunityFor(job),
+    locations: regionsFor(job),
+    postedDaysAgo: job.postedDaysAgo ?? null,
+    lastVerifiedAt: job.lastVerifiedAt
+  };
+}
+
+function buildSearchIndex(jobs) {
+  fs.rmSync(searchDir, { recursive: true, force: true });
+  fs.mkdirSync(searchDir, { recursive: true });
+
+  const groups = [];
+  const groupDefinitions = [
+    ["all", "All verified jobs", () => true],
+    ...categoryRules.map(([slug, title]) => [slug, title, (job) => categoryFor(job) === slug]),
+    ...regionRules.map(([slug, title]) => [slug, title, (job) => regionsFor(job).includes(slug)]),
+    ["internship", "Internships", (job) => opportunityFor(job) === "internship"]
+  ];
+
+  for (const [id, title, predicate] of groupDefinitions) {
+    const groupSourceJobs = jobs
+      .filter(predicate)
+      .sort((a, b) => jobPriority(b) - jobPriority(a));
+
+    if (groupSourceJobs.length < 20 && id !== "all") continue;
+
+    const pageSize = id === "all" ? 1000 : 2000;
+    const pagePayloads = id === "all"
+      ? groupSourceJobs.map(compactJob)
+      : groupSourceJobs.map((job) => job.id);
+    const pages = chunk(pagePayloads, pageSize).map((pageItems, pageIndex) => {
+      const file = `search/${id}-${String(pageIndex + 1).padStart(3, "0")}.json`;
+      writeJSON(path.join(outputDir, file), pageItems);
+      return {
+        url: file,
+        kind: id === "all" ? "records" : "ids",
+        jobCount: pageItems.length,
+        firstJobId: id === "all" ? pageItems[0]?.id ?? null : pageItems[0] ?? null,
+        lastJobId: id === "all" ? pageItems[pageItems.length - 1]?.id ?? null : pageItems[pageItems.length - 1] ?? null
+      };
+    });
+
+    groups.push({
+      id,
+      title,
+      jobCount: groupSourceJobs.length,
+      pages
+    });
+  }
+
+  const searchIndex = {
+    generatedAt: new Date().toISOString(),
+    recordPageSize: 1000,
+    idPageSize: 2000,
+    totalLiveJobs: jobs.length,
+    groups: groups.sort((a, b) => b.jobCount - a.jobCount)
+  };
+  writeJSON(searchIndexOutput, searchIndex);
+  return searchIndex;
+}
+
 function selectStartupJobs(jobs, limit) {
   const sorted = [...jobs].sort((a, b) => jobPriority(b) - jobPriority(a));
   const picked = [];
@@ -165,6 +248,7 @@ if (liveJobs.length < startupLimit) {
   throw new Error(`Only ${liveJobs.length} live jobs are available; startup limit is ${startupLimit}`);
 }
 
+fs.rmSync(sliceDir, { recursive: true, force: true });
 fs.mkdirSync(sliceDir, { recursive: true });
 writeJSON(liveOutput, liveJobs);
 writeJSON(startupOutput, selectStartupJobs(liveJobs, startupLimit));
@@ -233,18 +317,21 @@ for (const opportunity of ["internship", "full-time", "contract"]) {
 const index = {
   generatedAt: new Date().toISOString(),
   liveJobsURL: "LiveJobs.json",
+  searchIndexURL: "search/index.json",
   totalLiveJobs: liveJobs.length,
   startupJobs: startupLimit,
   featuredSliceIds: ["featured", "remote", "united-states", "internship"],
   slices: slices.sort((a, b) => b.jobCount - a.jobCount)
 };
 
+const searchIndex = buildSearchIndex(liveJobs);
 writeJSON(indexOutput, index);
 
 console.log(JSON.stringify({
   liveJobs: liveJobs.length,
   startupJobs: startupLimit,
   slices: slices.length,
+  searchGroups: searchIndex.groups.length,
   outputDir,
   startupOutput
 }, null, 2));

@@ -7,6 +7,8 @@ const limit = Number.parseInt(process.argv[3] ?? "2000", 10);
 const sourceRegistryPath = process.env.JOB_SOURCE_REGISTRY_PATH ?? "Data/JobSourceRegistry.json";
 const sourceHealthPath = process.env.JOB_SOURCE_HEALTH_PATH ?? "Data/JobSourceHealth.json";
 const extraSourceLimit = Number.parseInt(process.env.JOB_FETCH_EXTRA_SOURCE_LIMIT ?? "120", 10);
+const sourceBatchIndex = Number.parseInt(process.env.JOB_FETCH_SOURCE_BATCH_INDEX ?? "0", 10);
+const sourceBatchTotal = Number.parseInt(process.env.JOB_FETCH_SOURCE_BATCH_TOTAL ?? "1", 10);
 const enabledSources = new Set(
   (process.env.JOB_FETCH_SOURCES ?? "greenhouse,ashby,lever")
     .split(",")
@@ -304,6 +306,15 @@ function mergeObjectBoards(platform, defaults, registrySources) {
   return merged;
 }
 
+function applySourceBatch(platform, sources) {
+  if (sourceBatchTotal <= 1 || !sourceEnabled(platform)) return sources;
+  if (sourceBatchIndex < 0 || sourceBatchIndex >= sourceBatchTotal) {
+    throw new Error(`JOB_FETCH_SOURCE_BATCH_INDEX must be between 0 and ${sourceBatchTotal - 1}`);
+  }
+
+  return sources.filter((_, index) => index % sourceBatchTotal === sourceBatchIndex);
+}
+
 function writeSourceHealth(reports) {
   if (!sourceHealthPath) return;
 
@@ -336,14 +347,15 @@ function writeSourceHealth(reports) {
 }
 
 const registrySources = readRegistrySources(sourceRegistryPath);
-const greenhouseBoards = mergeGreenhouseBoards(defaultGreenhouseBoards, registrySources);
-const ashbyBoards = mergeObjectBoards("ashby", defaultAshbyBoards, registrySources);
-const leverBoards = mergeObjectBoards("lever", defaultLeverBoards, registrySources);
+const greenhouseBoards = applySourceBatch("greenhouse", mergeGreenhouseBoards(defaultGreenhouseBoards, registrySources));
+const ashbyBoards = applySourceBatch("ashby", mergeObjectBoards("ashby", defaultAshbyBoards, registrySources));
+const leverBoards = applySourceBatch("lever", mergeObjectBoards("lever", defaultLeverBoards, registrySources));
 const sourceReports = [];
 
 console.error(
   `Source registry: ${registrySources.length} active records; fetching ` +
-  `${greenhouseBoards.length} Greenhouse, ${ashbyBoards.length} Ashby, ${leverBoards.length} Lever boards`
+  `${greenhouseBoards.length} Greenhouse, ${ashbyBoards.length} Ashby, ${leverBoards.length} Lever boards` +
+  (sourceBatchTotal > 1 ? `; source batch ${sourceBatchIndex + 1}/${sourceBatchTotal}` : "")
 );
 
 const skillDictionary = [

@@ -1,0 +1,195 @@
+name: Scaled Job Refresh
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_live_jobs:
+        description: "Verified live jobs to publish"
+        required: false
+        default: "12000"
+      merged_candidate_limit:
+        description: "Maximum merged candidates before live verification"
+        required: false
+        default: "36000"
+      per_batch_candidate_limit:
+        description: "Maximum candidates written by each source batch"
+        required: false
+        default: "7000"
+  schedule:
+    - cron: "45 11 * * 0"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: job-feed-refresh
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  TARGET_LIVE_JOBS: ${{ inputs.target_live_jobs || '12000' }}
+  MERGED_CANDIDATE_LIMIT: ${{ inputs.merged_candidate_limit || '36000' }}
+  PER_BATCH_CANDIDATE_LIMIT: ${{ inputs.per_batch_candidate_limit || '7000' }}
+  SOURCE_BATCH_TOTAL: "4"
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Discover public ATS sources
+        env:
+          JOB_DISCOVERY_CDX_URL_LIMIT: "400"
+          JOB_DISCOVERY_VALIDATE_LIMIT: "140"
+          JOB_DISCOVERY_MAX_NEW_SOURCES: "90"
+          JOB_DISCOVERY_CONCURRENCY: "8"
+          JOB_DISCOVERY_TIMEOUT_MS: "15000"
+        run: node Tools/discover-job-sources.mjs Data/JobSourceRegistry.json /tmp/job-source-discovery-report.json
+
+      - name: Upload discovered source registry
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-registry
+          path: Data/JobSourceRegistry.json
+          retention-days: 3
+
+  fetch:
+    needs: discover
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [greenhouse, ashby, lever]
+        batch: [0, 1, 2, 3]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Download discovered source registry
+        uses: actions/download-artifact@v4
+        with:
+          name: source-registry
+          path: Data
+
+      - name: Fetch candidate jobs
+        env:
+          JOB_FETCH_SOURCES: ${{ matrix.platform }}
+          JOB_FETCH_SOURCE_BATCH_INDEX: ${{ matrix.batch }}
+          JOB_FETCH_SOURCE_BATCH_TOTAL: ${{ env.SOURCE_BATCH_TOTAL }}
+          JOB_FETCH_EXTRA_SOURCE_LIMIT: "240"
+          JOB_FETCH_PAY_BATCH_SIZE: "64"
+          JOB_FETCH_PAY_TIMEOUT_MS: "8000"
+          JOB_FETCH_LEVER_BATCH_SIZE: "8"
+          JOB_SOURCE_HEALTH_PATH: /tmp/source-health-${{ matrix.platform }}-${{ matrix.batch }}.json
+        run: node Tools/fetch-public-jobs.mjs /tmp/candidates-${{ matrix.platform }}-${{ matrix.batch }}.json "$PER_BATCH_CANDIDATE_LIMIT"
+
+      - name: Upload candidates
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidates-${{ matrix.platform }}-${{ matrix.batch }}
+          path: /tmp/candidates-${{ matrix.platform }}-${{ matrix.batch }}.json
+          retention-days: 3
+
+      - name: Upload source health
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-health-${{ matrix.platform }}-${{ matrix.batch }}
+          path: /tmp/source-health-${{ matrix.platform }}-${{ matrix.batch }}.json
+          retention-days: 3
+
+  publish:
+    needs: fetch
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Download discovered source registry
+        uses: actions/download-artifact@v4
+        with:
+          name: source-registry
+          path: Data
+
+      - name: Download candidate artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: candidates-*
+          path: /tmp/job-candidates
+
+      - name: Download source health artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: source-health-*
+          path: /tmp/source-health
+
+      - name: Merge candidate jobs
+        run: node Tools/merge-job-candidates.mjs /tmp/merged-candidates.json "$MERGED_CANDIDATE_LIMIT" /tmp/job-candidates
+
+      - name: Merge source health
+        run: node Tools/merge-source-health.mjs Data/JobSourceHealth.json /tmp/source-health
+
+      - name: Guard publish target
+        run: |
+          node -e "const target=Number(process.env.TARGET_LIVE_JOBS); const candidates=Number(process.env.MERGED_CANDIDATE_LIMIT); if (!Number.isInteger(target) || target < 12000) throw new Error('TARGET_LIVE_JOBS must be at least 12000'); if (!Number.isInteger(candidates) || candidates < target) throw new Error('MERGED_CANDIDATE_LIMIT must be >= TARGET_LIVE_JOBS');"
+
+      - name: Verify and publish live jobs
+        env:
+          JOB_VERIFY_CONCURRENCY: "10"
+          JOB_VERIFY_TIMEOUT_MS: "30000"
+          JOB_VERIFY_RETRIES: "2"
+          JOB_VERIFY_STOP_AFTER_LIMIT: "true"
+        run: node Tools/verify-live-jobs.mjs /tmp/merged-candidates.json Data/JobFeed/LiveJobs.json "$TARGET_LIVE_JOBS" /tmp/job-refresh-report.json
+
+      - name: Build static app feed assets
+        run: node Tools/build-job-feed-assets.mjs Data/JobFeed/LiveJobs.json Data/JobFeed JobPilotLite/SeedJobs.json 800
+
+      - name: Validate full generated job data
+        env:
+          JOB_VALIDATE_MAX_VERIFICATION_AGE_HOURS: "36"
+          JOB_VALIDATE_MIN_LIVE_JOBS: ${{ env.TARGET_LIVE_JOBS }}
+        run: node Tools/validate-seed-jobs.mjs Data/JobFeed/LiveJobs.json
+
+      - name: Validate bundled startup job data
+        env:
+          JOB_VALIDATE_MAX_VERIFICATION_AGE_HOURS: "36"
+          JOB_VALIDATE_MIN_LIVE_JOBS: "500"
+        run: node Tools/validate-seed-jobs.mjs JobPilotLite/SeedJobs.json
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add JobPilotLite/SeedJobs.json Data/JobFeed Data/JobSourceRegistry.json Data/JobSourceHealth.json
+          git diff --cached --quiet || git commit -m "Refresh scaled verified job feed"
+          git push
+
+      - name: Upload job feed Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: Data/JobFeed
+
+      - name: Deploy job feed to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
