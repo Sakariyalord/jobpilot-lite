@@ -121,7 +121,7 @@ async function verifyGreenhouseJob(job) {
   if (job.sourcePlatform !== "greenhouse" || !job.sourceBoard || !job.sourceJobId) return null;
 
   const startedAt = Date.now();
-  const apiURL = `https://boards-api.greenhouse.io/v1/boards/${job.sourceBoard}/jobs/${job.sourceJobId}`;
+  const apiURL = `https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(job.sourceBoard)}/jobs/${encodeURIComponent(job.sourceJobId)}`;
   let lastReport = null;
 
   for (let attempt = 1; attempt <= Math.max(1, retryAttempts); attempt += 1) {
@@ -223,7 +223,7 @@ async function fetchAshbyBoardJobs(board) {
   if (ashbyBoardCache.has(board)) return ashbyBoardCache.get(board);
 
   const promise = (async () => {
-    const apiURL = `https://api.ashbyhq.com/posting-api/job-board/${board}`;
+    const apiURL = `https://api.ashbyhq.com/posting-api/job-board/${encodeURIComponent(board)}`;
     let lastError = null;
 
     for (let attempt = 1; attempt <= Math.max(1, retryAttempts); attempt += 1) {
@@ -272,7 +272,7 @@ async function verifyAshbyJob(job) {
   if (job.sourcePlatform !== "ashby" || !job.sourceBoard || !job.sourceJobId) return null;
 
   const startedAt = Date.now();
-  const apiURL = `https://api.ashbyhq.com/posting-api/job-board/${job.sourceBoard}`;
+  const apiURL = `https://api.ashbyhq.com/posting-api/job-board/${encodeURIComponent(job.sourceBoard)}`;
 
   try {
     const boardJobs = await fetchAshbyBoardJobs(job.sourceBoard);

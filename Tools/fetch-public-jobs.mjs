@@ -1,8 +1,12 @@
 import fs from "node:fs";
+import path from "node:path";
 import crypto from "node:crypto";
 
 const output = process.argv[2] ?? "JobPilotLite/SeedJobs.json";
 const limit = Number.parseInt(process.argv[3] ?? "2000", 10);
+const sourceRegistryPath = process.env.JOB_SOURCE_REGISTRY_PATH ?? "Data/JobSourceRegistry.json";
+const sourceHealthPath = process.env.JOB_SOURCE_HEALTH_PATH ?? "Data/JobSourceHealth.json";
+const extraSourceLimit = Number.parseInt(process.env.JOB_FETCH_EXTRA_SOURCE_LIMIT ?? "120", 10);
 const enabledSources = new Set(
   (process.env.JOB_FETCH_SOURCES ?? "greenhouse,ashby,lever")
     .split(",")
@@ -14,7 +18,7 @@ function sourceEnabled(source) {
   return enabledSources.has("all") || enabledSources.has(source);
 }
 
-const greenhouseBoards = [
+const defaultGreenhouseBoards = [
   "andurilindustries",
   "databricks",
   "stripe",
@@ -145,7 +149,7 @@ const greenhouseBoards = [
   "pathai"
 ];
 
-const ashbyBoards = [
+const defaultAshbyBoards = [
   { slug: "openai", company: "OpenAI" },
   { slug: "airwallex", company: "Airwallex" },
   { slug: "harvey", company: "Harvey" },
@@ -198,13 +202,149 @@ const ashbyBoards = [
   { slug: "prefect", company: "Prefect" }
 ];
 
-const leverBoards = [
+const defaultLeverBoards = [
   { slug: "palantir", company: "Palantir" },
   { slug: "dnb", company: "Dun & Bradstreet" },
   { slug: "cti-md", company: "CTI" },
   { slug: "zoox", company: "Zoox" },
   { slug: "spotify", company: "Spotify" }
 ];
+
+function readJSONIfExists(file) {
+  if (!fs.existsSync(file)) return null;
+  return JSON.parse(fs.readFileSync(file, "utf8"));
+}
+
+function sourceKey(platform, board) {
+  return `${String(platform ?? "").toLowerCase()}:${String(board ?? "").toLowerCase()}`;
+}
+
+function normalizeBoardSlug(value) {
+  return String(value ?? "")
+    .trim()
+    .replace(/^https?:\/\/[^/]+\//i, "")
+    .split(/[/?#]/)[0]
+    .replace(/[^a-z0-9._ -]/gi, "")
+    .trim();
+}
+
+function sourceActive(source) {
+  const status = String(source.status ?? "active").toLowerCase();
+  return status !== "disabled" && status !== "blocked" && status !== "quarantined";
+}
+
+function readRegistrySources(file) {
+  try {
+    const payload = readJSONIfExists(file);
+    if (!payload) return [];
+    const rawSources = Array.isArray(payload) ? payload : payload.sources;
+    if (!Array.isArray(rawSources)) return [];
+
+    return rawSources
+      .map((source) => ({
+        platform: String(source.platform ?? "").toLowerCase(),
+        board: normalizeBoardSlug(source.board ?? source.slug),
+        company: source.company ? String(source.company).trim() : null,
+        status: source.status ?? "active"
+      }))
+      .filter((source) =>
+        ["greenhouse", "ashby", "lever"].includes(source.platform) &&
+        source.board &&
+        sourceActive(source)
+      );
+  } catch (error) {
+    console.error(`Source registry skipped (${error.message})`);
+    return [];
+  }
+}
+
+function mergeGreenhouseBoards(defaults, registrySources) {
+  const seen = new Set();
+  const merged = [];
+
+  for (const board of defaults) {
+    const slug = normalizeBoardSlug(board);
+    if (!slug || seen.has(slug)) continue;
+    seen.add(slug);
+    merged.push(slug);
+  }
+
+  let added = 0;
+  for (const source of registrySources.filter((item) => item.platform === "greenhouse")) {
+    if (seen.has(source.board)) continue;
+    if (added >= extraSourceLimit) break;
+    seen.add(source.board);
+    merged.push(source.board);
+    added += 1;
+  }
+
+  return merged;
+}
+
+function mergeObjectBoards(platform, defaults, registrySources) {
+  const seen = new Set();
+  const merged = [];
+
+  for (const board of defaults) {
+    const slug = normalizeBoardSlug(board.slug);
+    if (!slug || seen.has(slug)) continue;
+    seen.add(slug);
+    merged.push({ ...board, slug });
+  }
+
+  let added = 0;
+  for (const source of registrySources.filter((item) => item.platform === platform)) {
+    if (seen.has(source.board)) continue;
+    if (added >= extraSourceLimit) break;
+    seen.add(source.board);
+    merged.push({ slug: source.board, company: source.company ?? source.board });
+    added += 1;
+  }
+
+  return merged;
+}
+
+function writeSourceHealth(reports) {
+  if (!sourceHealthPath) return;
+
+  const previous = (() => {
+    try {
+      const payload = readJSONIfExists(sourceHealthPath);
+      return Array.isArray(payload?.sources) ? payload.sources : [];
+    } catch {
+      return [];
+    }
+  })();
+  const merged = new Map(previous.map((source) => [sourceKey(source.platform, source.board), source]));
+
+  for (const report of reports) {
+    merged.set(sourceKey(report.platform, report.board), {
+      ...merged.get(sourceKey(report.platform, report.board)),
+      ...report,
+      lastFetchedAt: report.lastFetchedAt ?? new Date().toISOString()
+    });
+  }
+
+  fs.mkdirSync(path.dirname(sourceHealthPath), { recursive: true });
+  fs.writeFileSync(sourceHealthPath, `${JSON.stringify({
+    updatedAt: new Date().toISOString(),
+    sources: [...merged.values()].sort((a, b) =>
+      String(a.platform).localeCompare(String(b.platform)) ||
+      String(a.board).localeCompare(String(b.board))
+    )
+  }, null, 2)}\n`);
+}
+
+const registrySources = readRegistrySources(sourceRegistryPath);
+const greenhouseBoards = mergeGreenhouseBoards(defaultGreenhouseBoards, registrySources);
+const ashbyBoards = mergeObjectBoards("ashby", defaultAshbyBoards, registrySources);
+const leverBoards = mergeObjectBoards("lever", defaultLeverBoards, registrySources);
+const sourceReports = [];
+
+console.error(
+  `Source registry: ${registrySources.length} active records; fetching ` +
+  `${greenhouseBoards.length} Greenhouse, ${ashbyBoards.length} Ashby, ${leverBoards.length} Lever boards`
+);
 
 const skillDictionary = [
   "Swift", "SwiftUI", "iOS", "Android", "Kotlin", "Java", "JavaScript", "TypeScript",
@@ -515,7 +655,7 @@ function normalizeAshbyJob(job, board) {
 
   return {
     id: stableUUID(sourceURL),
-    company: board.company,
+    company: board.company || board.slug || "Unknown company",
     title: job.title || "Untitled role",
     city: location,
     remoteType: job.isRemote ? "Remote" : detectRemoteType(`${location} ${job.workplaceType ?? ""}`, text),
@@ -579,7 +719,7 @@ function normalizeLeverJob(posting, board, detailHTML) {
 
   return {
     id: stableUUID(posting.sourceURL),
-    company: posting.company || board.company,
+    company: posting.company || board.company || board.slug || "Unknown company",
     title: posting.title || "Untitled role",
     city: posting.location || "Not listed",
     remoteType: detectRemoteType(`${posting.location ?? ""} ${posting.workplaceType ?? ""}`, text),
@@ -599,7 +739,7 @@ function normalizeLeverJob(posting, board, detailHTML) {
 }
 
 async function fetchGreenhouseBoard(board) {
-  const url = `https://boards-api.greenhouse.io/v1/boards/${board}/jobs?content=true`;
+  const url = `https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(board)}/jobs?content=true`;
   const response = await fetch(url, {
     headers: {
       "accept": "application/json",
@@ -614,7 +754,7 @@ async function fetchGreenhouseBoard(board) {
 }
 
 async function fetchAshbyBoard(board) {
-  const url = `https://api.ashbyhq.com/posting-api/job-board/${board.slug}`;
+  const url = `https://api.ashbyhq.com/posting-api/job-board/${encodeURIComponent(board.slug)}`;
   const response = await fetch(url, {
     headers: {
       "accept": "application/json",
@@ -626,7 +766,8 @@ async function fetchAshbyBoard(board) {
   if (!response.ok) throw new Error(`${board.slug}: ${response.status}`);
   const data = await response.json();
   const jobs = Array.isArray(data.jobs) ? data.jobs.filter((job) => job.isListed !== false) : [];
-  return jobs.map((job) => normalizeAshbyJob(job, board));
+  const company = board.company || data.name || data.companyName || data.organizationName || board.slug;
+  return jobs.map((job) => normalizeAshbyJob(job, { ...board, company }));
 }
 
 async function fetchLeverDetail(posting) {
@@ -643,7 +784,7 @@ async function fetchLeverDetail(posting) {
 }
 
 async function fetchLeverBoard(board) {
-  const url = `https://jobs.lever.co/${board.slug}`;
+  const url = `https://jobs.lever.co/${encodeURIComponent(board.slug)}`;
   const response = await fetch(url, {
     headers: {
       "accept": "text/html,application/xhtml+xml",
@@ -679,7 +820,7 @@ async function fetchLeverBoard(board) {
 
 async function fetchGreenhousePayRange(job) {
   if (!job._greenhouseBoard || !job._greenhouseJobId) return null;
-  const url = `https://boards-api.greenhouse.io/v1/boards/${job._greenhouseBoard}/jobs/${job._greenhouseJobId}?pay_transparency=true`;
+  const url = `https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(job._greenhouseBoard)}/jobs/${encodeURIComponent(job._greenhouseJobId)}?pay_transparency=true`;
   const response = await fetch(url, {
     headers: {
       "accept": "application/json",
@@ -731,8 +872,23 @@ if (sourceEnabled("greenhouse")) {
       }
 
       console.error(`${board}: ${added} jobs`);
+      sourceReports.push({
+        platform: "greenhouse",
+        board,
+        company: jobs[0]?.company ?? null,
+        status: added > 0 ? "active" : "empty",
+        jobCount: added
+      });
     } catch (error) {
       console.error(`${board}: skipped (${error.message})`);
+      sourceReports.push({
+        platform: "greenhouse",
+        board,
+        company: null,
+        status: "failed",
+        jobCount: 0,
+        error: error.message
+      });
     }
 
   }
@@ -753,8 +909,23 @@ if (sourceEnabled("ashby")) {
       }
 
       console.error(`${board.slug}: ${added} jobs`);
+      sourceReports.push({
+        platform: "ashby",
+        board: board.slug,
+        company: jobs[0]?.company ?? board.company ?? null,
+        status: added > 0 ? "active" : "empty",
+        jobCount: added
+      });
     } catch (error) {
       console.error(`${board.slug}: skipped (${error.message})`);
+      sourceReports.push({
+        platform: "ashby",
+        board: board.slug,
+        company: board.company ?? null,
+        status: "failed",
+        jobCount: 0,
+        error: error.message
+      });
     }
   }
 }
@@ -774,8 +945,23 @@ if (sourceEnabled("lever")) {
       }
 
       console.error(`${board.slug}: ${added} jobs`);
+      sourceReports.push({
+        platform: "lever",
+        board: board.slug,
+        company: jobs[0]?.company ?? board.company ?? null,
+        status: added > 0 ? "active" : "empty",
+        jobCount: added
+      });
     } catch (error) {
       console.error(`${board.slug}: skipped (${error.message})`);
+      sourceReports.push({
+        platform: "lever",
+        board: board.slug,
+        company: board.company ?? null,
+        status: "failed",
+        jobCount: 0,
+        error: error.message
+      });
     }
   }
 }
@@ -862,6 +1048,8 @@ const outputJobs = selected.map((job) => {
 });
 
 fs.writeFileSync(output, `${JSON.stringify(outputJobs, null, 2)}\n`);
+writeSourceHealth(sourceReports);
 console.error(`Wrote ${outputJobs.length} jobs to ${output}`);
+console.error(`Wrote source health to ${sourceHealthPath}`);
 console.error(`Salary listed: ${outputJobs.filter((job) => job.salary !== "Not listed").length} (${hydratedSalary} hydrated from pay transparency endpoint)`);
 console.error(`Recruiting email listed: ${outputJobs.filter((job) => job.contactEmail).length}`);

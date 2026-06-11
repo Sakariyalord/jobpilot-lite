@@ -18,6 +18,7 @@ The first version avoids AI APIs, paid backend services, and complex crawling. I
 - Bundled startup jobs loaded from `JobPilotLite/SeedJobs.json`.
 - Optional full and sliced remote live job feeds configured through `JobPilotLite/JobFeedConfig.json`.
 - Static publishable job assets live in `Data/JobFeed`: `LiveJobs.json`, `index.json`, and `jobs/*.json`.
+- Public ATS source discovery is tracked in `Data/JobSourceRegistry.json`; source health is written to `Data/JobSourceHealth.json` during refresh.
 - Job data must pass recent live verification; the app does not fall back to fake/example roles.
 - Template-based matching and template-based application material generation.
 - Registration captures resume-ready profile history: contact info, target role, skills, work history, education, projects, certifications, and links.
@@ -138,18 +139,28 @@ node Tools/fetch-public-jobs.mjs Data/JobFeed/LiveJobs.json 12000
 
 The crawler currently uses public Greenhouse, Ashby, and Lever job board surfaces. It does not access login-gated pages, bypass anti-bot controls, or infer email formats. `contactEmail` is only populated when a recruiting/careers-style email is explicitly present in the public job text. `salary` is extracted from public job text or public pay-transparency metadata when available; otherwise it remains `Not listed`.
 
+To expand source coverage without running your own server, use the source discovery step:
+
+```sh
+node Tools/discover-job-sources.mjs Data/JobSourceRegistry.json Data/job-source-discovery-report.json
+```
+
+The discovery script uses `Data/JobDiscoverySeeds.json` and the latest Common Crawl index only as sources of candidate public ATS board URLs. It then validates each candidate against the public Greenhouse, Ashby, or Lever board endpoint/page before adding it to `Data/JobSourceRegistry.json`. A URL seen in a seed file or Common Crawl is not enough by itself; it must expose real current postings through the public ATS surface.
+
+The fetch script always keeps the built-in reliable seed boards and adds only a bounded number of registry sources through `JOB_FETCH_EXTRA_SOURCE_LIMIT` so the GitHub Actions job cannot grow without limit. During fetch it writes `Data/JobSourceHealth.json`, including board status, job count, and latest error when a source fails. Large per-job refresh reports are kept out of git so the repository does not grow every day.
+
 For the production-style daily feed, use the live verifier:
 
 ```sh
-JOB_FETCH_PAY_BATCH_SIZE=64 JOB_FETCH_PAY_TIMEOUT_MS=8000 JOB_FETCH_LEVER_BATCH_SIZE=8 JOB_VERIFY_TIMEOUT_MS=30000 JOB_VERIFY_RETRIES=2 node Tools/refresh-live-jobs.mjs Data/JobFeed/LiveJobs.json 12000 23000
+JOB_FETCH_PAY_BATCH_SIZE=64 JOB_FETCH_PAY_TIMEOUT_MS=8000 JOB_FETCH_LEVER_BATCH_SIZE=8 JOB_FETCH_EXTRA_SOURCE_LIMIT=120 JOB_VERIFY_TIMEOUT_MS=30000 JOB_VERIFY_RETRIES=2 node Tools/refresh-live-jobs.mjs Data/JobFeed/LiveJobs.json 12000 23000
 node Tools/build-job-feed-assets.mjs Data/JobFeed/LiveJobs.json Data/JobFeed JobPilotLite/SeedJobs.json 800
 ```
 
-The first command fetches public ATS candidates, verifies each job against the public ATS detail endpoint when available, checks that the final source URL still opens, keeps only jobs that still resolve to a live role, stamps each kept row with `liveStatus: "live"` and `lastVerifiedAt`, and writes `Data/job-refresh-report.json`. The second command builds static publish assets and shrinks the bundled startup dataset.
+The first command fetches public ATS candidates, verifies each job against the public ATS detail endpoint when available, checks that the final source URL still opens, keeps only jobs that still resolve to a live role, stamps each kept row with `liveStatus: "live"` and `lastVerifiedAt`, and writes a local refresh report. The second command builds static publish assets and shrinks the bundled startup dataset.
 
 The refresh script writes to a temporary verified file first. It replaces `Data/JobFeed/LiveJobs.json` only if the target live-job count is reached, so a bad crawl cannot publish a partial feed. `Tools/validate-seed-jobs.mjs` also rejects any row without `liveStatus: "live"`, `verifiedSourceURL`, or a recent `lastVerifiedAt` timestamp.
 
-The included GitHub Actions workflow `.github/workflows/daily-job-refresh.yml` runs the same refresh daily. This uses GitHub's scheduled runner and commits static JSON files; it does not require an app server, database, cron VM, or paid backend.
+The included GitHub Actions workflow `.github/workflows/daily-job-refresh.yml` runs the same refresh daily. It first tries to discover more public ATS sources, then fetches and verifies jobs, then publishes static JSON files. This uses GitHub's scheduled runner and commits static JSON files; it does not require an app server, database, cron VM, or paid backend. If source discovery fails, the workflow continues with the existing reliable source set.
 
 The same workflow also uploads `Data/JobFeed` to GitHub Pages, so the refreshed job feed can be served as static JSON at no app-server cost. In the GitHub repo settings, set Pages to use GitHub Actions as the build source.
 

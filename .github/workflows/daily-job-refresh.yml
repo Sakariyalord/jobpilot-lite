@@ -22,14 +22,25 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Discover public ATS sources
+        continue-on-error: true
+        env:
+          JOB_DISCOVERY_CDX_URL_LIMIT: "250"
+          JOB_DISCOVERY_VALIDATE_LIMIT: "90"
+          JOB_DISCOVERY_MAX_NEW_SOURCES: "60"
+          JOB_DISCOVERY_CONCURRENCY: "6"
+          JOB_DISCOVERY_TIMEOUT_MS: "15000"
+        run: node Tools/discover-job-sources.mjs Data/JobSourceRegistry.json /tmp/job-source-discovery-report.json
+
       - name: Refresh verified public jobs
         env:
           JOB_FETCH_PAY_BATCH_SIZE: "64"
           JOB_FETCH_PAY_TIMEOUT_MS: "8000"
           JOB_FETCH_LEVER_BATCH_SIZE: "8"
+          JOB_FETCH_EXTRA_SOURCE_LIMIT: "120"
           JOB_VERIFY_TIMEOUT_MS: "30000"
           JOB_VERIFY_RETRIES: "3"
-        run: node Tools/refresh-live-jobs.mjs Data/JobFeed/LiveJobs.json 12000 23000
+        run: node Tools/refresh-live-jobs.mjs Data/JobFeed/LiveJobs.json 12000 23000 /tmp/job-refresh-report.json
 
       - name: Build static app feed assets
         run: node Tools/build-job-feed-assets.mjs Data/JobFeed/LiveJobs.json Data/JobFeed JobPilotLite/SeedJobs.json 800
@@ -50,7 +61,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add JobPilotLite/SeedJobs.json Data/JobFeed Data/job-refresh-report.json
+          git add JobPilotLite/SeedJobs.json Data/JobFeed Data/JobSourceRegistry.json Data/JobSourceHealth.json
           git diff --cached --quiet || git commit -m "Refresh verified job feed"
           git push
 

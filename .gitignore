@@ -11,3 +11,5 @@ build/
 *.dSYM
 Docs/cleanup-downloads-*.txt
 Docs/proxy-before-xcode-fix.txt
+Data/job-refresh-report.json
+Data/job-source-discovery-report.json
