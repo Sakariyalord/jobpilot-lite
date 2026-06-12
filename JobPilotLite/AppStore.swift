@@ -19,6 +19,139 @@ private struct FeedbackSignal: Sendable {
     var unwantedIndustries: Set<String>
 }
 
+private struct JobSearchCoverageRequest: Sendable {
+    var terms: Set<String>
+    var locationTerms: Set<String>
+
+    var hasSearch: Bool {
+        !terms.isEmpty || !locationTerms.isEmpty
+    }
+
+    init(query: String, location: String, filter: String) {
+        let expandedQuery = Self.expandedSearchText(query)
+        let expandedLocation = Self.expandedSearchText(location)
+        var queryTerms = Set(Self.tokens(from: expandedQuery))
+        let locationTerms = Set(Self.tokens(from: expandedLocation))
+        let normalizedFilter = filter.lowercased()
+        let raw = "\(query) \(location) \(filter)".lowercased()
+
+        switch normalizedFilter {
+        case "remote":
+            queryTerms.insert("remote")
+        case "internship":
+            queryTerms.insert("internship")
+        case "full-time":
+            queryTerms.insert("full-time")
+        case "entry":
+            queryTerms.insert("entry")
+        case "hybrid":
+            queryTerms.insert("hybrid")
+        case "on-site":
+            queryTerms.insert("on-site")
+        default:
+            break
+        }
+
+        if raw.contains("full time") || raw.contains("full-time") || raw.contains("全职") {
+            queryTerms.insert("full-time")
+        }
+        if raw.contains("part time") || raw.contains("part-time") || raw.contains("contract") || raw.contains("兼职") || raw.contains("合同") {
+            queryTerms.insert("contract")
+        }
+        if raw.contains("entry level") || raw.contains("junior") || raw.contains("new grad") || raw.contains("应届") || raw.contains("初级") {
+            queryTerms.insert("entry")
+        }
+        if raw.contains("remote") || raw.contains("远程") {
+            queryTerms.insert("remote")
+        }
+        if raw.contains("on-site") || raw.contains("on site") || raw.contains("onsite") || raw.contains("线下") || raw.contains("现场") {
+            queryTerms.insert("on-site")
+        }
+        if raw.contains("hybrid") || raw.contains("混合") {
+            queryTerms.insert("hybrid")
+        }
+
+        let stopWords: Set<String> = [
+            "job", "jobs", "role", "roles", "position", "positions", "opening", "openings",
+            "hiring", "hire", "find", "looking", "for", "with", "and", "the", "near", "in",
+            "at", "of", "a", "an", "to", "me", "level", "on", "site"
+        ]
+
+        self.terms = queryTerms.filter { !stopWords.contains($0) }
+        self.locationTerms = locationTerms.filter { !stopWords.contains($0) }
+    }
+
+    private static func tokens(from value: String) -> [String] {
+        value
+            .components(separatedBy: CharacterSet.alphanumerics.inverted)
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }
+            .filter { $0.count >= 2 }
+    }
+
+    private static func expandedSearchText(_ value: String) -> String {
+        var output = value.lowercased()
+        let replacements: [(String, String)] = [
+            ("数据分析师", " data analyst analytics sql "),
+            ("商业分析", " business analyst analytics "),
+            ("数据科学家", " data scientist machine learning ai "),
+            ("机器学习", " machine learning ml ai "),
+            ("人工智能", " ai machine learning "),
+            ("软件工程师", " software engineer developer "),
+            ("程序员", " software developer engineer "),
+            ("后端", " backend software engineer "),
+            ("前端", " frontend software engineer "),
+            ("全栈", " full stack software engineer "),
+            ("产品经理", " product manager "),
+            ("设计", " design designer ux ui "),
+            ("运营", " operations logistics coordinator "),
+            ("物流", " logistics supply chain warehouse "),
+            ("市场", " marketing growth content brand "),
+            ("销售", " sales account business development "),
+            ("客服", " customer support service "),
+            ("客户成功", " customer success "),
+            ("会计", " accounting finance audit tax "),
+            ("财务", " finance accounting analyst "),
+            ("护士", " nurse nursing healthcare clinical "),
+            ("医疗", " healthcare clinical medical patient "),
+            ("教师", " teacher education tutor "),
+            ("行政", " administrative assistant coordinator "),
+            ("人力资源", " hr human resources recruiting "),
+            ("招聘", " recruiting talent acquisition "),
+            ("实习", " internship intern student graduate "),
+            ("应届", " entry junior new grad graduate "),
+            ("初级", " entry junior associate assistant "),
+            ("全职", " full-time full time "),
+            ("兼职", " part-time contract "),
+            ("合同", " contract freelance temporary "),
+            ("远程", " remote distributed "),
+            ("混合", " hybrid "),
+            ("线下", " on-site onsite office "),
+            ("现场", " on-site onsite office "),
+            ("纽约", " new york united states "),
+            ("伦敦", " london united kingdom uk "),
+            ("多伦多", " toronto canada "),
+            ("温哥华", " vancouver canada "),
+            ("旧金山", " san francisco united states "),
+            ("洛杉矶", " los angeles united states "),
+            ("西雅图", " seattle united states "),
+            ("波士顿", " boston united states "),
+            ("悉尼", " sydney australia "),
+            ("墨尔本", " melbourne australia "),
+            ("美国", " united states usa us "),
+            ("加拿大", " canada "),
+            ("英国", " united kingdom uk "),
+            ("澳洲", " australia "),
+            ("欧洲", " europe germany france netherlands ireland spain sweden ")
+        ]
+
+        for (source, replacement) in replacements {
+            output = output.replacingOccurrences(of: source, with: replacement)
+        }
+
+        return output
+    }
+}
+
 private enum NotificationPermissionState: Sendable {
     case unknown
     case notRequested
@@ -149,6 +282,10 @@ final class AppStore: ObservableObject {
     private let cachedJobsKey = "remote_jobs_cache_v1"
     private let lastJobRefreshKey = "jobs_last_refresh_at_v1"
     private let jobFeedConfig = JobFeedConfig.load()
+    private var remoteFeedIndex: JobFeedIndex?
+    private var loadedSliceIDs = Set<String>()
+    private var loadingSearchSliceIDs = Set<String>()
+    private var onDemandSearchSliceIDs = Set<String>()
     private var matchRebuildTask: Task<Void, Never>?
     private var analyticsPersistTask: Task<Void, Never>?
     private var notificationRefreshTask: Task<Void, Never>?
@@ -165,6 +302,8 @@ final class AppStore: ObservableObject {
     private var localizedTagCache: [String: String] = [:]
     private var localizedTextCache: [String: String] = [:]
     private var localizedReasonCache: [String: String] = [:]
+    private let maxOnDemandSearchSlices = 6
+    private let maxSearchExpandedJobCount = 7_000
 
     init() {
         load()
@@ -3256,6 +3395,10 @@ final class AppStore: ObservableObject {
         settings = AppSettings()
         analyticsPersistTask?.cancel()
         notificationRefreshTask?.cancel()
+        remoteFeedIndex = nil
+        loadedSliceIDs.removeAll(keepingCapacity: true)
+        loadingSearchSliceIDs.removeAll(keepingCapacity: true)
+        onDemandSearchSliceIDs.removeAll(keepingCapacity: true)
         UserDefaults.standard.removeObject(forKey: profileKey)
         UserDefaults.standard.removeObject(forKey: applicationsKey)
         UserDefaults.standard.removeObject(forKey: feedbackKey)
@@ -3265,10 +3408,79 @@ final class AppStore: ObservableObject {
         Task { await notificationScheduler.cancelDailyMatchDigest() }
     }
 
+    func expandSearchCoverage(query: String, location: String, filter: String) async {
+        guard jobFeedConfig.remoteIndexURL != nil else { return }
+        guard jobs.count < maxSearchExpandedJobCount else { return }
+        guard onDemandSearchSliceIDs.count < maxOnDemandSearchSlices else { return }
+
+        let request = JobSearchCoverageRequest(query: query, location: location, filter: filter)
+        guard request.hasSearch else { return }
+        guard let index = await ensureRemoteFeedIndex() else { return }
+
+        let remainingSliceCount = maxOnDemandSearchSlices - onDemandSearchSliceIDs.count
+        let blockedSliceIDs = loadedSliceIDs.union(loadingSearchSliceIDs)
+        let descriptors = Self.searchExpansionSlices(
+            from: index,
+            request: request,
+            excluding: blockedSliceIDs
+        )
+        .prefix(min(2, remainingSliceCount))
+
+        guard !descriptors.isEmpty else { return }
+
+        let descriptorIDs = Set(descriptors.map(\.id))
+        loadingSearchSliceIDs.formUnion(descriptorIDs)
+        defer {
+            loadingSearchSliceIDs.subtract(descriptorIDs)
+        }
+
+        let freshnessWindow = max(jobFeedConfig.refreshIntervalHours + 12, 36)
+        var records: [SeedJob] = []
+        records.reserveCapacity(descriptors.reduce(0) { $0 + min($1.jobCount, 1_500) })
+
+        for descriptor in descriptors {
+            guard let indexURL = jobFeedConfig.remoteIndexURL,
+                  let sliceURL = resolvedFeedURL(descriptor.url, relativeTo: indexURL),
+                  let sliceRecords = try? await fetchSeedJobRecords(from: sliceURL, freshnessWindow: freshnessWindow) else {
+                continue
+            }
+            records.append(contentsOf: sliceRecords)
+        }
+
+        loadedSliceIDs.formUnion(descriptorIDs)
+        onDemandSearchSliceIDs.formUnion(descriptorIDs)
+        guard !records.isEmpty else { return }
+
+        var existingIDs = Set(jobs.map(\.id))
+        var mergedJobs = jobs
+        mergedJobs.reserveCapacity(min(maxSearchExpandedJobCount, jobs.count + records.count))
+
+        for record in records {
+            let job = record.job
+            guard existingIDs.insert(job.id).inserted else { continue }
+            mergedJobs.append(job)
+            if mergedJobs.count >= maxSearchExpandedJobCount { break }
+        }
+
+        guard mergedJobs.count > jobs.count else { return }
+        jobs = mergedJobs
+    }
+
     func refreshJobsIfNeeded(force: Bool = false) async {
-        guard jobFeedConfig.remoteURL != nil || jobFeedConfig.remoteIndexURL != nil else { return }
+        guard jobFeedConfig.remoteURL != nil || jobFeedConfig.remoteIndexURL != nil else {
+            isLoadingJobs = false
+            return
+        }
+
+        if jobs.isEmpty {
+            isLoadingJobs = true
+        }
+        defer {
+            isLoadingJobs = false
+        }
 
         if !force,
+           !jobs.isEmpty,
            let lastRefresh = UserDefaults.standard.object(forKey: lastJobRefreshKey) as? Date,
            Date().timeIntervalSince(lastRefresh) < TimeInterval(jobFeedConfig.refreshIntervalHours * 3600) {
             return
@@ -3312,9 +3524,29 @@ final class AppStore: ObservableObject {
 
             apply(seedJobRecords: refreshedRecords)
             cache(seedJobRecords: refreshedRecords)
+            loadedSliceIDs.insert("full-feed")
             return true
         } catch {
             return false
+        }
+    }
+
+    private func ensureRemoteFeedIndex() async -> JobFeedIndex? {
+        if let remoteFeedIndex { return remoteFeedIndex }
+        guard let indexURL = jobFeedConfig.remoteIndexURL else { return nil }
+
+        do {
+            let (data, response) = try await URLSession.shared.data(from: indexURL)
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200..<300).contains(httpResponse.statusCode),
+                  let index = try? JSONDecoder().decode(JobFeedIndex.self, from: data) else {
+                return nil
+            }
+
+            remoteFeedIndex = index
+            return index
+        } catch {
+            return nil
         }
     }
 
@@ -3329,14 +3561,17 @@ final class AppStore: ObservableObject {
                 return false
             }
 
+            remoteFeedIndex = index
             let descriptors = preferredSlices(from: index)
             guard !descriptors.isEmpty else { return false }
 
             var recordsByID = await existingSeedJobRecords(freshnessWindow: freshnessWindow)
+            var fetchedDescriptorIDs = Set<String>()
 
             for descriptor in descriptors {
                 guard let sliceURL = resolvedFeedURL(descriptor.url, relativeTo: indexURL) else { continue }
                 guard let records = try? await fetchSeedJobRecords(from: sliceURL, freshnessWindow: freshnessWindow) else { continue }
+                fetchedDescriptorIDs.insert(descriptor.id)
 
                 for record in records {
                     recordsByID[record.id] = record
@@ -3357,6 +3592,7 @@ final class AppStore: ObservableObject {
 
             apply(seedJobRecords: mergedRecords)
             cache(seedJobRecords: mergedRecords)
+            loadedSliceIDs.formUnion(fetchedDescriptorIDs)
             return true
         } catch {
             return false
@@ -3463,6 +3699,167 @@ final class AppStore: ObservableObject {
             .map(\.descriptor)
     }
 
+    nonisolated private static func searchExpansionSlices(
+        from index: JobFeedIndex,
+        request: JobSearchCoverageRequest,
+        excluding loadedSliceIDs: Set<String>
+    ) -> [JobFeedSliceDescriptor] {
+        let requestTerms = request.terms.union(request.locationTerms)
+        guard !requestTerms.isEmpty else { return [] }
+
+        return index.slices
+            .filter { !loadedSliceIDs.contains($0.id) }
+            .map { descriptor -> (descriptor: JobFeedSliceDescriptor, score: Int) in
+                let score = searchExpansionScore(for: descriptor, requestTerms: requestTerms, locationTerms: request.locationTerms)
+                return (descriptor, score)
+            }
+            .filter { $0.score > 0 }
+            .sorted {
+                if $0.score == $1.score {
+                    return $0.descriptor.jobCount > $1.descriptor.jobCount
+                }
+                return $0.score > $1.score
+            }
+            .map(\.descriptor)
+    }
+
+    nonisolated private static func searchExpansionScore(
+        for descriptor: JobFeedSliceDescriptor,
+        requestTerms: Set<String>,
+        locationTerms: Set<String>
+    ) -> Int {
+        let descriptorTerms = searchExpansionDescriptorTerms(for: descriptor)
+        let descriptorText = descriptorTerms.joined(separator: " ")
+        let canonicalDescriptorTerms = Set(descriptorTerms.flatMap { searchCoverageAliases(for: $0) }).union(descriptorTerms)
+        let canonicalRequestTerms = Set(requestTerms.flatMap { searchCoverageAliases(for: $0) }).union(requestTerms)
+
+        var score = 0
+        var matchedAnyUserTerm = false
+
+        for term in canonicalRequestTerms {
+            if descriptor.id == term {
+                score += 90
+                matchedAnyUserTerm = true
+            } else if descriptor.category == term {
+                score += 78
+                matchedAnyUserTerm = true
+            } else if descriptor.workMode == term || descriptor.opportunityType == term {
+                score += 70
+                matchedAnyUserTerm = true
+            } else if descriptor.locations?.contains(term) == true {
+                score += 64
+                matchedAnyUserTerm = true
+            } else if descriptor.keywords?.contains(term) == true {
+                score += 56
+                matchedAnyUserTerm = true
+            } else if canonicalDescriptorTerms.contains(term) {
+                score += 42
+                matchedAnyUserTerm = true
+            } else if descriptorText.contains(term) && term.count >= 3 {
+                score += 24
+                matchedAnyUserTerm = true
+            }
+        }
+
+        for term in locationTerms.flatMap({ searchCoverageAliases(for: $0) }) {
+            if descriptor.locations?.contains(term) == true || descriptor.id == term {
+                score += 55
+            } else if descriptorText.contains(term), term.count >= 3 {
+                score += 22
+            }
+        }
+
+        if descriptor.locations?.contains("global") == true {
+            score += 2
+        }
+        if descriptor.id.contains("-remote"), canonicalRequestTerms.contains("remote") {
+            score += 32
+        }
+        if descriptor.id.contains("-internship"), canonicalRequestTerms.contains("internship") {
+            score += 32
+        }
+        if descriptor.workMode == "remote", canonicalRequestTerms.contains("remote") {
+            score += 36
+        }
+        if descriptor.opportunityType == "internship", canonicalRequestTerms.contains("internship") {
+            score += 36
+        }
+        if descriptor.opportunityType == "full-time", canonicalRequestTerms.contains("full-time") {
+            score += 24
+        }
+        if descriptor.opportunityType == "contract", canonicalRequestTerms.contains("contract") {
+            score += 24
+        }
+
+        score += min(descriptor.jobCount / 150, 10)
+        return matchedAnyUserTerm ? score : 0
+    }
+
+    nonisolated private static func searchExpansionDescriptorTerms(for descriptor: JobFeedSliceDescriptor) -> [String] {
+        [
+            descriptor.id,
+            descriptor.title,
+            descriptor.category ?? "",
+            descriptor.workMode ?? "",
+            descriptor.opportunityType ?? "",
+            descriptor.locations?.joined(separator: " ") ?? "",
+            descriptor.keywords?.joined(separator: " ") ?? ""
+        ]
+        .joined(separator: " ")
+        .components(separatedBy: CharacterSet.alphanumerics.inverted)
+        .map { $0.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }
+        .filter { $0.count >= 2 }
+    }
+
+    nonisolated private static func searchCoverageAliases(for term: String) -> Set<String> {
+        switch term {
+        case "software", "engineer", "engineering", "developer", "programmer", "backend", "frontend", "fullstack", "ios", "android", "devops", "qa":
+            return ["software"]
+        case "data", "analyst", "analytics", "analysis", "scientist", "sql", "bi", "insights", "machine", "ml", "ai":
+            return ["data"]
+        case "product", "design", "designer", "ux", "ui":
+            return ["product-design"]
+        case "operations", "operation", "logistics", "supply", "warehouse", "coordinator":
+            return ["operations"]
+        case "finance", "financial", "accounting", "accountant", "audit", "tax", "payroll":
+            return ["finance"]
+        case "marketing", "market", "growth", "content", "brand", "seo":
+            return ["marketing"]
+        case "sales", "account", "customer", "support", "success", "service", "revenue":
+            return ["sales-customer"]
+        case "healthcare", "health", "nurse", "nursing", "clinical", "medical", "patient":
+            return ["healthcare"]
+        case "education", "teacher", "teaching", "tutor", "curriculum", "instructor":
+            return ["education"]
+        case "remote", "distributed", "wfh":
+            return ["remote"]
+        case "hybrid":
+            return ["hybrid"]
+        case "onsite", "on-site", "office", "field":
+            return ["on-site"]
+        case "intern", "internship", "student", "graduate", "coop", "co-op":
+            return ["internship"]
+        case "entry", "junior", "associate", "assistant", "newgrad":
+            return ["internship", "full-time"]
+        case "fulltime", "full-time":
+            return ["full-time"]
+        case "contract", "parttime", "part-time", "freelance", "temporary":
+            return ["contract"]
+        case "us", "usa", "america", "united", "states", "nyc", "new", "york", "california", "texas", "seattle", "boston", "chicago", "austin", "dallas":
+            return ["united-states"]
+        case "canada", "toronto", "vancouver", "montreal", "ottawa", "calgary":
+            return ["canada"]
+        case "uk", "london", "england", "britain", "manchester":
+            return ["united-kingdom"]
+        case "europe", "germany", "france", "netherlands", "ireland", "spain", "sweden", "berlin", "munich", "paris", "amsterdam", "dublin", "madrid", "stockholm":
+            return ["europe"]
+        case "australia", "sydney", "melbourne", "brisbane", "perth":
+            return ["australia"]
+        default:
+            return [term]
+        }
+    }
+
     private static func feedLocationSlug(for country: TargetCountry) -> String {
         switch country {
         case .unitedStates: return "united-states"
@@ -3525,7 +3922,7 @@ final class AppStore: ObservableObject {
 
         jobs = initialJobs
         rebuildMatchesImmediately()
-        isLoadingJobs = false
+        isLoadingJobs = initialJobs.isEmpty
     }
 
     private func load() {

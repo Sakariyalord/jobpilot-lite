@@ -341,15 +341,21 @@ enum AppLanguage: String, CaseIterable, Identifiable, Codable, Sendable {
         "Matches": "匹配",
         "Save": "保存",
         "Search title, company, skill": "搜索职位、公司、技能",
+        "Search any title, company, skill": "搜索任意职位、公司、技能",
+        "Role, company, or skill": "职位、公司或技能",
+        "Location or remote": "地点或远程",
         "Edit profile": "编辑资料",
         "Loading verified jobs": "正在加载已验证职位",
         "Preparing live roles and resume matches.": "正在准备真实职位和简历匹配。",
         "No verified jobs available": "暂无已验证职位",
         "The job feed is waiting for a fresh live verification run.": "职位源正在等待新的实时验证结果。",
+        "No search results": "没有搜索结果",
+        "Try a broader title, skill, company, or location.": "换一个更宽的职位、技能、公司或地点试试。",
         "Today": "今日",
         "All": "全部",
         "Strong": "强匹配",
         "Remote": "远程",
+        "Entry": "初级",
         "Visa": "签证",
         "Salary": "薪资",
         "Contact": "联系人",
@@ -484,6 +490,8 @@ enum AppLanguage: String, CaseIterable, Identifiable, Codable, Sendable {
         "Software Engineer": "软件工程师",
         "Product Manager": "产品经理",
         "Finance Analyst": "财务分析师",
+        "Marketing": "市场",
+        "Visa Sponsorship": "签证赞助",
         "HR Coordinator": "人力资源协调员",
         "Warehouse Associate": "仓库专员",
         "Teacher": "教师",
@@ -614,7 +622,7 @@ enum AppLanguage: String, CaseIterable, Identifiable, Codable, Sendable {
         "ATS": "ATS",
         "Any": "不限",
         "On-site": "线下",
-        "Hybrid": "混合",
+        "Hybrid": "混合办公",
         "Full-time": "全职",
         "Part-time": "兼职",
         "Contract": "合同",
@@ -694,10 +702,7 @@ enum AppLanguage: String, CaseIterable, Identifiable, Codable, Sendable {
         "Resume is short; add measurable experience bullets": "简历偏短；补充可量化经历要点",
         "Resume is long; trim older or unrelated details": "简历偏长；删减较旧或无关内容",
         "Too many separator-heavy lines can reduce scan quality": "分隔符过多可能影响扫描质量",
-        "Generate or paste a resume draft to run the ATS check.": "生成或粘贴简历草稿后运行 ATS 检查。",
-        "Search any title, company, skill": "搜索任何职位、公司或技能",
-        "Role, company, or skill": "职位、公司或技能",
-        "Location or remote": "地点或远程"
+        "Generate or paste a resume draft to run the ATS check.": "生成或粘贴简历草稿后运行 ATS 检查。"
     ]
 }
 
@@ -1050,13 +1055,27 @@ struct SeedJob: Codable, Sendable {
     func hasRecentLiveVerification(maxAgeHours: Int) -> Bool {
         guard liveStatus == "live",
               let lastVerifiedAt,
-              let verifiedAt = ISO8601DateFormatter().date(from: lastVerifiedAt) else {
+              let verifiedAt = LiveVerificationDateParser.date(from: lastVerifiedAt) else {
             return false
         }
 
         let maxAge = TimeInterval(maxAgeHours * 3600)
         let age = Date().timeIntervalSince(verifiedAt)
         return age >= -300 && age <= maxAge
+    }
+}
+
+private enum LiveVerificationDateParser {
+    private static let fractionalFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return formatter
+    }()
+
+    private static let standardFormatter = ISO8601DateFormatter()
+
+    static func date(from value: String) -> Date? {
+        fractionalFormatter.date(from: value) ?? standardFormatter.date(from: value)
     }
 }
 
