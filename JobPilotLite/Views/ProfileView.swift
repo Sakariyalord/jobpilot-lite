@@ -695,7 +695,15 @@ struct NotificationReminderSettingsView: View {
     var body: some View {
         Form {
             Section(store.t("Notifications")) {
-                Toggle(store.t("Daily match digest"), isOn: $store.settings.dailyMatchDigest)
+                Toggle(
+                    store.t("Daily match digest"),
+                    isOn: Binding(
+                        get: { store.settings.dailyMatchDigest },
+                        set: { store.setDailyMatchDigestEnabled($0) }
+                    )
+                )
+                LabeledContent(store.t("Digest times"), value: store.t("8:30 PM and 11:30 PM"))
+                LabeledContent(store.t("Notification permission"), value: store.t(store.notificationPermissionLabel))
                 Toggle(store.t("Security alerts"), isOn: $store.settings.securityAlerts)
             }
 
@@ -705,7 +713,7 @@ struct NotificationReminderSettingsView: View {
             }
 
             Section {
-                SettingsNote(text: store.t("These switches are stored locally now. Push notification permissions and scheduling can be connected after the MVP validates demand."))
+                SettingsNote(text: store.t("Match digests are scheduled on this iPhone in its current time zone. No server push worker is required."))
             }
         }
         .navigationTitle(store.t("Notifications"))

@@ -15,7 +15,7 @@ struct RootView: View {
         .environment(\.locale, Locale(identifier: store.settings.language.localeIdentifier))
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
-                store.refreshSystemLanguageIfNeeded()
+                store.handleAppBecameActive()
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: NSLocale.currentLocaleDidChangeNotification)) { _ in

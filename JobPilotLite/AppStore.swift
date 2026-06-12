@@ -1,4 +1,5 @@
 import Foundation
+import UserNotifications
 
 private struct WeightedTerm: Sendable {
     var term: String
@@ -16,6 +17,90 @@ private struct FeedbackSignal: Sendable {
     var tooSenior: Bool
     var unwantedLocations: Set<String>
     var unwantedIndustries: Set<String>
+}
+
+private enum NotificationPermissionState: Sendable {
+    case unknown
+    case notRequested
+    case allowed
+    case denied
+}
+
+private enum DailyMatchDigestSlot: String, CaseIterable, Sendable {
+    case evening
+    case late
+
+    var identifier: String {
+        "jobpilot.daily-match.\(rawValue)"
+    }
+
+    var hour: Int {
+        switch self {
+        case .evening: return 20
+        case .late: return 23
+        }
+    }
+
+    var minute: Int {
+        30
+    }
+}
+
+private struct DailyMatchDigestNotification: Sendable {
+    var identifier: String
+    var hour: Int
+    var minute: Int
+    var title: String
+    var body: String
+    var slot: String
+}
+
+private final class LocalNotificationScheduler {
+    private let center = UNUserNotificationCenter.current()
+
+    func authorizationStatus() async -> UNAuthorizationStatus {
+        await center.notificationSettings().authorizationStatus
+    }
+
+    func requestAuthorization() async -> UNAuthorizationStatus {
+        do {
+            _ = try await center.requestAuthorization(options: [.alert, .badge, .sound])
+        } catch {
+            return await authorizationStatus()
+        }
+
+        return await authorizationStatus()
+    }
+
+    func scheduleDailyMatchDigest(_ notifications: [DailyMatchDigestNotification]) async {
+        center.removePendingNotificationRequests(withIdentifiers: DailyMatchDigestSlot.allCases.map(\.identifier))
+
+        for notification in notifications {
+            var date = DateComponents()
+            date.calendar = Calendar.current
+            date.hour = notification.hour
+            date.minute = notification.minute
+
+            let content = UNMutableNotificationContent()
+            content.title = notification.title
+            content.body = notification.body
+            content.sound = .default
+            content.threadIdentifier = "jobpilot.daily-match"
+            content.userInfo = [
+                "target": "jobs",
+                "kind": "daily_match_digest",
+                "slot": notification.slot
+            ]
+
+            let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+            let request = UNNotificationRequest(identifier: notification.identifier, content: content, trigger: trigger)
+            try? await center.add(request)
+        }
+    }
+
+    func cancelDailyMatchDigest() async {
+        center.removePendingNotificationRequests(withIdentifiers: DailyMatchDigestSlot.allCases.map(\.identifier))
+    }
 }
 
 private struct TranslationRule: @unchecked Sendable {
@@ -53,6 +138,7 @@ final class AppStore: ObservableObject {
         }
     }
     @Published var selectedTab = 0
+    @Published private var notificationPermissionState: NotificationPermissionState = .unknown
 
     private let profileKey = "candidate_profile_v1"
     private let applicationsKey = "applications_v1"
@@ -65,9 +151,11 @@ final class AppStore: ObservableObject {
     private let jobFeedConfig = JobFeedConfig.load()
     private var matchRebuildTask: Task<Void, Never>?
     private var analyticsPersistTask: Task<Void, Never>?
+    private var notificationRefreshTask: Task<Void, Never>?
     private var analyticsEvents: [AnalyticsEvent] = []
     private var jobByID: [UUID: Job] = [:]
     private var matchByJobID: [UUID: JobMatch] = [:]
+    private let notificationScheduler = LocalNotificationScheduler()
     private var matchGeneration = 0
     private var localizedTitleCache: [String: String] = [:]
     private var localizedCompanyCache: [String: String] = [:]
@@ -85,6 +173,8 @@ final class AppStore: ObservableObject {
         Task {
             await loadInitialJobs()
             await refreshJobsIfNeeded()
+            await refreshNotificationPermissionState()
+            await refreshDailyMatchNotifications(requestAuthorizationIfNeeded: false)
         }
     }
 
@@ -250,6 +340,39 @@ final class AppStore: ObservableObject {
         guard settings.language == .system else { return }
         clearLocalizationCaches()
         objectWillChange.send()
+    }
+
+    func handleAppBecameActive() {
+        refreshSystemLanguageIfNeeded()
+        scheduleDailyMatchNotificationRefresh(requestAuthorizationIfNeeded: false, debounce: false)
+    }
+
+    var notificationPermissionLabel: String {
+        switch notificationPermissionState {
+        case .unknown:
+            return "Checking"
+        case .notRequested:
+            return "Not requested"
+        case .allowed:
+            return "Allowed"
+        case .denied:
+            return "Denied in iOS Settings"
+        }
+    }
+
+    func setDailyMatchDigestEnabled(_ enabled: Bool) {
+        settings.dailyMatchDigest = enabled
+
+        if enabled {
+            scheduleDailyMatchNotificationRefresh(requestAuthorizationIfNeeded: true, debounce: false)
+        } else {
+            notificationRefreshTask?.cancel()
+            Task { [weak self] in
+                guard let self else { return }
+                await self.notificationScheduler.cancelDailyMatchDigest()
+                await self.refreshNotificationPermissionState()
+            }
+        }
     }
 
     private var usesChineseInterface: Bool {
@@ -1346,6 +1469,125 @@ final class AppStore: ObservableObject {
     private func updateMatchedJobs(_ matches: [JobMatch]) {
         matchByJobID = Dictionary(uniqueKeysWithValues: matches.map { ($0.id, $0) })
         matchedJobs = matches
+        scheduleDailyMatchNotificationRefresh(requestAuthorizationIfNeeded: false, debounce: true)
+    }
+
+    private func scheduleDailyMatchNotificationRefresh(requestAuthorizationIfNeeded: Bool, debounce: Bool) {
+        notificationRefreshTask?.cancel()
+        notificationRefreshTask = Task { [weak self] in
+            if debounce {
+                try? await Task.sleep(nanoseconds: 700_000_000)
+            }
+
+            guard !Task.isCancelled, let self else { return }
+            await self.refreshDailyMatchNotifications(requestAuthorizationIfNeeded: requestAuthorizationIfNeeded)
+        }
+    }
+
+    private func refreshNotificationPermissionState() async {
+        notificationPermissionState = Self.permissionState(from: await notificationScheduler.authorizationStatus())
+    }
+
+    private func refreshDailyMatchNotifications(requestAuthorizationIfNeeded: Bool) async {
+        guard settings.dailyMatchDigest, isProfileReady else {
+            await notificationScheduler.cancelDailyMatchDigest()
+            await refreshNotificationPermissionState()
+            return
+        }
+
+        var status = await notificationScheduler.authorizationStatus()
+
+        if status == .notDetermined, requestAuthorizationIfNeeded {
+            status = await notificationScheduler.requestAuthorization()
+        }
+
+        notificationPermissionState = Self.permissionState(from: status)
+
+        guard Self.notificationsAllowed(for: status) else {
+            await notificationScheduler.cancelDailyMatchDigest()
+            return
+        }
+
+        let notifications = DailyMatchDigestSlot.allCases.map { makeDailyMatchDigestNotification(for: $0) }
+        await notificationScheduler.scheduleDailyMatchDigest(notifications)
+    }
+
+    nonisolated private static func permissionState(from status: UNAuthorizationStatus) -> NotificationPermissionState {
+        switch status {
+        case .notDetermined:
+            return .notRequested
+        case .denied:
+            return .denied
+        case .authorized, .provisional, .ephemeral:
+            return .allowed
+        @unknown default:
+            return .unknown
+        }
+    }
+
+    nonisolated private static func notificationsAllowed(for status: UNAuthorizationStatus) -> Bool {
+        switch status {
+        case .authorized, .provisional, .ephemeral:
+            return true
+        case .notDetermined, .denied:
+            return false
+        @unknown default:
+            return false
+        }
+    }
+
+    private func makeDailyMatchDigestNotification(for slot: DailyMatchDigestSlot) -> DailyMatchDigestNotification {
+        let candidates = notificationMatchCandidates()
+        let targetTitle = profile.targetTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        let target = targetTitle.isEmpty ? t("your target role") : localizedJobTitle(targetTitle)
+        let title: String
+        let body: String
+
+        if candidates.isEmpty {
+            title = usesChineseInterface
+                ? (slot == .evening ? "今晚继续找\(target)" : "睡前更新\(target)机会")
+                : (slot == .evening ? "Keep looking for \(target)" : "Review fresh \(target) matches")
+            body = usesChineseInterface
+                ? "打开 JobPilot 查看已验证岗位，并按你的资料继续优化匹配。"
+                : "Open JobPilot to review verified roles and keep improving your profile match."
+        } else {
+            let labels = candidates.map(notificationJobLabel).joined(separator: usesChineseInterface ? "；" : "; ")
+            title = usesChineseInterface
+                ? (slot == .evening ? "今晚有\(candidates.count)个适合你的岗位" : "睡前再看\(candidates.count)个强匹配岗位")
+                : (slot == .evening ? "\(candidates.count) job matches for tonight" : "\(candidates.count) strong matches before bed")
+            body = shortened(labels, maxLength: 178)
+        }
+
+        return DailyMatchDigestNotification(
+            identifier: slot.identifier,
+            hour: slot.hour,
+            minute: slot.minute,
+            title: title,
+            body: body,
+            slot: slot.rawValue
+        )
+    }
+
+    private func notificationMatchCandidates() -> [JobMatch] {
+        let openMatches = matchedJobs.filter { match in
+            guard let application = applicationByJobID[match.id] else { return true }
+            return ![.applied, .rejected, .offer].contains(application.status)
+        }
+        let strongMatches = openMatches.filter { $0.score >= 65 }
+        let candidates = strongMatches.isEmpty ? openMatches : strongMatches
+        return Array(candidates.prefix(3))
+    }
+
+    private func notificationJobLabel(for match: JobMatch) -> String {
+        let title = shortened(localizedJobTitle(match.job.title), maxLength: 34)
+        let company = shortened(localizedCompany(match.job.company), maxLength: 22)
+        return usesChineseInterface ? "\(title) · \(company)" : "\(title) at \(company)"
+    }
+
+    nonisolated private func shortened(_ value: String, maxLength: Int) -> String {
+        guard value.count > maxLength else { return value }
+        let index = value.index(value.startIndex, offsetBy: max(0, maxLength - 1))
+        return "\(value[..<index])..."
     }
 
     func application(for job: Job) -> Application? {
@@ -1434,7 +1676,11 @@ final class AppStore: ObservableObject {
         scheduleMatchRebuild(debounce: false)
         log(.profileSaved, metadata: ["target_title": profile.targetTitle, "location": profile.preferredLocation])
         persistProfile()
-        Task { await refreshJobsIfNeeded() }
+        scheduleDailyMatchNotificationRefresh(requestAuthorizationIfNeeded: settings.dailyMatchDigest, debounce: false)
+        Task {
+            await refreshJobsIfNeeded()
+            await refreshDailyMatchNotifications(requestAuthorizationIfNeeded: false)
+        }
     }
 
     func useDemoProfile() {
@@ -1465,7 +1711,11 @@ final class AppStore: ObservableObject {
         )
         log(.demoProfileUsed)
         persistProfile()
-        Task { await refreshJobsIfNeeded() }
+        scheduleDailyMatchNotificationRefresh(requestAuthorizationIfNeeded: settings.dailyMatchDigest, debounce: false)
+        Task {
+            await refreshJobsIfNeeded()
+            await refreshDailyMatchNotifications(requestAuthorizationIfNeeded: false)
+        }
     }
 
     func match(job: Job) -> JobMatch {
@@ -3005,12 +3255,14 @@ final class AppStore: ObservableObject {
         analyticsCounters = AnalyticsCounters()
         settings = AppSettings()
         analyticsPersistTask?.cancel()
+        notificationRefreshTask?.cancel()
         UserDefaults.standard.removeObject(forKey: profileKey)
         UserDefaults.standard.removeObject(forKey: applicationsKey)
         UserDefaults.standard.removeObject(forKey: feedbackKey)
         UserDefaults.standard.removeObject(forKey: resumeVersionsKey)
         UserDefaults.standard.removeObject(forKey: analyticsKey)
         UserDefaults.standard.removeObject(forKey: settingsKey)
+        Task { await notificationScheduler.cancelDailyMatchDigest() }
     }
 
     func refreshJobsIfNeeded(force: Bool = false) async {
