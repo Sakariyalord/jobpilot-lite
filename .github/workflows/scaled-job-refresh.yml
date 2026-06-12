@@ -69,7 +69,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [greenhouse, ashby, lever]
+        platform: [greenhouse, ashby, lever, smartrecruiters, recruitee]
         batch: [0, 1, 2, 3]
 
     steps:
@@ -94,6 +94,8 @@ jobs:
           JOB_FETCH_PAY_BATCH_SIZE: "64"
           JOB_FETCH_PAY_TIMEOUT_MS: "8000"
           JOB_FETCH_LEVER_BATCH_SIZE: "8"
+          JOB_FETCH_SMARTRECRUITERS_POSTING_LIMIT: "100"
+          JOB_FETCH_RECRUITEE_POSTING_LIMIT: "200"
           JOB_SOURCE_HEALTH_PATH: /tmp/source-health-${{ matrix.platform }}-${{ matrix.batch }}.json
         run: node Tools/fetch-public-jobs.mjs /tmp/candidates-${{ matrix.platform }}-${{ matrix.batch }}.json "$PER_BATCH_CANDIDATE_LIMIT"
 

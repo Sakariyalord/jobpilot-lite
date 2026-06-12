@@ -10,7 +10,7 @@ const extraSourceLimit = Number.parseInt(process.env.JOB_FETCH_EXTRA_SOURCE_LIMI
 const sourceBatchIndex = Number.parseInt(process.env.JOB_FETCH_SOURCE_BATCH_INDEX ?? "0", 10);
 const sourceBatchTotal = Number.parseInt(process.env.JOB_FETCH_SOURCE_BATCH_TOTAL ?? "1", 10);
 const enabledSources = new Set(
-  (process.env.JOB_FETCH_SOURCES ?? "greenhouse,ashby,lever")
+  (process.env.JOB_FETCH_SOURCES ?? "greenhouse,ashby,lever,smartrecruiters,recruitee")
     .split(",")
     .map((source) => source.trim().toLowerCase())
     .filter(Boolean)
@@ -212,6 +212,28 @@ const defaultLeverBoards = [
   { slug: "spotify", company: "Spotify" }
 ];
 
+const defaultSmartRecruitersBoards = [
+  { slug: "AbbVie", company: "AbbVie" },
+  { slug: "BoschGroup", company: "Bosch Group" },
+  { slug: "WesternDigital", company: "Western Digital" },
+  { slug: "Visa", company: "Visa" },
+  { slug: "SmartRecruiters", company: "SmartRecruiters" },
+  { slug: "AbanoHealthcare", company: "Abano Healthcare" },
+  { slug: "1Huddle", company: "1Huddle" },
+  { slug: "CityFibre", company: "CityFibre" }
+];
+
+const defaultRecruiteeBoards = [
+  { slug: "1x", company: "1X" },
+  { slug: "greatminds", company: "Great Minds" },
+  { slug: "openrole", company: "Openrole" },
+  { slug: "asmpthk", company: "ASMPT" },
+  { slug: "technicaengineeringgmbh", company: "Technica Engineering" },
+  { slug: "xneelo", company: "xneelo" },
+  { slug: "sahl", company: "Sahl" },
+  { slug: "cta", company: "Tech Allies" }
+];
+
 function readJSONIfExists(file) {
   if (!fs.existsSync(file)) return null;
   return JSON.parse(fs.readFileSync(file, "utf8"));
@@ -250,7 +272,7 @@ function readRegistrySources(file) {
         status: source.status ?? "active"
       }))
       .filter((source) =>
-        ["greenhouse", "ashby", "lever"].includes(source.platform) &&
+        ["greenhouse", "ashby", "lever", "smartrecruiters", "recruitee"].includes(source.platform) &&
         source.board &&
         sourceActive(source)
       );
@@ -266,16 +288,18 @@ function mergeGreenhouseBoards(defaults, registrySources) {
 
   for (const board of defaults) {
     const slug = normalizeBoardSlug(board);
-    if (!slug || seen.has(slug)) continue;
-    seen.add(slug);
+    const key = slug.toLowerCase();
+    if (!slug || seen.has(key)) continue;
+    seen.add(key);
     merged.push(slug);
   }
 
   let added = 0;
   for (const source of registrySources.filter((item) => item.platform === "greenhouse")) {
-    if (seen.has(source.board)) continue;
+    const key = source.board.toLowerCase();
+    if (seen.has(key)) continue;
     if (added >= extraSourceLimit) break;
-    seen.add(source.board);
+    seen.add(key);
     merged.push(source.board);
     added += 1;
   }
@@ -289,16 +313,18 @@ function mergeObjectBoards(platform, defaults, registrySources) {
 
   for (const board of defaults) {
     const slug = normalizeBoardSlug(board.slug);
-    if (!slug || seen.has(slug)) continue;
-    seen.add(slug);
+    const key = slug.toLowerCase();
+    if (!slug || seen.has(key)) continue;
+    seen.add(key);
     merged.push({ ...board, slug });
   }
 
   let added = 0;
   for (const source of registrySources.filter((item) => item.platform === platform)) {
-    if (seen.has(source.board)) continue;
+    const key = source.board.toLowerCase();
+    if (seen.has(key)) continue;
     if (added >= extraSourceLimit) break;
-    seen.add(source.board);
+    seen.add(key);
     merged.push({ slug: source.board, company: source.company ?? source.board });
     added += 1;
   }
@@ -350,11 +376,14 @@ const registrySources = readRegistrySources(sourceRegistryPath);
 const greenhouseBoards = applySourceBatch("greenhouse", mergeGreenhouseBoards(defaultGreenhouseBoards, registrySources));
 const ashbyBoards = applySourceBatch("ashby", mergeObjectBoards("ashby", defaultAshbyBoards, registrySources));
 const leverBoards = applySourceBatch("lever", mergeObjectBoards("lever", defaultLeverBoards, registrySources));
+const smartRecruitersBoards = applySourceBatch("smartrecruiters", mergeObjectBoards("smartrecruiters", defaultSmartRecruitersBoards, registrySources));
+const recruiteeBoards = applySourceBatch("recruitee", mergeObjectBoards("recruitee", defaultRecruiteeBoards, registrySources));
 const sourceReports = [];
 
 console.error(
   `Source registry: ${registrySources.length} active records; fetching ` +
-  `${greenhouseBoards.length} Greenhouse, ${ashbyBoards.length} Ashby, ${leverBoards.length} Lever boards` +
+  `${greenhouseBoards.length} Greenhouse, ${ashbyBoards.length} Ashby, ${leverBoards.length} Lever, ` +
+  `${smartRecruitersBoards.length} SmartRecruiters, ${recruiteeBoards.length} Recruitee boards` +
   (sourceBatchTotal > 1 ? `; source batch ${sourceBatchIndex + 1}/${sourceBatchTotal}` : "")
 );
 
@@ -750,6 +779,136 @@ function normalizeLeverJob(posting, board, detailHTML) {
   };
 }
 
+function normalizeSmartRecruitersLocation(location = {}) {
+  return location.fullLocation
+    || [location.city, location.region, location.country].filter(Boolean).join(", ")
+    || "Not listed";
+}
+
+function smartRecruitersJobText(job) {
+  const sections = job.jobAd?.sections ?? {};
+  const sectionText = Object.values(sections)
+    .map((section) => typeof section === "string"
+      ? section
+      : `${section?.title ?? ""}\n${section?.text ?? ""}`)
+    .filter(Boolean)
+    .join("\n\n");
+
+  return stripHTML([
+    sectionText,
+    job.industry?.label,
+    job.function?.label,
+    job.department?.label,
+    job.typeOfEmployment?.label,
+    job.experienceLevel?.label
+  ].filter(Boolean).join("\n"));
+}
+
+function normalizeSmartRecruitersJob(job, board) {
+  const title = job.name || job.title || "Untitled role";
+  const location = normalizeSmartRecruitersLocation(job.location);
+  const text = smartRecruitersJobText(job);
+  const context = `${job.department?.label ?? ""} ${job.function?.label ?? ""} ${job.industry?.label ?? ""} ${text}`;
+  const sourceURL = job.postingUrl
+    || `https://jobs.smartrecruiters.com/${encodeURIComponent(board.slug)}/${encodeURIComponent(job.id)}`;
+  const roleCategory = inferRoleCategory(title, context);
+  const tags = extractTags(title, context);
+  if (roleCategory !== "General") tags.unshift(roleCategory);
+  if (job.typeOfEmployment?.label) tags.push(job.typeOfEmployment.label);
+  if (job.experienceLevel?.label) tags.push(job.experienceLevel.label);
+
+  return {
+    id: stableUUID(sourceURL),
+    company: job.company?.name || board.company || board.slug || "Unknown company",
+    title,
+    city: location,
+    remoteType: job.location?.remote
+      ? "Remote"
+      : job.location?.hybrid
+        ? "Hybrid"
+        : detectRemoteType(location, text),
+    salary: extractSalary(text),
+    tags: [...new Set(tags)].slice(0, 10),
+    sourceURL,
+    sourcePlatform: "smartrecruiters",
+    sourceBoard: board.slug,
+    sourceJobId: String(job.id),
+    roleCategory,
+    contactEmail: extractContactEmail(text),
+    summary: summarize(text, title),
+    requirements: extractRequirements(text),
+    visaFriendly: detectVisaFriendly(text),
+    postedDaysAgo: postedDaysAgo(job.releasedDate ?? job.updatedDate)
+  };
+}
+
+function recruiteeTranslation(offer) {
+  const translations = offer.translations ?? {};
+  return translations.en
+    ?? translations["en-US"]
+    ?? translations["en-GB"]
+    ?? Object.values(translations)[0]
+    ?? {};
+}
+
+function recruiteeOfferText(offer) {
+  const translation = recruiteeTranslation(offer);
+  return stripHTML([
+    translation.description,
+    translation.requirements,
+    offer.description,
+    offer.requirements,
+    offer.department,
+    offer.kind,
+    offer.location
+  ].filter(Boolean).join("\n\n"));
+}
+
+function normalizeRecruiteeLocation(offer) {
+  const parts = [
+    offer.city,
+    offer.state_code,
+    offer.country_code ?? offer.country,
+    offer.location
+  ].filter(Boolean);
+  return [...new Set(parts)].join(", ") || "Not listed";
+}
+
+function normalizeRecruiteeJob(offer, board) {
+  const translation = recruiteeTranslation(offer);
+  const title = translation.title || offer.title || offer.name || "Untitled role";
+  const text = recruiteeOfferText(offer);
+  const location = normalizeRecruiteeLocation(offer);
+  const sourceURL = offer.careers_url
+    || offer.url
+    || `https://${board.slug}.recruitee.com/o/${encodeURIComponent(offer.slug ?? offer.id)}`;
+  const roleCategory = inferRoleCategory(title, `${offer.department ?? ""} ${offer.kind ?? ""} ${text}`);
+  const tags = extractTags(title, `${offer.department ?? ""} ${offer.kind ?? ""} ${text}`);
+  if (roleCategory !== "General") tags.unshift(roleCategory);
+  if (offer.kind) tags.push(offer.kind);
+  if (offer.department) tags.push(offer.department);
+
+  return {
+    id: stableUUID(sourceURL),
+    company: offer.company_name || board.company || board.slug || "Unknown company",
+    title,
+    city: location,
+    remoteType: detectRemoteType(location, `${offer.location ?? ""} ${text}`),
+    salary: extractSalary(text),
+    tags: [...new Set(tags)].slice(0, 10),
+    sourceURL,
+    sourcePlatform: "recruitee",
+    sourceBoard: board.slug,
+    sourceJobId: String(offer.id ?? offer.slug),
+    roleCategory,
+    contactEmail: extractContactEmail(text),
+    summary: summarize(text, title),
+    requirements: extractRequirements(text),
+    visaFriendly: detectVisaFriendly(text),
+    postedDaysAgo: postedDaysAgo(offer.published_at ?? offer.created_at)
+  };
+}
+
 async function fetchGreenhouseBoard(board) {
   const url = `https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(board)}/jobs?content=true`;
   const response = await fetch(url, {
@@ -828,6 +987,63 @@ async function fetchLeverBoard(board) {
   }
 
   return jobs;
+}
+
+async function fetchSmartRecruitersBoard(board) {
+  const postingLimit = Number.parseInt(process.env.JOB_FETCH_SMARTRECRUITERS_POSTING_LIMIT ?? "100", 10);
+  const pageSize = Math.max(1, Math.min(100, postingLimit || 100));
+  const jobs = [];
+
+  for (let offset = 0; offset < Math.max(1, postingLimit); offset += pageSize) {
+    const url = `https://api.smartrecruiters.com/v1/companies/${encodeURIComponent(board.slug)}/postings?limit=${pageSize}&offset=${offset}`;
+    const response = await fetch(url, {
+      headers: {
+        "accept": "application/json",
+        "user-agent": "JobPilotLiteMVP/0.1 public job board indexing"
+      },
+      signal: AbortSignal.timeout(20_000)
+    });
+
+    if (!response.ok) throw new Error(`${board.slug}: ${response.status}`);
+    const data = await response.json();
+    const postings = Array.isArray(data.content)
+      ? data.content.filter((job) => job.visibility !== "PRIVATE")
+      : [];
+    jobs.push(...postings.map((job) => normalizeSmartRecruitersJob(job, board)));
+
+    if (postings.length < pageSize || jobs.length >= postingLimit || jobs.length >= Number(data.totalFound ?? jobs.length)) {
+      break;
+    }
+  }
+
+  return jobs.slice(0, Math.max(0, postingLimit));
+}
+
+async function fetchRecruiteeBoard(board) {
+  const postingLimit = Number.parseInt(process.env.JOB_FETCH_RECRUITEE_POSTING_LIMIT ?? "200", 10);
+  const url = `https://${board.slug}.recruitee.com/api/offers/`;
+  const response = await fetch(url, {
+    headers: {
+      "accept": "application/json",
+      "user-agent": "JobPilotLiteMVP/0.1 public job board indexing"
+    },
+    signal: AbortSignal.timeout(20_000)
+  });
+
+  if (!response.ok) throw new Error(`${board.slug}: ${response.status}`);
+  const data = await response.json();
+  const offers = Array.isArray(data)
+    ? data
+    : Array.isArray(data.offers)
+      ? data.offers
+      : Array.isArray(data.result)
+        ? data.result
+        : [];
+
+  return offers
+    .filter((offer) => offer && offer.status !== "closed")
+    .slice(0, Math.max(0, postingLimit))
+    .map((offer) => normalizeRecruiteeJob(offer, board));
 }
 
 async function fetchGreenhousePayRange(job) {
@@ -968,6 +1184,78 @@ if (sourceEnabled("lever")) {
       console.error(`${board.slug}: skipped (${error.message})`);
       sourceReports.push({
         platform: "lever",
+        board: board.slug,
+        company: board.company ?? null,
+        status: "failed",
+        jobCount: 0,
+        error: error.message
+      });
+    }
+  }
+}
+
+if (sourceEnabled("smartrecruiters")) {
+  for (const board of smartRecruitersBoards) {
+    try {
+      const jobs = await fetchSmartRecruitersBoard(board);
+      let added = 0;
+
+      for (const job of jobs) {
+        if (!job.sourceURL || seen.has(job.sourceURL)) continue;
+        if (!job.tags.length) job.tags = ["General"];
+        seen.add(job.sourceURL);
+        allJobs.push(job);
+        added += 1;
+      }
+
+      console.error(`${board.slug}: ${added} jobs`);
+      sourceReports.push({
+        platform: "smartrecruiters",
+        board: board.slug,
+        company: jobs[0]?.company ?? board.company ?? null,
+        status: added > 0 ? "active" : "empty",
+        jobCount: added
+      });
+    } catch (error) {
+      console.error(`${board.slug}: skipped (${error.message})`);
+      sourceReports.push({
+        platform: "smartrecruiters",
+        board: board.slug,
+        company: board.company ?? null,
+        status: "failed",
+        jobCount: 0,
+        error: error.message
+      });
+    }
+  }
+}
+
+if (sourceEnabled("recruitee")) {
+  for (const board of recruiteeBoards) {
+    try {
+      const jobs = await fetchRecruiteeBoard(board);
+      let added = 0;
+
+      for (const job of jobs) {
+        if (!job.sourceURL || seen.has(job.sourceURL)) continue;
+        if (!job.tags.length) job.tags = ["General"];
+        seen.add(job.sourceURL);
+        allJobs.push(job);
+        added += 1;
+      }
+
+      console.error(`${board.slug}: ${added} jobs`);
+      sourceReports.push({
+        platform: "recruitee",
+        board: board.slug,
+        company: jobs[0]?.company ?? board.company ?? null,
+        status: added > 0 ? "active" : "empty",
+        jobCount: added
+      });
+    } catch (error) {
+      console.error(`${board.slug}: skipped (${error.message})`);
+      sourceReports.push({
+        platform: "recruitee",
         board: board.slug,
         company: board.company ?? null,
         status: "failed",

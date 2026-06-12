@@ -15,8 +15,11 @@ const timeoutMs = Number.parseInt(process.env.JOB_DISCOVERY_TIMEOUT_MS ?? "15000
 const cdxPatterns = [
   { platform: "greenhouse", url: "boards.greenhouse.io/", matchType: "prefix" },
   { platform: "ashby", url: "jobs.ashbyhq.com/", matchType: "prefix" },
-  { platform: "lever", url: "jobs.lever.co/", matchType: "prefix" }
+  { platform: "lever", url: "jobs.lever.co/", matchType: "prefix" },
+  { platform: "smartrecruiters", url: "jobs.smartrecruiters.com/", matchType: "prefix" }
 ];
+
+const supportedPlatforms = ["greenhouse", "ashby", "lever", "smartrecruiters", "recruitee"];
 
 function readJSONIfExists(file) {
   if (!fs.existsSync(file)) return null;
@@ -38,7 +41,7 @@ function normalizeBoardSlug(value) {
 }
 
 function sourceKey(platform, board) {
-  return `${String(platform ?? "").toLowerCase()}:${normalizeBoardSlug(board)}`;
+  return `${String(platform ?? "").toLowerCase()}:${normalizeBoardSlug(board).toLowerCase()}`;
 }
 
 function sourceActive(source) {
@@ -50,28 +53,36 @@ function readRegistry(file) {
   const payload = readJSONIfExists(file);
   const sources = Array.isArray(payload) ? payload : payload?.sources;
 
+  const normalizedSources = Array.isArray(sources)
+    ? sources
+      .map((source) => ({
+        ...source,
+        platform: String(source.platform ?? "").toLowerCase(),
+        board: normalizeBoardSlug(source.board ?? source.slug),
+        status: source.status ?? "active"
+      }))
+      .filter((source) =>
+        supportedPlatforms.includes(source.platform) &&
+        source.board &&
+        sourceActive(source)
+      )
+    : [];
+  const seen = new Set();
+
   return {
     version: 1,
     sourcePolicy: {
       publicOnly: true,
       noLoginOrAntiBotBypass: true,
       publishOnlyAfterLiveVerification: true,
-      allowedPlatforms: ["greenhouse", "ashby", "lever"]
+      allowedPlatforms: supportedPlatforms
     },
-    sources: Array.isArray(sources)
-      ? sources
-        .map((source) => ({
-          ...source,
-          platform: String(source.platform ?? "").toLowerCase(),
-          board: normalizeBoardSlug(source.board ?? source.slug),
-          status: source.status ?? "active"
-        }))
-        .filter((source) =>
-          ["greenhouse", "ashby", "lever"].includes(source.platform) &&
-          source.board &&
-          sourceActive(source)
-        )
-      : []
+    sources: normalizedSources.filter((source) => {
+      const key = sourceKey(source.platform, source.board);
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
   };
 }
 
@@ -158,7 +169,7 @@ function extractBoardFromURL(platform, rawURL) {
 
   const host = url.hostname.toLowerCase();
   const segments = url.pathname.split("/").filter(Boolean);
-  const board = normalizeBoardSlug(decodeURIComponent(segments[0] ?? ""));
+  let board = normalizeBoardSlug(decodeURIComponent(segments[0] ?? ""));
   const blocked = new Set([
     "api",
     "embed",
@@ -169,10 +180,17 @@ function extractBoardFromURL(platform, rawURL) {
     "users"
   ]);
 
+  if (platform === "recruitee") {
+    if (!host.endsWith(".recruitee.com")) return null;
+    board = normalizeBoardSlug(host.replace(/\.recruitee\.com$/i, ""));
+  }
+
   if (!board || blocked.has(board) || board.includes(".")) return null;
   if (platform === "greenhouse" && host !== "boards.greenhouse.io") return null;
   if (platform === "ashby" && host !== "jobs.ashbyhq.com") return null;
   if (platform === "lever" && host !== "jobs.lever.co") return null;
+  if (platform === "smartrecruiters" && host !== "jobs.smartrecruiters.com") return null;
+  if (platform === "recruitee" && ["app", "api", "www", "support", "status"].includes(board.toLowerCase())) return null;
 
   return {
     platform,
@@ -234,11 +252,45 @@ async function validateLever(board) {
   };
 }
 
+async function validateSmartRecruiters(board) {
+  const url = `https://api.smartrecruiters.com/v1/companies/${encodeURIComponent(board)}/postings?limit=1`;
+  const data = await fetchJSON(url);
+  const jobs = Array.isArray(data.content) ? data.content : [];
+  if (jobs.length === 0) throw new Error("smartrecruiters_empty_board");
+
+  return {
+    company: jobs[0]?.company?.name ?? board,
+    jobCount: Number(data.totalFound ?? jobs.length),
+    validationURL: url
+  };
+}
+
+async function validateRecruitee(board) {
+  const url = `https://${board}.recruitee.com/api/offers/`;
+  const data = await fetchJSON(url);
+  const jobs = Array.isArray(data)
+    ? data
+    : Array.isArray(data.offers)
+      ? data.offers
+      : Array.isArray(data.result)
+        ? data.result
+        : [];
+  if (jobs.length === 0) throw new Error("recruitee_empty_board");
+
+  return {
+    company: board,
+    jobCount: jobs.length,
+    validationURL: url
+  };
+}
+
 async function validateCandidate(candidate) {
   const validators = {
     greenhouse: validateGreenhouse,
     ashby: validateAshby,
-    lever: validateLever
+    lever: validateLever,
+    smartrecruiters: validateSmartRecruiters,
+    recruitee: validateRecruitee
   };
   const validate = validators[candidate.platform];
   if (!validate) throw new Error(`unsupported_platform_${candidate.platform}`);
@@ -292,7 +344,7 @@ const seedReports = [];
 let index = null;
 
 for (const rawURL of readSeedURLs(seedPath)) {
-  for (const platform of ["greenhouse", "ashby", "lever"]) {
+  for (const platform of supportedPlatforms) {
     const candidate = extractBoardFromURL(platform, rawURL);
     if (!candidate) continue;
     const key = sourceKey(candidate.platform, candidate.board);

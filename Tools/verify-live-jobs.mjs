@@ -12,6 +12,7 @@ const timeoutMs = Number.parseInt(process.env.JOB_VERIFY_TIMEOUT_MS ?? "15000", 
 const retryAttempts = Number.parseInt(process.env.JOB_VERIFY_RETRIES ?? "3", 10);
 const stopAfterLimit = (process.env.JOB_VERIFY_STOP_AFTER_LIMIT ?? "true").toLowerCase() !== "false";
 const ashbyBoardCache = new Map();
+const recruiteeBoardCache = new Map();
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -44,7 +45,13 @@ function looksClosed(text = "") {
     "job not found",
     "posting is no longer available",
     "opening is no longer available",
-    "this opening is no longer accepting applications"
+    "this opening is no longer accepting applications",
+    "no longer accepting candidates",
+    "job has expired",
+    "this job has expired",
+    "offer is no longer available",
+    "this job offer is not available",
+    "this vacancy has been closed"
   ];
 
   return closedPatterns.some((pattern) => lower.includes(pattern));
@@ -320,12 +327,232 @@ async function verifyAshbyJob(job) {
   }
 }
 
+async function verifySmartRecruitersJob(job) {
+  if (job.sourcePlatform !== "smartrecruiters" || !job.sourceBoard || !job.sourceJobId) return null;
+
+  const startedAt = Date.now();
+  const apiURL = `https://api.smartrecruiters.com/v1/companies/${encodeURIComponent(job.sourceBoard)}/postings/${encodeURIComponent(job.sourceJobId)}`;
+  let lastReport = null;
+
+  for (let attempt = 1; attempt <= Math.max(1, retryAttempts); attempt += 1) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+      const response = await fetch(apiURL, {
+        signal: controller.signal,
+        headers: {
+          "accept": "application/json",
+          "user-agent": "JobPilotLiteMVP/0.1 public job verification"
+        }
+      });
+
+      if (!response.ok) {
+        lastReport = {
+          id: job.id,
+          company: job.company,
+          title: job.title,
+          sourceURL: job.sourceURL,
+          verificationURL: apiURL,
+          status: response.status,
+          live: false,
+          reason: `smartrecruiters_api_${response.status}`,
+          attempts: attempt,
+          ms: Date.now() - startedAt
+        };
+
+        if (attempt < retryAttempts && isRetryableStatus(response.status)) {
+          await sleep(350 * attempt);
+          continue;
+        }
+
+        return { job: null, report: lastReport };
+      }
+
+      const payload = await response.json();
+      const isLive = payload.active !== false && titleMatches(job, payload.name ?? payload.title ?? "");
+      const finalURL = payload.postingUrl ?? job.sourceURL;
+      const candidateJob = {
+        ...job,
+        sourceURL: finalURL,
+        liveStatus: "live",
+        lastVerifiedAt: checkedAt,
+        verifiedSourceURL: finalURL
+      };
+      const report = {
+        id: job.id,
+        company: job.company,
+        title: job.title,
+        sourceURL: job.sourceURL,
+        finalURL,
+        verificationURL: apiURL,
+        status: response.status,
+        live: isLive,
+        reason: isLive ? "smartrecruiters_api_live" : "smartrecruiters_closed_or_title_mismatch",
+        attempts: attempt,
+        ms: Date.now() - startedAt
+      };
+
+      if (!isLive) return { job: null, report };
+      return verifyReachableSourceURL(job, candidateJob, report, startedAt, true);
+    } catch (error) {
+      lastReport = {
+        id: job.id,
+        company: job.company,
+        title: job.title,
+        sourceURL: job.sourceURL,
+        verificationURL: apiURL,
+        live: false,
+        reason: error.name === "AbortError" ? "smartrecruiters_api_timeout" : "smartrecruiters_api_network_error",
+        error: error.message,
+        attempts: attempt,
+        ms: Date.now() - startedAt
+      };
+
+      if (attempt < retryAttempts) {
+        await sleep(350 * attempt);
+        continue;
+      }
+
+      return { job: null, report: lastReport };
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  return { job: null, report: lastReport };
+}
+
+async function fetchRecruiteeBoardJobs(board) {
+  if (recruiteeBoardCache.has(board)) return recruiteeBoardCache.get(board);
+
+  const promise = (async () => {
+    const apiURL = `https://${board}.recruitee.com/api/offers/`;
+    let lastError = null;
+
+    for (let attempt = 1; attempt <= Math.max(1, retryAttempts); attempt += 1) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+      try {
+        const response = await fetch(apiURL, {
+          signal: controller.signal,
+          headers: {
+            "accept": "application/json",
+            "user-agent": "JobPilotLiteMVP/0.1 public job verification"
+          }
+        });
+
+        if (!response.ok) {
+          lastError = new Error(`recruitee_api_${response.status}`);
+          if (attempt < retryAttempts && isRetryableStatus(response.status)) {
+            await sleep(350 * attempt);
+            continue;
+          }
+          throw lastError;
+        }
+
+        const data = await response.json();
+        if (Array.isArray(data)) return data;
+        if (Array.isArray(data.offers)) return data.offers;
+        if (Array.isArray(data.result)) return data.result;
+        return [];
+      } catch (error) {
+        lastError = error;
+        if (attempt < retryAttempts) {
+          await sleep(350 * attempt);
+          continue;
+        }
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    throw lastError ?? new Error("recruitee_api_unknown_error");
+  })();
+
+  recruiteeBoardCache.set(board, promise);
+  return promise;
+}
+
+function recruiteeOfferTitle(offer) {
+  const translations = offer.translations ?? {};
+  const translation = translations.en
+    ?? translations["en-US"]
+    ?? translations["en-GB"]
+    ?? Object.values(translations)[0]
+    ?? {};
+  return translation.title || offer.title || offer.name || "";
+}
+
+async function verifyRecruiteeJob(job) {
+  if (job.sourcePlatform !== "recruitee" || !job.sourceBoard || !job.sourceJobId) return null;
+
+  const startedAt = Date.now();
+  const apiURL = `https://${job.sourceBoard}.recruitee.com/api/offers/`;
+
+  try {
+    const boardJobs = await fetchRecruiteeBoardJobs(job.sourceBoard);
+    const payload = boardJobs.find((item) =>
+      String(item.id) === String(job.sourceJobId) ||
+      String(item.slug) === String(job.sourceJobId) ||
+      item.careers_url === job.sourceURL ||
+      item.url === job.sourceURL
+    );
+    const isLive = Boolean(payload) && payload.status !== "closed" && titleMatches(job, recruiteeOfferTitle(payload));
+    const finalURL = payload?.careers_url ?? payload?.url ?? job.sourceURL;
+    const candidateJob = {
+      ...job,
+      sourceURL: finalURL,
+      liveStatus: "live",
+      lastVerifiedAt: checkedAt,
+      verifiedSourceURL: finalURL
+    };
+    const report = {
+      id: job.id,
+      company: job.company,
+      title: job.title,
+      sourceURL: job.sourceURL,
+      finalURL,
+      verificationURL: apiURL,
+      status: payload ? 200 : 404,
+      live: isLive,
+      reason: isLive ? "recruitee_api_live" : payload ? "recruitee_closed_or_title_mismatch" : "recruitee_job_missing",
+      ms: Date.now() - startedAt
+    };
+
+    if (!isLive) return { job: null, report };
+    return verifyReachableSourceURL(job, candidateJob, report, startedAt, true);
+  } catch (error) {
+    return {
+      job: null,
+      report: {
+        id: job.id,
+        company: job.company,
+        title: job.title,
+        sourceURL: job.sourceURL,
+        verificationURL: apiURL,
+        live: false,
+        reason: error.name === "AbortError" ? "recruitee_api_timeout" : "recruitee_api_network_error",
+        error: error.message,
+        ms: Date.now() - startedAt
+      }
+    };
+  }
+}
+
 async function verifyJob(job) {
   const greenhouseResult = await verifyGreenhouseJob(job);
   if (greenhouseResult) return greenhouseResult;
 
   const ashbyResult = await verifyAshbyJob(job);
   if (ashbyResult) return ashbyResult;
+
+  const smartRecruitersResult = await verifySmartRecruitersJob(job);
+  if (smartRecruitersResult) return smartRecruitersResult;
+
+  const recruiteeResult = await verifyRecruiteeJob(job);
+  if (recruiteeResult) return recruiteeResult;
 
   const startedAt = Date.now();
   const controller = new AbortController();
