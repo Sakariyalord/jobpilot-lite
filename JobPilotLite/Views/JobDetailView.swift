@@ -1,5 +1,9 @@
 import SwiftUI
 
+#if canImport(UIKit) && canImport(WebKit)
+import WebKit
+#endif
+
 struct JobDetailView: View {
     @EnvironmentObject private var store: AppStore
     var match: JobMatch
@@ -360,8 +364,11 @@ struct ApplicationFlowView: View {
     @State private var statusMessage = ""
     @State private var exportFiles: [ResumeExportFile] = []
     @State private var didPrepare = false
+    @State private var showApplyWorkspace = false
 
     var body: some View {
+        let adapterPlan = ApplyAdapterPlan(job: job)
+
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
@@ -430,14 +437,16 @@ struct ApplicationFlowView: View {
 
                     SectionBlock(title: store.t("Apply from this app")) {
                         VStack(alignment: .leading, spacing: 12) {
-                            Text(store.t("The official apply link opens when the employer requires their ATS form. Your resume and note stay saved here."))
+                            ApplyAdapterSummary(plan: adapterPlan)
+
+                            Text(store.t("JobPilot keeps the application inside this app when possible. It prepares the resume, profile fields, and screening answers before you confirm the final submission."))
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
 
                             Button {
-                                openApplyURL()
+                                openApplyWorkspace()
                             } label: {
-                                Label(store.t("Open Verified Apply Link"), systemImage: "safari")
+                                Label(store.t("Open In-App Apply Workspace"), systemImage: "rectangle.and.pencil.and.ellipsis")
                                     .frame(maxWidth: .infinity)
                             }
                             .buttonStyle(.borderedProminent)
@@ -499,6 +508,13 @@ struct ApplicationFlowView: View {
                             }
                         }
                     }
+
+                    ApplyAutomationPreview(
+                        plan: adapterPlan,
+                        profileFields: applyProfileFields,
+                        screeningAnswers: applyScreeningAnswers,
+                        copyAllAction: copyApplyPacket
+                    )
                 }
                 .padding(16)
             }
@@ -512,6 +528,17 @@ struct ApplicationFlowView: View {
             }
             .onAppear {
                 prepareIfNeeded()
+            }
+            .sheet(isPresented: $showApplyWorkspace) {
+                ApplyWorkspaceView(
+                    job: job,
+                    plan: adapterPlan,
+                    subject: subject,
+                    resumeText: resumeText,
+                    messageBody: messageBody,
+                    profileFields: applyProfileFields,
+                    screeningAnswers: applyScreeningAnswers
+                )
             }
         }
     }
@@ -540,6 +567,14 @@ struct ApplicationFlowView: View {
         ]
             .filter { !$0.isEmpty }
             .joined(separator: "\n\n")
+    }
+
+    private var applyProfileFields: [ApplyFieldValue] {
+        ApplyFieldValue.profilePacket(profile: store.profile, job: job, workRightsLine: store.workRightsResumeLine())
+    }
+
+    private var applyScreeningAnswers: [ApplyFieldValue] {
+        ApplyFieldValue.screeningPacket(profile: store.profile, job: job, workRightsLine: store.workRightsResumeLine())
     }
 
     private func prepareIfNeeded() {
@@ -616,14 +651,26 @@ struct ApplicationFlowView: View {
         statusMessage = "\(store.t("Files ready")) · \(store.t("ATS")) \(score)"
     }
 
-    private func openApplyURL() {
+    private func openApplyWorkspace() {
         let score = saveMaterials(markApplied: true)
-        guard let url = URL(string: job.sourceURL) else {
-            statusMessage = "\(store.t("Generated materials saved")) · \(store.t("ATS")) \(score)"
-            return
-        }
         store.log(.applyLinkOpened, metadata: ["job_id": job.id.uuidString])
-        PlatformActions.open(url)
+        statusMessage = "\(store.t("Application workspace ready")) · \(store.t("ATS")) \(score)"
+        showApplyWorkspace = true
+    }
+
+    private func copyApplyPacket() {
+        saveMaterials(markApplied: false)
+        let packet = ApplyAdapterPlan(job: job).copyPacket(
+            job: job,
+            subject: subject,
+            resumeText: resumeText,
+            messageBody: messageBody,
+            profileFields: applyProfileFields,
+            screeningAnswers: applyScreeningAnswers
+        )
+        PlatformActions.copy(packet)
+        store.log(.applicationCopied, metadata: ["job_id": job.id.uuidString])
+        statusMessage = store.t("Copied application autofill packet")
     }
 
     private func emailRecruiter() {
@@ -642,6 +689,525 @@ struct ApplicationFlowView: View {
         PlatformActions.open(url)
     }
 }
+
+private enum ApplyAdapterMode: Sendable {
+    case standard
+    case embedded
+    case accountHeavy
+    case universal
+}
+
+private struct ApplyAdapterPlan: Equatable, Sendable {
+    var platformName: String
+    var mode: ApplyAdapterMode
+    var summaryKey: String
+    var frictionKey: String
+    var capabilityKeys: [String]
+    var warningKeys: [String]
+
+    init(job: Job) {
+        let rawURL = job.sourceURL.lowercased()
+        let host = URL(string: job.sourceURL)?.host?.lowercased() ?? ""
+
+        if host.contains("lever.co") {
+            platformName = "Lever"
+            mode = .standard
+            summaryKey = "Standard ATS adapter ready"
+            frictionKey = "Low friction"
+        } else if host.contains("greenhouse.io") || rawURL.contains("gh_jid=") {
+            platformName = "Greenhouse"
+            mode = .standard
+            summaryKey = "Standard ATS adapter ready"
+            frictionKey = "Low friction"
+        } else if host.contains("ashbyhq.com") {
+            platformName = "Ashby"
+            mode = .standard
+            summaryKey = "Standard ATS adapter ready"
+            frictionKey = "Low friction"
+        } else if host.contains("smartrecruiters.com") {
+            platformName = "SmartRecruiters"
+            mode = .embedded
+            summaryKey = "Embedded ATS adapter ready"
+            frictionKey = "Medium friction"
+        } else if host.contains("recruitee.com") || host.contains("workable.com") || host.contains("breezy.hr") || host.contains("jazz.co") || host.contains("bamboohr.com") {
+            platformName = "ATS"
+            mode = .embedded
+            summaryKey = "Embedded ATS adapter ready"
+            frictionKey = "Medium friction"
+        } else if host.contains("myworkdayjobs.com") || host.contains("workdayjobs.com") {
+            platformName = "Workday"
+            mode = .accountHeavy
+            summaryKey = "Account-heavy adapter ready"
+            frictionKey = "High friction"
+        } else if host.contains("icims.com") || host.contains("successfactors.com") || host.contains("taleo.net") || host.contains("oraclecloud.com") {
+            platformName = "Enterprise ATS"
+            mode = .accountHeavy
+            summaryKey = "Account-heavy adapter ready"
+            frictionKey = "High friction"
+        } else {
+            platformName = host.isEmpty ? "Apply site" : host
+            mode = .universal
+            summaryKey = "Universal adapter ready"
+            frictionKey = "Unknown friction"
+        }
+
+        switch mode {
+        case .standard:
+            capabilityKeys = [
+                "In-app application page",
+                "Resume upload files",
+                "Profile autofill packet",
+                "Screening answer bank",
+                "Final user confirmation"
+            ]
+            warningKeys = ["Review custom questions before submitting"]
+        case .embedded:
+            capabilityKeys = [
+                "In-app application page",
+                "Resume upload files",
+                "Profile autofill packet",
+                "Screening answer bank",
+                "Copy-safe formatted answers"
+            ]
+            warningKeys = ["Some fields may still require manual confirmation"]
+        case .accountHeavy:
+            capabilityKeys = [
+                "In-app application page",
+                "Account setup helper",
+                "Profile autofill packet",
+                "Screening answer bank",
+                "Copy-safe formatted answers"
+            ]
+            warningKeys = [
+                "This ATS may require login or account creation",
+                "Review every parsed resume field before submitting"
+            ]
+        case .universal:
+            capabilityKeys = [
+                "In-app application page",
+                "Resume upload files",
+                "Profile autofill packet",
+                "Screening answer bank",
+                "Copy-safe formatted answers"
+            ]
+            warningKeys = ["Universal mode cannot guarantee every field is detectable"]
+        }
+    }
+
+    func copyPacket(
+        job: Job,
+        subject: String,
+        resumeText: String,
+        messageBody: String,
+        profileFields: [ApplyFieldValue],
+        screeningAnswers: [ApplyFieldValue]
+    ) -> String {
+        """
+        JobPilot Application Packet
+        Platform: \(platformName)
+        Role: \(job.title)
+        Company: \(job.company)
+        Apply URL: \(job.sourceURL)
+
+        Profile fields:
+        \(profileFields.map { "\($0.label): \($0.value)" }.joined(separator: "\n"))
+
+        Screening answers:
+        \(screeningAnswers.map { "\($0.label): \($0.value)" }.joined(separator: "\n\n"))
+
+        Subject:
+        \(subject)
+
+        Recruiter note / additional information:
+        \(messageBody)
+
+        Resume:
+        \(resumeText)
+        """
+    }
+}
+
+private struct ApplyFieldValue: Identifiable, Equatable, Sendable {
+    var id: String { label }
+    var label: String
+    var value: String
+    var systemImage: String
+
+    static func profilePacket(profile: CandidateProfile, job: Job, workRightsLine: String) -> [ApplyFieldValue] {
+        [
+            ApplyFieldValue(label: "Full name", value: profile.fullName, systemImage: "person.text.rectangle"),
+            ApplyFieldValue(label: "Email address", value: profile.email, systemImage: "envelope"),
+            ApplyFieldValue(label: "Phone", value: profile.phone, systemImage: "phone"),
+            ApplyFieldValue(label: "Current city", value: profile.city, systemImage: "mappin.and.ellipse"),
+            ApplyFieldValue(label: "Preferred location", value: profile.preferredLocation.isEmpty ? job.city : profile.preferredLocation, systemImage: "location"),
+            ApplyFieldValue(label: "Target role", value: profile.targetTitle, systemImage: "briefcase"),
+            ApplyFieldValue(label: "Work mode", value: profile.workModePreference.rawValue, systemImage: "desktopcomputer"),
+            ApplyFieldValue(label: "Opportunity type", value: profile.opportunityType.rawValue, systemImage: "clock.badge.checkmark"),
+            ApplyFieldValue(label: "Experience level", value: profile.experienceLevel.rawValue, systemImage: "chart.line.uptrend.xyaxis"),
+            ApplyFieldValue(label: "Work authorization", value: workRightsLine, systemImage: "person.badge.key"),
+            ApplyFieldValue(label: "Visa preference", value: profile.visaPreference, systemImage: "doc.badge.gearshape"),
+            ApplyFieldValue(label: "Languages", value: profile.languages, systemImage: "globe"),
+            ApplyFieldValue(label: "Skills", value: profile.skills.joined(separator: ", "), systemImage: "sparkles"),
+            ApplyFieldValue(label: "Education", value: profile.education, systemImage: "graduationcap"),
+            ApplyFieldValue(label: "Certifications", value: profile.certifications, systemImage: "checkmark.seal"),
+            ApplyFieldValue(label: "Portfolio URL", value: profile.portfolioURL, systemImage: "link")
+        ]
+        .filter { !$0.value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+    }
+
+    static func screeningPacket(profile: CandidateProfile, job: Job, workRightsLine: String) -> [ApplyFieldValue] {
+        [
+            ApplyFieldValue(label: "Authorized to work answer", value: authorizedToWorkAnswer(profile: profile, workRightsLine: workRightsLine), systemImage: "person.badge.key.fill"),
+            ApplyFieldValue(label: "Sponsorship answer", value: sponsorshipAnswer(profile: profile), systemImage: "doc.badge.gearshape.fill"),
+            ApplyFieldValue(label: "Location answer", value: locationAnswer(profile: profile, job: job), systemImage: "mappin.circle.fill"),
+            ApplyFieldValue(label: "Start date answer", value: "Available to discuss. I can provide an exact start date during the process.", systemImage: "calendar.badge.clock"),
+            ApplyFieldValue(label: "Salary answer", value: salaryAnswer(job: job), systemImage: "dollarsign.circle.fill"),
+            ApplyFieldValue(label: "Why this role answer", value: whyThisRoleAnswer(profile: profile, job: job), systemImage: "sparkle.magnifyingglass")
+        ]
+    }
+
+    private static func authorizedToWorkAnswer(profile: CandidateProfile, workRightsLine: String) -> String {
+        switch profile.workAuthorizationStatus {
+        case .unknown:
+            return "My work authorization should be confirmed for this role. \(workRightsLine)"
+        case .needsSponsorship:
+            return "I require employer sponsorship or immigration support for this target market."
+        default:
+            return workRightsLine
+        }
+    }
+
+    private static func sponsorshipAnswer(profile: CandidateProfile) -> String {
+        switch profile.workAuthorizationStatus {
+        case .needsSponsorship:
+            return "Yes, I require employer sponsorship."
+        case .studentOrGraduate:
+            return "I may require sponsorship depending on timing and visa route. Details are available on request."
+        case .unknown:
+            return "To be confirmed based on the role, location, and employer policy."
+        default:
+            return "No employer sponsorship is required based on my current work authorization status."
+        }
+    }
+
+    private static func locationAnswer(profile: CandidateProfile, job: Job) -> String {
+        let target = profile.preferredLocation.trimmingCharacters(in: .whitespacesAndNewlines)
+        let targetText = target.isEmpty ? job.city : target
+        return "I am targeting \(targetText) and am open to \(profile.workModePreference.rawValue.lowercased()) roles when aligned with the employer's requirements."
+    }
+
+    private static func salaryAnswer(job: Job) -> String {
+        if job.salary.localizedCaseInsensitiveCompare("Not listed") == .orderedSame {
+            return "Open to discussing compensation based on the role scope, location, and total package."
+        }
+        return "Open to the posted range of \(job.salary), depending on scope, location, and total package."
+    }
+
+    private static func whyThisRoleAnswer(profile: CandidateProfile, job: Job) -> String {
+        let skills = profile.skills.prefix(4).joined(separator: ", ")
+        let experience = profile.recentExperience.trimmingCharacters(in: .whitespacesAndNewlines)
+        let evidence = experience.isEmpty ? "my background in \(skills)" : experience
+        return "I am interested in \(job.title) at \(job.company) because the role aligns with \(evidence). I can bring \(skills) and role-specific execution to support the team's goals."
+    }
+}
+
+private struct ApplyAdapterSummary: View {
+    @EnvironmentObject private var store: AppStore
+    var plan: ApplyAdapterPlan
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 12) {
+            Image(systemName: icon)
+                .font(.title3.weight(.semibold))
+                .frame(width: 38, height: 38)
+                .background(tint.opacity(0.12))
+                .foregroundStyle(tint)
+                .clipShape(Circle())
+
+            VStack(alignment: .leading, spacing: 3) {
+                Text(plan.platformName)
+                    .font(.subheadline.weight(.semibold))
+                Text(store.t(plan.summaryKey))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+
+            Spacer(minLength: 8)
+
+            Text(store.t(plan.frictionKey))
+                .font(.caption.weight(.semibold))
+                .padding(.horizontal, 8)
+                .padding(.vertical, 5)
+                .background(tint.opacity(0.12))
+                .foregroundStyle(tint)
+                .clipShape(Capsule())
+        }
+    }
+
+    private var icon: String {
+        switch plan.mode {
+        case .standard: return "checkmark.seal.fill"
+        case .embedded: return "rectangle.connected.to.line.below"
+        case .accountHeavy: return "person.crop.circle.badge.exclamationmark"
+        case .universal: return "wand.and.stars"
+        }
+    }
+
+    private var tint: Color {
+        switch plan.mode {
+        case .standard: return .green
+        case .embedded: return .blue
+        case .accountHeavy: return .orange
+        case .universal: return .purple
+        }
+    }
+}
+
+private struct ApplyAutomationPreview: View {
+    @EnvironmentObject private var store: AppStore
+    var plan: ApplyAdapterPlan
+    var profileFields: [ApplyFieldValue]
+    var screeningAnswers: [ApplyFieldValue]
+    var copyAllAction: () -> Void
+
+    var body: some View {
+        SectionBlock(title: store.t("Autofill coverage")) {
+            VStack(alignment: .leading, spacing: 12) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 148), spacing: 8)], spacing: 8) {
+                    ForEach(plan.capabilityKeys, id: \.self) { capability in
+                        Label(store.t(capability), systemImage: "checkmark.circle.fill")
+                            .font(.caption.weight(.semibold))
+                            .lineLimit(2)
+                            .frame(maxWidth: .infinity, minHeight: 34, alignment: .leading)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 8)
+                            .background(Color.blue.opacity(0.10))
+                            .foregroundStyle(.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                }
+
+                ForEach(plan.warningKeys, id: \.self) { warning in
+                    Label(store.t(warning), systemImage: "exclamationmark.triangle.fill")
+                        .font(.caption)
+                        .foregroundStyle(.orange)
+                }
+
+                Button {
+                    copyAllAction()
+                } label: {
+                    Label(store.t("Copy autofill packet"), systemImage: "doc.on.doc")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(store.t("Prepared profile fields"))
+                        .font(.subheadline.weight(.semibold))
+                    ForEach(profileFields.prefix(5)) { field in
+                        ApplyFieldRow(field: field)
+                    }
+                }
+
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(store.t("Prepared screening answers"))
+                        .font(.subheadline.weight(.semibold))
+                    ForEach(screeningAnswers.prefix(3)) { field in
+                        ApplyFieldRow(field: field)
+                    }
+                }
+            }
+        }
+    }
+}
+
+private struct ApplyWorkspaceView: View {
+    @EnvironmentObject private var store: AppStore
+    @Environment(\.dismiss) private var dismiss
+    var job: Job
+    var plan: ApplyAdapterPlan
+    var subject: String
+    var resumeText: String
+    var messageBody: String
+    var profileFields: [ApplyFieldValue]
+    var screeningAnswers: [ApplyFieldValue]
+    @State private var statusMessage = ""
+
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 0) {
+                if let url = URL(string: job.sourceURL) {
+                    ApplyWebView(url: url)
+                        .frame(maxWidth: .infinity)
+                        .frame(minHeight: 320)
+                        .layoutPriority(1)
+                } else {
+                    ContentUnavailableView(
+                        store.t("Apply link unavailable"),
+                        systemImage: "link.badge.plus",
+                        description: Text(store.t("Use the autofill packet below to continue."))
+                    )
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+
+                Divider()
+
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 12) {
+                        ApplyAdapterSummary(plan: plan)
+
+                        SectionBlock(title: store.t("Autofill packet")) {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Button {
+                                    copyAll()
+                                } label: {
+                                    Label(store.t("Copy autofill packet"), systemImage: "doc.on.doc")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.borderedProminent)
+
+                                ForEach(profileFields) { field in
+                                    ApplyFieldRow(field: field)
+                                }
+                            }
+                        }
+
+                        SectionBlock(title: store.t("Screening answers")) {
+                            VStack(alignment: .leading, spacing: 8) {
+                                ForEach(screeningAnswers) { field in
+                                    ApplyFieldRow(field: field)
+                                }
+                            }
+                        }
+
+                        SectionBlock(title: store.t("Generated materials")) {
+                            VStack(spacing: 10) {
+                                Button {
+                                    PlatformActions.copy(resumeText)
+                                    statusMessage = store.t("Copied resume")
+                                } label: {
+                                    Label(store.t("Copy Resume"), systemImage: "doc.on.doc")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.bordered)
+
+                                Button {
+                                    PlatformActions.copy(messageBody)
+                                    statusMessage = store.t("Copied application")
+                                } label: {
+                                    Label(store.t("Copy Application"), systemImage: "text.quote")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.bordered)
+
+                                if !statusMessage.isEmpty {
+                                    Label(statusMessage, systemImage: "checkmark.circle.fill")
+                                        .font(.caption.weight(.semibold))
+                                        .foregroundStyle(.green)
+                                }
+                            }
+                        }
+                    }
+                    .padding(12)
+                }
+                .frame(maxHeight: 380)
+                .background(AppColor.groupedBackground)
+            }
+            .navigationTitle(store.t("Apply Workspace"))
+            .inlineNavigationTitle()
+            .toolbar {
+                ToolbarItem(placement: AppToolbarPlacement.trailing) {
+                    Button(store.t("Done")) { dismiss() }
+                }
+            }
+        }
+    }
+
+    private func copyAll() {
+        let packet = plan.copyPacket(
+            job: job,
+            subject: subject,
+            resumeText: resumeText,
+            messageBody: messageBody,
+            profileFields: profileFields,
+            screeningAnswers: screeningAnswers
+        )
+        PlatformActions.copy(packet)
+        statusMessage = store.t("Copied application autofill packet")
+    }
+}
+
+private struct ApplyFieldRow: View {
+    @EnvironmentObject private var store: AppStore
+    var field: ApplyFieldValue
+    @State private var copied = false
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 10) {
+            Image(systemName: field.systemImage)
+                .frame(width: 22)
+                .foregroundStyle(.blue)
+
+            VStack(alignment: .leading, spacing: 3) {
+                Text(store.t(field.label))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text(field.value)
+                    .font(.subheadline)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            Spacer(minLength: 8)
+
+            Button {
+                PlatformActions.copy(field.value)
+                copied = true
+            } label: {
+                Image(systemName: copied ? "checkmark" : "doc.on.doc")
+                    .frame(width: 30, height: 30)
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
+            .accessibilityLabel(store.t("Copy"))
+        }
+        .padding(10)
+        .background(AppColor.tertiaryGroupedBackground)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+}
+
+#if canImport(UIKit) && canImport(WebKit)
+private struct ApplyWebView: UIViewRepresentable {
+    var url: URL
+
+    func makeUIView(context: Context) -> WKWebView {
+        let configuration = WKWebViewConfiguration()
+        configuration.defaultWebpagePreferences.allowsContentJavaScript = true
+        let webView = WKWebView(frame: .zero, configuration: configuration)
+        webView.allowsBackForwardNavigationGestures = true
+        webView.load(URLRequest(url: url))
+        return webView
+    }
+
+    func updateUIView(_ webView: WKWebView, context: Context) {
+        if webView.url != url {
+            webView.load(URLRequest(url: url))
+        }
+    }
+}
+#else
+private struct ApplyWebView: View {
+    var url: URL
+
+    var body: some View {
+        ContentUnavailableView(
+            "In-app web view unavailable",
+            systemImage: "safari",
+            description: Text(url.absoluteString)
+        )
+    }
+}
+#endif
 
 struct ApplicationSourceCard: View {
     @EnvironmentObject private var store: AppStore
