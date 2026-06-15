@@ -255,8 +255,8 @@ struct JobFeedView: View {
             city: store.localizedJobCity(match.job.city),
             remoteType: store.localizedRemoteType(match.job.remoteType),
             salary: store.localizedSalary(match.job.salary),
-            contact: match.job.contactEmail == nil ? store.t("Apply link") : store.t("Contact"),
-            contactSystemImage: match.job.contactEmail == nil ? "link" : "envelope",
+            contact: store.t(match.job.applyChannel.rawValue),
+            contactSystemImage: match.job.canBypassEmployerATS ? "envelope.fill" : "link",
             saved: isSaved ? store.t("Saved") : nil,
             tags: store.displayTags(for: match.job).prefix(4).map(store.localizedJobTag)
         )
@@ -466,6 +466,7 @@ private struct JobFeedSearchRequest: Sendable {
     var minimumSalary: Int?
     var requiresVisaFriendly: Bool
     var requiresContact: Bool
+    var requiresDirectApply: Bool
     var requiresSalary: Bool
 
     init(query: String, location: String) {
@@ -490,6 +491,16 @@ private struct JobFeedSearchRequest: Sendable {
         self.minimumSalary = Self.minimumSalary(from: raw)
         self.requiresVisaFriendly = raw.contains("visa") || raw.contains("sponsor") || raw.contains("h1b") || raw.contains("opt") || raw.contains("工签") || raw.contains("签证")
         self.requiresContact = raw.contains("contact") || raw.contains("recruiter") || raw.contains("email") || raw.contains("招聘邮箱")
+        self.requiresDirectApply = raw.contains("direct apply") ||
+        raw.contains("ats-free") ||
+        raw.contains("no ats") ||
+        raw.contains("without ats") ||
+        raw.contains("免ats") ||
+        raw.contains("免 ats") ||
+        raw.contains("直投") ||
+        raw.contains("一键投递") ||
+        raw.contains("绕过ats") ||
+        raw.contains("绕过 ats")
         self.requiresSalary = raw.range(of: #"\b(salary|pay|compensation)\b"#, options: .regularExpression) != nil || raw.contains("薪资") || raw.contains("工资")
 
         let structuralTerms = workModes
@@ -500,7 +511,8 @@ private struct JobFeedSearchRequest: Sendable {
                 "contract", "temporary", "freelance", "intern", "internship", "student", "graduate",
                 "entry", "junior", "associate", "assistant", "coordinator", "new", "grad", "level",
                 "senior", "staff", "principal", "lead", "director", "visa", "sponsor", "sponsorship",
-                "h1b", "opt", "cpt", "salary", "pay", "compensation", "contact", "recruiter", "email"
+                "h1b", "opt", "cpt", "salary", "pay", "compensation", "contact", "recruiter", "email",
+                "direct", "apply", "ats", "free", "without"
             ])
         self.terms = allTokens
             .filter { !stopWords.contains($0) && !excluded.contains($0) && !structuralTerms.contains($0) }
@@ -518,6 +530,7 @@ private struct JobFeedSearchRequest: Sendable {
         minimumSalary != nil ||
         requiresVisaFriendly ||
         requiresContact ||
+        requiresDirectApply ||
         requiresSalary
     }
 
@@ -532,6 +545,7 @@ private struct JobFeedSearchRequest: Sendable {
         if let minimumSalary, (document.salaryHigh ?? 0) < minimumSalary { return false }
         if requiresVisaFriendly && !document.visaFriendly { return false }
         if requiresContact && !document.hasContact { return false }
+        if requiresDirectApply && !document.hasDirectApply { return false }
         if requiresSalary && document.salaryHigh == nil { return false }
         return true
     }
@@ -653,6 +667,7 @@ private struct JobSearchDocument: Sendable {
     var salaryHigh: Int?
     var visaFriendly: Bool
     var hasContact: Bool
+    var hasDirectApply: Bool
 
     init(match: JobMatch) {
         title = match.job.title.lowercased()
@@ -672,6 +687,7 @@ private struct JobSearchDocument: Sendable {
         salaryHigh = Self.salaryHigh(from: salary)
         visaFriendly = match.job.visaFriendly
         hasContact = match.job.contactEmail != nil
+        hasDirectApply = match.job.canBypassEmployerATS
     }
 
     func hasPrefixMatch(for term: String) -> Bool {
@@ -749,6 +765,7 @@ struct SearchToolsCard: View {
         SearchSuggestion(title: "Entry Level", systemImage: "figure.stairs", target: .query),
         SearchSuggestion(title: "Healthcare", systemImage: "cross.case", target: .query),
         SearchSuggestion(title: "Visa Sponsorship", systemImage: "doc.badge.gearshape", target: .query),
+        SearchSuggestion(title: "ATS-free", systemImage: "envelope.fill", target: .query),
         SearchSuggestion(title: "Remote", systemImage: "desktopcomputer", target: .location)
     ]
 
@@ -837,6 +854,7 @@ enum JobFeedFilter: String, CaseIterable, Identifiable, Sendable {
     case entry = "Entry"
     case visa = "Visa"
     case salary = "Salary"
+    case direct = "ATS-free"
     case contact = "Contact"
 
     var id: String { rawValue }
@@ -878,6 +896,8 @@ enum JobFeedFilter: String, CaseIterable, Identifiable, Sendable {
             return match.job.visaFriendly
         case .salary:
             return match.job.salary != "Not listed"
+        case .direct:
+            return match.job.canBypassEmployerATS
         case .contact:
             return match.job.contactEmail != nil
         }

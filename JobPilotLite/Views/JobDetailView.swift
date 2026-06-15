@@ -4,6 +4,10 @@ import SwiftUI
 import WebKit
 #endif
 
+#if canImport(UIKit) && canImport(MessageUI)
+import MessageUI
+#endif
+
 struct JobDetailView: View {
     @EnvironmentObject private var store: AppStore
     var match: JobMatch
@@ -33,7 +37,7 @@ struct JobDetailView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     InfoLine(icon: "mappin.and.ellipse", title: store.t("Location"), value: "\(store.localizedJobCity(match.job.city)) / \(store.localizedRemoteType(match.job.remoteType))")
                     InfoLine(icon: "dollarsign.circle", title: store.t("Compensation"), value: store.localizedSalary(match.job.salary))
-                    InfoLine(icon: match.job.contactEmail == nil ? "link" : "envelope", title: store.t("Apply method"), value: match.job.contactEmail ?? store.t("Apply link only"))
+                    InfoLine(icon: match.job.canBypassEmployerATS ? "envelope.fill" : "link", title: store.t("Apply method"), value: store.t(match.job.applyChannel.rawValue))
                     InfoLine(icon: "link", title: store.t("Source"), value: match.job.sourceURL)
                 }
 
@@ -365,6 +369,7 @@ struct ApplicationFlowView: View {
     @State private var exportFiles: [ResumeExportFile] = []
     @State private var didPrepare = false
     @State private var showApplyWorkspace = false
+    @State private var directMailPayload: DirectMailPayload?
 
     var body: some View {
         let adapterPlan = ApplyAdapterPlan(job: job)
@@ -377,7 +382,7 @@ struct ApplicationFlowView: View {
                     SectionBlock(title: store.t("Application Kit")) {
                         VStack(alignment: .leading, spacing: 9) {
                             StrategyLine(icon: "doc.text.fill", title: store.t("ATS-friendly resume"), value: store.t(store.recommendedResumeTemplate(for: job).title))
-                            StrategyLine(icon: "link.badge.plus", title: store.t("Apply method"), value: job.contactEmail ?? store.t("Apply link only"))
+                            StrategyLine(icon: job.canBypassEmployerATS ? "envelope.fill" : "link.badge.plus", title: store.t("Apply method"), value: store.t(job.applyChannel.rawValue))
                             Text(store.t("Edit the resume before applying"))
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
@@ -439,27 +444,40 @@ struct ApplicationFlowView: View {
                         VStack(alignment: .leading, spacing: 12) {
                             ApplyAdapterSummary(plan: adapterPlan)
 
-                            Text(store.t("JobPilot keeps the application inside this app when possible. It prepares the resume, profile fields, and screening answers before you confirm the final submission."))
+                            Text(store.t(adapterPlan.explanationKey))
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
 
-                            Button {
-                                openApplyWorkspace()
-                            } label: {
-                                Label(store.t("Open In-App Apply Workspace"), systemImage: "rectangle.and.pencil.and.ellipsis")
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .controlSize(.large)
-
-                            if job.contactEmail != nil {
+                            if job.canBypassEmployerATS {
                                 Button {
-                                    emailRecruiter()
+                                    sendATSFreeApplication()
                                 } label: {
-                                    Label(store.t("Email Recruiter"), systemImage: "envelope.fill")
+                                    Label(store.t("Send ATS-Free Direct Application"), systemImage: "paperplane.fill")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .controlSize(.large)
+
+                                Button {
+                                    openApplyWorkspace()
+                                } label: {
+                                    Label(store.t("Open employer ATS backup"), systemImage: "rectangle.and.pencil.and.ellipsis")
                                         .frame(maxWidth: .infinity)
                                 }
                                 .buttonStyle(.bordered)
+                                .controlSize(.large)
+                            } else {
+                                Label(store.t("This job has no verified direct apply channel. JobPilot cannot fully bypass this employer ATS."), systemImage: "exclamationmark.triangle.fill")
+                                    .font(.caption.weight(.semibold))
+                                    .foregroundStyle(.orange)
+
+                                Button {
+                                    openApplyWorkspace()
+                                } label: {
+                                    Label(store.t("Open ATS Helper"), systemImage: "rectangle.and.pencil.and.ellipsis")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.borderedProminent)
                                 .controlSize(.large)
                             }
 
@@ -539,6 +557,11 @@ struct ApplicationFlowView: View {
                     profileFields: applyProfileFields,
                     screeningAnswers: applyScreeningAnswers
                 )
+            }
+            .sheet(item: $directMailPayload) { payload in
+                DirectMailComposeView(payload: payload) { result in
+                    handleDirectMailResult(result)
+                }
             }
         }
     }
@@ -652,10 +675,69 @@ struct ApplicationFlowView: View {
     }
 
     private func openApplyWorkspace() {
-        let score = saveMaterials(markApplied: true)
+        let score = saveMaterials(markApplied: false)
         store.log(.applyLinkOpened, metadata: ["job_id": job.id.uuidString])
         statusMessage = "\(store.t("Application workspace ready")) · \(store.t("ATS")) \(score)"
         showApplyWorkspace = true
+    }
+
+    private func sendATSFreeApplication() {
+        let score = saveMaterials(markApplied: false)
+        let title = "\(job.title) - \(job.company)"
+        let files = PlatformActions.writeResumeExports(text: resumeText, title: title)
+        exportFiles = files
+
+        guard let email = job.directApplyAddress else {
+            PlatformActions.copy(fullApplicationMessage)
+            store.log(.applicationCopied, metadata: ["job_id": job.id.uuidString])
+            statusMessage = "\(store.t("No direct apply channel found")) · \(store.t("ATS")) \(score)"
+            return
+        }
+
+        let payload = DirectMailPayload(
+            to: email,
+            subject: subject,
+            body: fullApplicationMessage,
+            attachments: files.map(\.url)
+        )
+
+        if DirectMailComposeView.canSendMail {
+            directMailPayload = payload
+        } else {
+            openMailto(payload: payload)
+            statusMessage = "\(store.t("Mail draft opened")) · \(store.t("ATS")) \(score)"
+        }
+    }
+
+    private func openMailto(payload: DirectMailPayload) {
+        guard let encodedSubject = payload.subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let encodedBody = payload.body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string: "mailto:\(payload.to)?subject=\(encodedSubject)&body=\(encodedBody)") else {
+            PlatformActions.copy(payload.body)
+            store.log(.applicationCopied, metadata: ["job_id": job.id.uuidString])
+            return
+        }
+
+        store.log(.emailOpened, metadata: ["job_id": job.id.uuidString])
+        PlatformActions.open(url)
+    }
+
+    private func handleDirectMailResult(_ result: DirectMailResult) {
+        switch result {
+        case .sent:
+            store.save(job: job, status: .applied)
+            store.log(.emailOpened, metadata: ["job_id": job.id.uuidString])
+            statusMessage = store.t("ATS-free application sent")
+        case .saved:
+            store.saveDraft(for: job, subject: subject, body: fullApplicationMessage)
+            statusMessage = store.t("Mail draft saved")
+        case .cancelled:
+            statusMessage = store.t("Direct application cancelled")
+        case .failed:
+            PlatformActions.copy(fullApplicationMessage)
+            store.log(.applicationCopied, metadata: ["job_id": job.id.uuidString])
+            statusMessage = store.t("Mail unavailable; application copied")
+        }
     }
 
     private func copyApplyPacket() {
@@ -673,35 +755,128 @@ struct ApplicationFlowView: View {
         statusMessage = store.t("Copied application autofill packet")
     }
 
-    private func emailRecruiter() {
-        let score = saveMaterials(markApplied: true)
-        guard let contactEmail = job.contactEmail,
-              let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let encodedBody = fullApplicationMessage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: "mailto:\(contactEmail)?subject=\(encodedSubject)&body=\(encodedBody)") else {
-            PlatformActions.copy(fullApplicationMessage)
-            store.log(.applicationCopied, metadata: ["job_id": job.id.uuidString])
-            statusMessage = "\(store.t("Copied application")) · \(store.t("ATS")) \(score)"
-            return
-        }
-
-        store.log(.emailOpened, metadata: ["job_id": job.id.uuidString])
-        PlatformActions.open(url)
-    }
 }
 
 private enum ApplyAdapterMode: Sendable {
+    case direct
     case standard
     case embedded
     case accountHeavy
     case universal
 }
 
+private struct DirectMailPayload: Identifiable, Equatable, Sendable {
+    let id = UUID()
+    var to: String
+    var subject: String
+    var body: String
+    var attachments: [URL]
+}
+
+private enum DirectMailResult: Sendable {
+    case sent
+    case saved
+    case cancelled
+    case failed
+}
+
+#if canImport(UIKit) && canImport(MessageUI)
+private struct DirectMailComposeView: UIViewControllerRepresentable {
+    static var canSendMail: Bool {
+        MFMailComposeViewController.canSendMail()
+    }
+
+    var payload: DirectMailPayload
+    var completion: (DirectMailResult) -> Void
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(completion: completion)
+    }
+
+    func makeUIViewController(context: Context) -> MFMailComposeViewController {
+        let controller = MFMailComposeViewController()
+        controller.mailComposeDelegate = context.coordinator
+        controller.setToRecipients([payload.to])
+        controller.setSubject(payload.subject)
+        controller.setMessageBody(payload.body, isHTML: false)
+
+        for url in payload.attachments {
+            guard let data = try? Data(contentsOf: url) else { continue }
+            controller.addAttachmentData(data, mimeType: mimeType(for: url), fileName: url.lastPathComponent)
+        }
+
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: Context) {}
+
+    private func mimeType(for url: URL) -> String {
+        switch url.pathExtension.lowercased() {
+        case "pdf": return "application/pdf"
+        case "rtf": return "application/rtf"
+        default: return "text/plain"
+        }
+    }
+
+    final class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
+        var completion: (DirectMailResult) -> Void
+
+        init(completion: @escaping (DirectMailResult) -> Void) {
+            self.completion = completion
+        }
+
+        func mailComposeController(
+            _ controller: MFMailComposeViewController,
+            didFinishWith result: MFMailComposeResult,
+            error: Error?
+        ) {
+            controller.dismiss(animated: true)
+
+            if error != nil {
+                completion(.failed)
+                return
+            }
+
+            switch result {
+            case .sent:
+                completion(.sent)
+            case .saved:
+                completion(.saved)
+            case .cancelled:
+                completion(.cancelled)
+            case .failed:
+                completion(.failed)
+            @unknown default:
+                completion(.failed)
+            }
+        }
+    }
+}
+#else
+private struct DirectMailComposeView: View {
+    static var canSendMail: Bool { false }
+    var payload: DirectMailPayload
+    var completion: (DirectMailResult) -> Void
+
+    var body: some View {
+        ContentUnavailableView(
+            "Mail unavailable",
+            systemImage: "envelope.badge",
+            description: Text(payload.to)
+        )
+        .onAppear {
+            completion(.failed)
+        }
+    }
+}
+#endif
+
 private struct ApplyAdapterPlan: Equatable, Sendable {
     var platformName: String
     var mode: ApplyAdapterMode
     var summaryKey: String
     var frictionKey: String
+    var explanationKey: String
     var capabilityKeys: [String]
     var warningKeys: [String]
 
@@ -709,7 +884,12 @@ private struct ApplyAdapterPlan: Equatable, Sendable {
         let rawURL = job.sourceURL.lowercased()
         let host = URL(string: job.sourceURL)?.host?.lowercased() ?? ""
 
-        if host.contains("lever.co") {
+        if job.canBypassEmployerATS {
+            platformName = "ATS-free"
+            mode = .direct
+            summaryKey = "Direct apply channel ready"
+            frictionKey = "No ATS"
+        } else if host.contains("lever.co") {
             platformName = "Lever"
             mode = .standard
             summaryKey = "Standard ATS adapter ready"
@@ -752,7 +932,18 @@ private struct ApplyAdapterPlan: Equatable, Sendable {
         }
 
         switch mode {
+        case .direct:
+            explanationKey = "This job has a verified direct apply channel. JobPilot can prepare the resume and open an in-app email composer without sending the user through the employer ATS."
+            capabilityKeys = [
+                "No employer ATS form",
+                "In-app email composer",
+                "Resume attached",
+                "Profile autofill packet",
+                "Final user confirmation"
+            ]
+            warningKeys = ["Only use direct apply when the employer provided this channel"]
         case .standard:
+            explanationKey = "This employer still requires its ATS. JobPilot cannot fully bypass it, but it keeps the page inside the app and prepares every field before final confirmation."
             capabilityKeys = [
                 "In-app application page",
                 "Resume upload files",
@@ -762,6 +953,7 @@ private struct ApplyAdapterPlan: Equatable, Sendable {
             ]
             warningKeys = ["Review custom questions before submitting"]
         case .embedded:
+            explanationKey = "This employer still requires its ATS. JobPilot cannot fully bypass it, but it keeps the page inside the app and prepares every field before final confirmation."
             capabilityKeys = [
                 "In-app application page",
                 "Resume upload files",
@@ -771,6 +963,7 @@ private struct ApplyAdapterPlan: Equatable, Sendable {
             ]
             warningKeys = ["Some fields may still require manual confirmation"]
         case .accountHeavy:
+            explanationKey = "This employer still requires account-based ATS steps. JobPilot cannot bypass login, account creation, or employer verification screens."
             capabilityKeys = [
                 "In-app application page",
                 "Account setup helper",
@@ -783,6 +976,7 @@ private struct ApplyAdapterPlan: Equatable, Sendable {
                 "Review every parsed resume field before submitting"
             ]
         case .universal:
+            explanationKey = "No verified direct apply channel is available. JobPilot can only assist with the employer page and prepared answers."
             capabilityKeys = [
                 "In-app application page",
                 "Resume upload files",
@@ -946,6 +1140,7 @@ private struct ApplyAdapterSummary: View {
 
     private var icon: String {
         switch plan.mode {
+        case .direct: return "paperplane.fill"
         case .standard: return "checkmark.seal.fill"
         case .embedded: return "rectangle.connected.to.line.below"
         case .accountHeavy: return "person.crop.circle.badge.exclamationmark"
@@ -955,6 +1150,7 @@ private struct ApplyAdapterSummary: View {
 
     private var tint: Color {
         switch plan.mode {
+        case .direct: return .green
         case .standard: return .green
         case .embedded: return .blue
         case .accountHeavy: return .orange
@@ -1216,19 +1412,19 @@ struct ApplicationSourceCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Label(store.t("Real apply link"), systemImage: "checkmark.shield")
+                Label(store.t(job.canBypassEmployerATS ? "ATS-free direct channel" : "Employer ATS required"), systemImage: job.canBypassEmployerATS ? "paperplane.fill" : "checkmark.shield")
                     .font(.headline)
                 Spacer()
-                Text(job.contactEmail == nil ? store.t("Apply link") : store.t("Contact"))
+                Text(store.t(job.canBypassEmployerATS ? "Direct" : "ATS"))
                     .font(.caption.weight(.semibold))
                     .padding(.horizontal, 8)
                     .padding(.vertical, 5)
-                    .background(Color.green.opacity(0.12))
-                    .foregroundStyle(.green)
+                    .background((job.canBypassEmployerATS ? Color.green : Color.orange).opacity(0.12))
+                    .foregroundStyle(job.canBypassEmployerATS ? .green : .orange)
                     .clipShape(Capsule())
             }
 
-            Text(store.t("Use this page to generate, edit, save, and submit job-specific materials."))
+            Text(store.t(job.canBypassEmployerATS ? "Use this page to generate, edit, and send a direct application without the employer ATS." : "Use this page to generate, edit, and prepare materials. This employer still requires its ATS for the final application."))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }

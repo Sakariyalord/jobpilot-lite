@@ -358,8 +358,11 @@ enum AppLanguage: String, CaseIterable, Identifiable, Codable, Sendable {
         "Entry": "初级",
         "Visa": "签证",
         "Salary": "薪资",
+        "ATS-free": "免 ATS",
         "Contact": "联系人",
         "Apply link": "申请链接",
+        "ATS-free direct apply": "免 ATS 直投",
+        "Employer ATS required": "需要雇主 ATS",
         "Saved": "已保存",
         "Not listed": "未列出",
         "Strong Match": "强匹配",
@@ -389,7 +392,17 @@ enum AppLanguage: String, CaseIterable, Identifiable, Codable, Sendable {
         "Open Verified Apply Link": "打开已验证投递链接",
         "JobPilot keeps the application inside this app when possible. It prepares the resume, profile fields, and screening answers before you confirm the final submission.": "JobPilot 会尽量把投递留在本软件内完成，并在你确认提交前准备好简历、资料字段和筛选题答案。",
         "Open In-App Apply Workspace": "打开软件内投递工作台",
+        "Send ATS-Free Direct Application": "发送免 ATS 直投申请",
+        "Open employer ATS backup": "打开雇主 ATS 备用入口",
+        "Open ATS Helper": "打开 ATS 辅助工作台",
+        "This job has no verified direct apply channel. JobPilot cannot fully bypass this employer ATS.": "这条岗位没有已验证直投通道。JobPilot 不能完全绕过这个雇主 ATS。",
         "Application workspace ready": "投递工作台已准备好",
+        "No direct apply channel found": "未找到直投通道",
+        "Mail draft opened": "邮件草稿已打开",
+        "ATS-free application sent": "免 ATS 直投申请已发送",
+        "Mail draft saved": "邮件草稿已保存",
+        "Direct application cancelled": "直投已取消",
+        "Mail unavailable; application copied": "邮件不可用，已复制申请材料",
         "Copied application autofill packet": "已复制投递自动填写包",
         "Autofill coverage": "自动填写覆盖",
         "Autofill packet": "自动填写包",
@@ -401,21 +414,27 @@ enum AppLanguage: String, CaseIterable, Identifiable, Codable, Sendable {
         "Use the autofill packet below to continue.": "可使用下方自动填写包继续投递。",
         "Screening answers": "筛选题答案",
         "Generated materials": "已生成材料",
+        "Direct apply channel ready": "直投通道已就绪",
         "Standard ATS adapter ready": "标准 ATS 适配器已就绪",
         "Embedded ATS adapter ready": "内嵌 ATS 适配器已就绪",
         "Account-heavy adapter ready": "重账号 ATS 适配器已就绪",
         "Universal adapter ready": "通用适配器已就绪",
+        "No ATS": "无 ATS",
         "Low friction": "低摩擦",
         "Medium friction": "中等摩擦",
         "High friction": "高摩擦",
         "Unknown friction": "未知摩擦",
         "In-app application page": "软件内申请页",
+        "No employer ATS form": "无需雇主 ATS 表单",
+        "In-app email composer": "软件内邮件编辑器",
+        "Resume attached": "已附上简历",
         "Resume upload files": "简历上传文件",
         "Profile autofill packet": "资料自动填写包",
         "Screening answer bank": "筛选题答案库",
         "Final user confirmation": "用户最终确认",
         "Copy-safe formatted answers": "可安全复制的格式化答案",
         "Account setup helper": "账号创建辅助",
+        "Only use direct apply when the employer provided this channel": "只有雇主提供直投通道时才使用直投",
         "Review custom questions before submitting": "提交前检查自定义问题",
         "Some fields may still require manual confirmation": "部分字段仍可能需要手动确认",
         "This ATS may require login or account creation": "这个 ATS 可能需要登录或创建账号",
@@ -433,6 +452,14 @@ enum AppLanguage: String, CaseIterable, Identifiable, Codable, Sendable {
         "ATS keywords updated": "已优化 ATS 关键词",
         "Real apply link": "真实投递链接",
         "Use this page to generate, edit, save, and submit job-specific materials.": "在这里生成、修改、保存并提交岗位定制材料。",
+        "ATS-free direct channel": "免 ATS 直投通道",
+        "Direct": "直投",
+        "Use this page to generate, edit, and send a direct application without the employer ATS.": "在这里生成、修改并发送直投申请，不经过雇主 ATS。",
+        "Use this page to generate, edit, and prepare materials. This employer still requires its ATS for the final application.": "在这里生成、修改并准备材料；最终申请仍需要经过雇主 ATS。",
+        "This job has a verified direct apply channel. JobPilot can prepare the resume and open an in-app email composer without sending the user through the employer ATS.": "这条岗位有已验证直投通道。JobPilot 可以准备简历并打开软件内邮件编辑器，不让用户进入雇主 ATS。",
+        "This employer still requires its ATS. JobPilot cannot fully bypass it, but it keeps the page inside the app and prepares every field before final confirmation.": "这个雇主仍要求使用 ATS。JobPilot 不能完全绕过它，但会把页面留在软件内，并在最终确认前准备好字段。",
+        "This employer still requires account-based ATS steps. JobPilot cannot bypass login, account creation, or employer verification screens.": "这个雇主仍要求账号型 ATS 步骤。JobPilot 不能绕过登录、创建账号或雇主验证页面。",
+        "No verified direct apply channel is available. JobPilot can only assist with the employer page and prepared answers.": "当前没有已验证直投通道。JobPilot 只能辅助打开雇主页面并准备答案。",
         "Open Apply Link": "打开申请链接",
         "Subject": "主题",
         "Copy": "复制",
@@ -457,6 +484,8 @@ enum AppLanguage: String, CaseIterable, Identifiable, Codable, Sendable {
         "Low readiness, save only if strategically important": "准备度较低，仅在战略重要时保留",
         "Save a targeted resume version for this role": "保存一个针对该岗位的简历版本",
         "Mirror the top missing keywords in 2-3 bullets": "把最重要的缺失关键词写进 2-3 条经历要点",
+        "Send the ATS-free direct application from JobPilot": "从 JobPilot 发送免 ATS 直投申请",
+        "Use the ATS helper and keep a follow-up date": "使用 ATS 辅助工作台，并设置后续跟进日期",
         "Use the apply link and keep a follow-up date": "使用申请链接，并设置后续跟进日期",
         "Send a concise recruiter message after applying": "投递后发送一条简洁的招聘方消息",
         "Check the employer's sponsorship policy before spending more time": "投入更多时间前，先确认雇主是否支持签证赞助",
@@ -975,6 +1004,11 @@ struct AppSettings: Codable, Equatable, Sendable {
     var messageTone: MessageTone = .professional
 }
 
+enum JobApplyChannel: String, Sendable {
+    case atsFreeEmail = "ATS-free direct apply"
+    case employerATS = "Employer ATS required"
+}
+
 struct Job: Identifiable, Codable, Equatable, Sendable {
     let id: UUID
     var company: String
@@ -989,6 +1023,43 @@ struct Job: Identifiable, Codable, Equatable, Sendable {
     var requirements: [String]
     var visaFriendly: Bool
     var postedDate: Date
+
+    var directApplyAddress: String? {
+        if let contactEmail,
+           let email = Self.normalizedEmail(contactEmail) {
+            return email
+        }
+
+        guard let url = URL(string: sourceURL),
+              url.scheme?.lowercased() == "mailto" else {
+            return nil
+        }
+
+        let rawAddress = sourceURL
+            .dropFirst("mailto:".count)
+            .split(separator: "?")
+            .first
+            .map(String.init) ?? ""
+        return Self.normalizedEmail(rawAddress)
+    }
+
+    var canBypassEmployerATS: Bool {
+        directApplyAddress != nil
+    }
+
+    var applyChannel: JobApplyChannel {
+        canBypassEmployerATS ? .atsFreeEmail : .employerATS
+    }
+
+    private static func normalizedEmail(_ value: String) -> String? {
+        let trimmed = value.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard trimmed.contains("@"),
+              trimmed.contains("."),
+              !trimmed.contains(" ") else {
+            return nil
+        }
+        return trimmed
+    }
 }
 
 struct JobFeedConfig: Codable, Sendable {

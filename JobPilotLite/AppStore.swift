@@ -2421,7 +2421,7 @@ final class AppStore: ObservableObject {
         var actions: [String] = [
             t("Save a targeted resume version for this role"),
             t("Mirror the top missing keywords in 2-3 bullets"),
-            job.contactEmail == nil ? t("Use the apply link and keep a follow-up date") : t("Send a concise recruiter message after applying")
+            job.canBypassEmployerATS ? t("Send the ATS-free direct application from JobPilot") : t("Use the ATS helper and keep a follow-up date")
         ]
 
         if !job.visaFriendly && profile.visaPreference.localizedCaseInsensitiveContains("sponsor") {
