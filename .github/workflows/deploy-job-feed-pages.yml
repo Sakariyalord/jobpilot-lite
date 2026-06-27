@@ -3,8 +3,6 @@ name: Deploy Job Feed Pages
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
     paths:
       - "Data/JobFeed/**"
       - ".github/workflows/deploy-job-feed-pages.yml"
@@ -14,8 +12,9 @@ permissions:
   pages: write
   id-token: write
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+concurrency:
+  group: job-feed-pages
+  cancel-in-progress: true
 
 jobs:
   deploy:
