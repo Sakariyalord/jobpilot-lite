@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-05T11:48:33.617Z",
+  "updatedAt": "2026-07-05T12:53:06.695Z",
   "sourcePolicy": {
     "publicOnly": true,
     "noLoginOrAntiBotBypass": true,
@@ -315,6 +315,19 @@
     },
     {
       "platform": "ashby",
+      "board": "abundant",
+      "lastSeenURL": "https://jobs.ashbyhq.com/abundant",
+      "company": "abundant",
+      "jobCount": 5,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/abundant",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "ashby",
       "board": "Accelevents",
       "lastSeenURL": "https://jobs.ashbyhq.com/Accelevents/b6891551-5630-4159-a9cb-4f94d2f7644a",
       "company": "Accelevents",
@@ -380,6 +393,19 @@
     },
     {
       "platform": "ashby",
+      "board": "achilleshr",
+      "lastSeenURL": "https://jobs.ashbyhq.com/achilleshr/3dc60ad8-8913-4ec5-bb62-c0ae5ec1c0a5?utm_source=Tech%3ANYC+job+board&utm_medium=getro.com&gh_src=Tech%3ANYC+job+board",
+      "company": "achilleshr",
+      "jobCount": 3,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/achilleshr",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "ashby",
       "board": "achira",
       "lastSeenURL": "https://jobs.ashbyhq.com/achira",
       "company": "achira",
@@ -403,6 +429,19 @@
       "firstDiscoveredAt": "2026-06-11T04:23:19.579Z",
       "lastDiscoveredAt": "2026-06-11T04:23:19.579Z",
       "lastValidatedAt": "2026-06-11T04:23:19.579Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "acquird",
+      "lastSeenURL": "https://jobs.ashbyhq.com/acquird/f5fd39c9-b76b-404d-8097-0c99d5980d14",
+      "company": "acquird",
+      "jobCount": 7,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/acquird",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
     },
     {
       "platform": "ashby",
@@ -536,6 +575,32 @@
     },
     {
       "platform": "ashby",
+      "board": "adelphi-ai",
+      "lastSeenURL": "https://jobs.ashbyhq.com/adelphi-ai/1d61f60a-281c-4a62-9e55-b408685e9ad7",
+      "company": "adelphi-ai",
+      "jobCount": 3,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/adelphi-ai",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "adonis",
+      "lastSeenURL": "https://jobs.ashbyhq.com/adonis/4605d7b9-3f8d-45a1-b5b5-3a32ca97490a?utm_source=Asymmetric+Capital+Partners+job+board&utm_medium=getro.com&gh_src=Asymmetric+Capital+Partners+job+board",
+      "company": "adonis",
+      "jobCount": 7,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/adonis",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "ashby",
       "board": "aduro-advisors",
       "lastSeenURL": "https://jobs.ashbyhq.com/aduro-advisors",
       "company": "aduro-advisors",
@@ -559,6 +624,19 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "aerovy",
+      "lastSeenURL": "https://jobs.ashbyhq.com/aerovy",
+      "company": "aerovy",
+      "jobCount": 2,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/aerovy",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
     },
     {
       "platform": "ashby",
@@ -598,6 +676,19 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "agentio",
+      "lastSeenURL": "https://jobs.ashbyhq.com/agentio/07130e40-4ce1-4553-bb58-ff8fec187041",
+      "company": "agentio",
+      "jobCount": 18,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/agentio",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
     },
     {
       "platform": "ashby",
@@ -702,6 +793,32 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "aios",
+      "lastSeenURL": "https://jobs.ashbyhq.com/aios/3e414401-8ca6-47bf-90f7-35aa4dec9d95",
+      "company": "aios",
+      "jobCount": 8,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/aios",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "aiprise",
+      "lastSeenURL": "https://jobs.ashbyhq.com/aiprise",
+      "company": "aiprise",
+      "jobCount": 12,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/aiprise",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
     },
     {
       "platform": "ashby",
@@ -1667,6 +1784,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "ALTEXSA",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/ALTEXSA/744000118846957--",
+      "company": "ALTEX S.A.",
+      "jobCount": 21,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/ALTEXSA/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "Altisource",
       "lastSeenURL": "https://jobs.smartrecruiters.com/Altisource/743999775904300-software-engineer-fresher-qa",
       "company": "Altisource",
@@ -1732,6 +1862,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "AMOLTECHNOLOGIES",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AMOLTECHNOLOGIES/743999960227093-full-stack-developer-intern",
+      "company": "AMOL TECHNOLOGIES",
+      "jobCount": 8,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AMOLTECHNOLOGIES/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "AmpleInsightInc",
       "lastSeenURL": "https://jobs.smartrecruiters.com/AmpleInsightInc/743999869452881-data-scientist-remote-",
       "company": "Ample Insight Inc.",
@@ -1755,6 +1898,19 @@
       "firstDiscoveredAt": "2026-06-12T13:43:59.519Z",
       "lastDiscoveredAt": "2026-06-12T13:43:59.519Z",
       "lastValidatedAt": "2026-06-12T13:43:59.519Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "AnalysysMason1",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AnalysysMason1/744000038808141-consultant-m-w-d-",
+      "company": "Analysys Mason",
+      "jobCount": 31,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AnalysysMason1/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
     },
     {
       "platform": "smartrecruiters",
@@ -1823,6 +1979,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "ApplusIDIADA1",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/ApplusIDIADA1/744000058868994-ingeniero-a-de-ensayos-de-motores-electricos",
+      "company": "Applus IDIADA",
+      "jobCount": 164,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/ApplusIDIADA1/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "archglobalservicesphilippinesinc",
       "lastSeenURL": "https://jobs.smartrecruiters.com/archglobalservicesphilippinesinc/744000042306550-2025-7495-finance-analyst-mid",
       "company": "Arch Global Services (Philippines) Inc.",
@@ -1885,6 +2054,32 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "ArtmanStudio",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/ArtmanStudio/744000044871025-2d-nimator",
+      "company": "ArtmanStudio",
+      "jobCount": 6,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/ArtmanStudio/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "AsburyCommunities",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AsburyCommunities/744000125350894-general-maintenance-tech",
+      "company": "Asbury Communities",
+      "jobCount": 79,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AsburyCommunities/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
     },
     {
       "platform": "smartrecruiters",
@@ -1966,6 +2161,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "Astucemedia",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/Astucemedia/744000030961600-architecte-de-solutions-developpeur-lead-lead-software-developer-solutions-architect",
+      "company": "Astucemedia",
+      "jobCount": 6,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/Astucemedia/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "AsureQuality",
       "lastSeenURL": "https://jobs.smartrecruiters.com/AsureQuality/6000000000310389-register-your-expression-of-interest-join-our-team-at-aq-nationwide",
       "company": "AsureQuality",
@@ -2002,6 +2210,19 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "AudiInteractionGmbH",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AudiInteractionGmbH/744000118173686-referent-referentin-controlling-und-reporting-fur-cupra-seat-m-w-d-",
+      "company": "Audi Interaction GmbH",
+      "jobCount": 9,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AudiInteractionGmbH/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2054,6 +2275,19 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "AUTENTISpZOo",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AUTENTISpZOo/743999716288879-sales-manager",
+      "company": "AUTENTI Sp. z o.o.",
+      "jobCount": 8,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AUTENTISpZOo/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2122,6 +2356,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "AWPSafety",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AWPSafety/744000124034639-traffic-safety-technician-seasonal-nights-weekends-?trid=50545538-91e3-4a27-96da-02c0b7a0fe72",
+      "company": "AWP Safety",
+      "jobCount": 341,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AWPSafety/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "AxelSpringerNewsMediaNational",
       "lastSeenURL": "https://jobs.smartrecruiters.com/AxelSpringerNewsMediaNational/744000077956842-werkstudent-projektmanagement-marketing-m-w-d-",
       "company": "Axel Springer News Media National",
@@ -2145,6 +2392,45 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "Ayming",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/Ayming/744000095358476-business-development-manager-subventions-publiques?trid=b963a3c8-ac82-4576-82cd-4175f72ef30d",
+      "company": "Ayming",
+      "jobCount": 102,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/Ayming/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "BaddpizzaBuffalo",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/BaddpizzaBuffalo/743999980511563-full-time-pizza-kitchen-cashier-mclean-arlington",
+      "company": "baddpizza - Buffalo, NY Style Pizza & Wings",
+      "jobCount": 5,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/BaddpizzaBuffalo/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "Ballantynes",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/Ballantynes/744000117511907-social-media-coordinator",
+      "company": "Ballantynes",
+      "jobCount": 12,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/Ballantynes/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2200,6 +2486,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "beckersgroup",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/beckersgroup/744000122629639-qc-tinting-specialist-m-w-d-",
+      "company": "Beckers Group",
+      "jobCount": 15,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/beckersgroup/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "Believe",
       "lastSeenURL": "https://jobs.smartrecruiters.com/Believe/744000119382034?utm_source=Technology+Crossover+Ventures+job+board&utm_medium=getro.com&gh_src=Technology+Crossover+Ventures+job+board",
       "company": "Believe",
@@ -2210,6 +2509,19 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "BePeConstructionBv",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/BePeConstructionBv/744000109350015-mechanical-engineer-heavy-equipment-praktijkgericht-",
+      "company": "BePe Construction bv",
+      "jobCount": 7,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/BePeConstructionBv/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2239,6 +2551,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "BertoniSolutions",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/BertoniSolutions/744000048615425-sr-devops-engineer-hybrid-job-",
+      "company": "Bertoni Solutions",
+      "jobCount": 4,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/BertoniSolutions/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "BESIX",
       "lastSeenURL": "https://jobs.smartrecruiters.com/BESIX/743999855524421-communication-officer",
       "company": "BESIX",
@@ -2262,6 +2587,45 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "BEUMERGroup1",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/BEUMERGroup1/744000085579314-software-engineer-vision-and-robotics",
+      "company": "BEUMER Group",
+      "jobCount": 257,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/BEUMERGroup1/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "BHFT",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/BHFT/10449829674-hrd",
+      "company": "BHFT",
+      "jobCount": 6,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/BHFT/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "bishenterprises",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/bishenterprises/744000122683571",
+      "company": "Bish Enterprises",
+      "jobCount": 7,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/bishenterprises/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
+      "lastValidatedAt": "2026-07-05T12:53:06.695Z"
     },
     {
       "platform": "smartrecruiters",
