@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-28T12:14:46.122Z",
+  "updatedAt": "2026-07-29T12:21:21.636Z",
   "sourcePolicy": {
     "publicOnly": true,
     "noLoginOrAntiBotBypass": true,
@@ -94,6 +94,19 @@
     },
     {
       "platform": "ashby",
+      "board": "1x",
+      "lastSeenURL": "https://jobs.ashbyhq.com/1x/014f3e95-2266-4b34-bad7-e6e3ecb9c68a",
+      "company": "1x",
+      "jobCount": 71,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/1x",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastValidatedAt": "2026-07-29T12:21:21.636Z"
+    },
+    {
+      "platform": "ashby",
       "board": "3imembers",
       "lastSeenURL": "https://jobs.ashbyhq.com/3imembers",
       "company": "3imembers",
@@ -117,6 +130,19 @@
       "firstDiscoveredAt": "2026-06-22T15:32:52.852Z",
       "lastDiscoveredAt": "2026-06-22T15:32:52.852Z",
       "lastValidatedAt": "2026-06-22T15:32:52.852Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "5bluesoftware",
+      "lastSeenURL": "https://jobs.ashbyhq.com/5bluesoftware/dc2f70a2-7c11-49ae-9e42-59d6bb3e903f?ref=reactjobs.io",
+      "company": "5bluesoftware",
+      "jobCount": 7,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/5bluesoftware",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastValidatedAt": "2026-07-29T12:21:21.636Z"
     },
     {
       "platform": "ashby",
@@ -1290,6 +1316,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "10xValuePartnersGmbH",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/10xValuePartnersGmbH/744000059674887-chief-revenue-officer-london-or-dubai",
+      "company": "10x Value Partners GmbH",
+      "jobCount": 5,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/10xValuePartnersGmbH/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastValidatedAt": "2026-07-29T12:21:21.636Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "1Huddle",
       "lastSeenURL": "https://jobs.smartrecruiters.com/1Huddle",
       "discoveredBy": "seed_file",
@@ -1313,6 +1352,32 @@
       "firstDiscoveredAt": "2026-06-12T05:42:35.082Z",
       "lastDiscoveredAt": "2026-06-12T05:42:35.082Z",
       "lastValidatedAt": "2026-06-12T05:42:35.082Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "2NTELEKOMUNIKACEAs",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/2NTELEKOMUNIKACEAs/744000129171559-product-owner-my2n-cloud?trid=31703b7c-c354-4f37-9617-2c6b2eb602ea",
+      "company": "2N TELEKOMUNIKACE a.s.",
+      "jobCount": 13,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/2NTELEKOMUNIKACEAs/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastValidatedAt": "2026-07-29T12:21:21.636Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "3HPartners",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/3HPartners/743999659605142-junior-business-analyst-internship-rome",
+      "company": "3H Partners",
+      "jobCount": 3,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/3HPartners/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastValidatedAt": "2026-07-29T12:21:21.636Z"
     },
     {
       "platform": "smartrecruiters",
@@ -1446,6 +1511,32 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "Achieve1",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/Achieve1/3743990013493686-principal-growth-manager-seo-aeo?utm_source=findmyremote.ai",
+      "company": "Achieve",
+      "jobCount": 31,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/Achieve1/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastValidatedAt": "2026-07-29T12:21:21.636Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "ACRELEC",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/ACRELEC/744000125868019-technicien-itinerant-sud-ouest-la-roche-sur-yon-h-f-cdd?trid=01a99ad8-0a9e-44b1-b486-349bec5376ca",
+      "company": "ACRELEC",
+      "jobCount": 13,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/ACRELEC/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastValidatedAt": "2026-07-29T12:21:21.636Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "Activy1",
       "lastSeenURL": "https://jobs.smartrecruiters.com/Activy1/744000075471936-junior-sales-specialist",
       "company": "Activy",
@@ -1573,6 +1664,19 @@
       "firstDiscoveredAt": "2026-06-12T13:43:59.519Z",
       "lastDiscoveredAt": "2026-06-12T13:43:59.519Z",
       "lastValidatedAt": "2026-06-12T13:43:59.519Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "AFCA",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AFCA/743999997077687-consumer-representative-general-insurance-code-governance-committee?trid=998bc6c9-cfbe-4db9-af4b-d7bb8407f264",
+      "company": "AFCA",
+      "jobCount": 30,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AFCA/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastValidatedAt": "2026-07-29T12:21:21.636Z"
     },
     {
       "platform": "smartrecruiters",
@@ -1979,6 +2083,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "APMGroup",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/APMGroup/6000000001107384",
+      "company": "APM Group",
+      "jobCount": 362,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/APMGroup/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastValidatedAt": "2026-07-29T12:21:21.636Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "ApplusIDIADA1",
       "lastSeenURL": "https://jobs.smartrecruiters.com/ApplusIDIADA1/744000058868994-ingeniero-a-de-ensayos-de-motores-electricos",
       "company": "Applus IDIADA",
@@ -2106,6 +2223,32 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "asos",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/asos/744000135720339",
+      "company": "ASOS",
+      "jobCount": 53,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/asos/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastValidatedAt": "2026-07-29T12:21:21.636Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "Aspect2",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/Aspect2/744000117513838--10-000-graduate-scholarship-speech-pathology-occupational-therapy-",
+      "company": "Aspect",
+      "jobCount": 19,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/Aspect2/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
+      "lastValidatedAt": "2026-07-29T12:21:21.636Z"
     },
     {
       "platform": "smartrecruiters",
