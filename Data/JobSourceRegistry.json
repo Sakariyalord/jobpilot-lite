@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-24T10:54:21.826Z",
+  "updatedAt": "2026-08-25T10:50:17.859Z",
   "sourcePolicy": {
     "publicOnly": true,
     "noLoginOrAntiBotBypass": true,
@@ -104,6 +104,19 @@
       "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
       "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
       "lastValidatedAt": "2026-07-29T12:21:21.636Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "3e",
+      "lastSeenURL": "https://jobs.ashbyhq.com/3e/3a4bb839-a2b6-4a8c-98e2-af49b03ad534",
+      "company": "3e",
+      "jobCount": 10,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/3e",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-25T10:50:17.859Z",
+      "lastDiscoveredAt": "2026-08-25T10:50:17.859Z",
+      "lastValidatedAt": "2026-08-25T10:50:17.859Z"
     },
     {
       "platform": "ashby",
@@ -442,6 +455,19 @@
       "firstDiscoveredAt": "2026-06-11T04:23:19.579Z",
       "lastDiscoveredAt": "2026-06-11T04:23:19.579Z",
       "lastValidatedAt": "2026-06-11T04:23:19.579Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "Accord",
+      "lastSeenURL": "https://jobs.ashbyhq.com/Accord/661658ec-a426-41be-8c43-559ef5904bb0",
+      "company": "Accord",
+      "jobCount": 2,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/Accord",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-25T10:50:17.859Z",
+      "lastDiscoveredAt": "2026-08-25T10:50:17.859Z",
+      "lastValidatedAt": "2026-08-25T10:50:17.859Z"
     },
     {
       "platform": "ashby",
