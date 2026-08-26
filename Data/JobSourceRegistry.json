@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-25T10:50:17.859Z",
+  "updatedAt": "2026-08-26T10:52:02.959Z",
   "sourcePolicy": {
     "publicOnly": true,
     "noLoginOrAntiBotBypass": true,
@@ -1576,6 +1576,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "accesa",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/accesa/744000079466520-senior-business-developer",
+      "company": "Accesa",
+      "jobCount": 24,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/accesa/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-26T10:52:02.959Z",
+      "lastDiscoveredAt": "2026-08-26T10:52:02.959Z",
+      "lastValidatedAt": "2026-08-26T10:52:02.959Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "AccorCorpo",
       "lastSeenURL": "https://jobs.smartrecruiters.com/AccorCorpo/744000124579499-stage-assistant-e-digital-performance-marketing-h-f-nb-?utm_source=ecommerceguide.com&utm_medium=jobs&ref=ecommerceguide",
       "company": "AccorCorpo",
@@ -1690,6 +1703,19 @@
       "firstDiscoveredAt": "2026-06-12T13:43:59.519Z",
       "lastDiscoveredAt": "2026-06-12T13:43:59.519Z",
       "lastValidatedAt": "2026-06-12T13:43:59.519Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "AdkerRecruit",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AdkerRecruit/743999865588311-executive-assistant",
+      "company": "Adker Recruit",
+      "jobCount": 1,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AdkerRecruit/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-26T10:52:02.959Z",
+      "lastDiscoveredAt": "2026-08-26T10:52:02.959Z",
+      "lastValidatedAt": "2026-08-26T10:52:02.959Z"
     },
     {
       "platform": "smartrecruiters",
@@ -1823,6 +1849,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "AireSpring1",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AireSpring1/743999724516309-writer",
+      "company": "AireSpring",
+      "jobCount": 16,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AireSpring1/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-26T10:52:02.959Z",
+      "lastDiscoveredAt": "2026-08-26T10:52:02.959Z",
+      "lastValidatedAt": "2026-08-26T10:52:02.959Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "AJBell1",
       "lastSeenURL": "https://jobs.smartrecruiters.com/AJBell1/743999740093104-full-stack-engineer?utm_source=remotive",
       "company": "AJ Bell",
@@ -1924,6 +1963,45 @@
       "firstDiscoveredAt": "2026-06-12T13:43:59.519Z",
       "lastDiscoveredAt": "2026-06-12T13:43:59.519Z",
       "lastValidatedAt": "2026-06-12T13:43:59.519Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "AllyeEnergy",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AllyeEnergy/744000075480076-engineering-program-manager-battery-energy-storage-",
+      "company": "Allye Energy",
+      "jobCount": 9,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AllyeEnergy/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-26T10:52:02.959Z",
+      "lastDiscoveredAt": "2026-08-26T10:52:02.959Z",
+      "lastValidatedAt": "2026-08-26T10:52:02.959Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "AlphaMeadGroup",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AlphaMeadGroup/744000044351386-patient-experience-officer-healthcare-",
+      "company": "Alpha Mead Group",
+      "jobCount": 10,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AlphaMeadGroup/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-26T10:52:02.959Z",
+      "lastDiscoveredAt": "2026-08-26T10:52:02.959Z",
+      "lastValidatedAt": "2026-08-26T10:52:02.959Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "AlphaTechnologiesIncUSA1",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AlphaTechnologiesIncUSA1/91951562-recruiting-coordinator",
+      "company": "Alpha Technologies Inc USA",
+      "jobCount": 73,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AlphaTechnologiesIncUSA1/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-26T10:52:02.959Z",
+      "lastDiscoveredAt": "2026-08-26T10:52:02.959Z",
+      "lastValidatedAt": "2026-08-26T10:52:02.959Z"
     },
     {
       "platform": "smartrecruiters",
