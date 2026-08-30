@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-30T14:52:40.305Z",
+  "updatedAt": "2026-08-30T15:27:46.730Z",
   "sourcePolicy": {
     "publicOnly": true,
     "noLoginOrAntiBotBypass": true,
@@ -653,6 +653,19 @@
     },
     {
       "platform": "ashby",
+      "board": "adapty-io",
+      "lastSeenURL": "https://jobs.ashbyhq.com/adapty-io/5e86460b-4d84-424f-9232-7d816eac2564/application",
+      "company": "adapty-io",
+      "jobCount": 5,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/adapty-io",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
+    },
+    {
+      "platform": "ashby",
       "board": "adaptyv",
       "lastSeenURL": "https://jobs.ashbyhq.com/adaptyv/055d2310-d1db-4304-baa3-15597546e760",
       "company": "adaptyv",
@@ -663,6 +676,19 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "adclear",
+      "lastSeenURL": "https://jobs.ashbyhq.com/adclear/20b42437-3bec-4220-8299-57d29751a817",
+      "company": "adclear",
+      "jobCount": 4,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/adclear",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
     },
     {
       "platform": "ashby",
@@ -705,6 +731,19 @@
     },
     {
       "platform": "ashby",
+      "board": "adjoe",
+      "lastSeenURL": "https://jobs.ashbyhq.com/adjoe/25fd58c5-def8-4ba2-8216-8d651df6129d",
+      "company": "adjoe",
+      "jobCount": 46,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/adjoe",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
+    },
+    {
+      "platform": "ashby",
       "board": "adonis",
       "lastSeenURL": "https://jobs.ashbyhq.com/adonis/4605d7b9-3f8d-45a1-b5b5-3a32ca97490a?utm_source=Asymmetric+Capital+Partners+job+board&utm_medium=getro.com&gh_src=Asymmetric+Capital+Partners+job+board",
       "company": "adonis",
@@ -715,6 +754,19 @@
       "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
       "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
       "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "adthena",
+      "lastSeenURL": "https://jobs.ashbyhq.com/adthena/97e15863-1bc9-425a-9d2f-c642a052d927?utm_source=Updata+Partners+job+board&utm_medium=getro.com&gh_src=Updata+Partners+job+board",
+      "company": "adthena",
+      "jobCount": 10,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/adthena",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
     },
     {
       "platform": "ashby",
@@ -770,6 +822,19 @@
     },
     {
       "platform": "ashby",
+      "board": "AfterQuery",
+      "lastSeenURL": "https://jobs.ashbyhq.com/AfterQuery/174889e7-829e-4666-94a6-14687cf01d5e",
+      "company": "AfterQuery",
+      "jobCount": 28,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/AfterQuery",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
+    },
+    {
+      "platform": "ashby",
       "board": "agavegames",
       "lastSeenURL": "https://jobs.ashbyhq.com/agavegames/0d7f895c-9b8e-4c1f-9cf9-172adf097b13",
       "company": "agavegames",
@@ -819,6 +884,19 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "agentmail",
+      "lastSeenURL": "https://jobs.ashbyhq.com/agentmail/0f25ff04-0250-4c8c-b9a6-00b164f1f19a",
+      "company": "agentmail",
+      "jobCount": 6,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/agentmail",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
     },
     {
       "platform": "ashby",
@@ -884,6 +962,19 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "aim",
+      "lastSeenURL": "https://jobs.ashbyhq.com/aim/c3aea728-84c4-4b6f-bf5d-4a0cf0b0ec8c?ref=reactjobs.io",
+      "company": "aim",
+      "jobCount": 21,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/aim",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
     },
     {
       "platform": "ashby",
@@ -2499,6 +2590,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "atexis",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/atexis/744000135435738?utm_id=13540523&utm_source=JobFormateurs",
+      "company": "ATEXIS",
+      "jobCount": 66,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/atexis/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "ATParchitekteningenieure",
       "lastSeenURL": "https://jobs.smartrecruiters.com/ATParchitekteningenieure/744000117001425?utm_source=Foodtech+Scout+job+board&utm_medium=getro.com&gh_src=Foodtech+Scout+job+board",
       "company": "ATP architekten ingenieure",
@@ -2811,6 +2915,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "BauschStroebel",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/BauschStroebel/744000141574279-cnc-machinist",
+      "company": "Bausch+Stroebel",
+      "jobCount": 2,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/BauschStroebel/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "BayWaAG",
       "lastSeenURL": "https://jobs.smartrecruiters.com/BayWaAG/744000071005548-ausbildung-kaufmann-m-w-d-fur-gro-und-au-enhandelsmanagement-claas-wurttemberg-ab-01-09-2026?trid=f95f30e6-af19-4a33-861d-d37c631eb332",
       "company": "BayWa AG",
@@ -2915,6 +3032,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "Bertelsmann-Jobs",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/Bertelsmann-Jobs/744000135298275-temp-director-digital-marketing",
+      "company": "Bertelsmann-Jobs",
+      "jobCount": 954,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/Bertelsmann-Jobs/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "BertoniSolutions",
       "lastSeenURL": "https://jobs.smartrecruiters.com/BertoniSolutions/744000048615425-sr-devops-engineer-hybrid-job-",
       "company": "Bertoni Solutions",
@@ -2951,6 +3081,19 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "BetaCraftTechnologies",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/BetaCraftTechnologies/744000032707095",
+      "company": "BetaCraft Technologies",
+      "jobCount": 1,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/BetaCraftTechnologies/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3058,6 +3201,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "BlueScope",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/BlueScope/744000118282847-roofing-tradesperson",
+      "company": "BlueScope",
+      "jobCount": 26,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/BlueScope/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "BOCCARD",
       "lastSeenURL": "https://jobs.smartrecruiters.com/BOCCARD/744000121412535-charge-d-offres-nucleaire-h-f",
       "company": "BOCCARD",
@@ -3071,6 +3227,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "Bosch-HomeComfort",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/Bosch-HomeComfort/744000078016250-senior-quality-engineer?utm_id=4546021&utm_source=SemiconductorJobs.com",
+      "company": "Bosch-HomeComfort",
+      "jobCount": 173,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/Bosch-HomeComfort/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "BoschGroup",
       "lastSeenURL": "https://jobs.smartrecruiters.com/BoschGroup",
       "discoveredBy": "seed_file",
@@ -3081,6 +3250,32 @@
       "firstDiscoveredAt": "2026-06-12T05:42:35.082Z",
       "lastDiscoveredAt": "2026-06-12T05:42:35.082Z",
       "lastValidatedAt": "2026-06-12T05:42:35.082Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "BossSearchGroup",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/BossSearchGroup/744000047177772-travel-cooks-",
+      "company": "Boss Search Group",
+      "jobCount": 4,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/BossSearchGroup/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "BoydGaming",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/BoydGaming/3743990009724216-count-room-attendant-3rd-shift?trid=6f633d56-cb61-44b3-9fec-6ef696f4874f",
+      "company": "Boyd Gaming",
+      "jobCount": 905,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/BoydGaming/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastDiscoveredAt": "2026-08-30T15:27:46.730Z",
+      "lastValidatedAt": "2026-08-30T15:27:46.730Z"
     },
     {
       "platform": "smartrecruiters",
