@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-04T15:23:23.421Z",
+  "updatedAt": "2026-10-04T15:59:16.887Z",
   "sourcePolicy": {
     "publicOnly": true,
     "noLoginOrAntiBotBypass": true,
@@ -666,6 +666,19 @@
     },
     {
       "platform": "ashby",
+      "board": "adaptive-innovations",
+      "lastSeenURL": "https://jobs.ashbyhq.com/adaptive-innovations/1fc328d8-08e5-4660-9181-3e35b861331b",
+      "company": "adaptive-innovations",
+      "jobCount": 8,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/adaptive-innovations",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastValidatedAt": "2026-10-04T15:59:16.887Z"
+    },
+    {
+      "platform": "ashby",
       "board": "adaptive-ml",
       "lastSeenURL": "https://jobs.ashbyhq.com/adaptive-ml",
       "company": "adaptive-ml",
@@ -770,6 +783,19 @@
     },
     {
       "platform": "ashby",
+      "board": "adexis",
+      "lastSeenURL": "https://jobs.ashbyhq.com/adexis/215f2f5b-35fd-4a96-8b7e-425e3054cf83",
+      "company": "adexis",
+      "jobCount": 3,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/adexis",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastValidatedAt": "2026-10-04T15:59:16.887Z"
+    },
+    {
+      "platform": "ashby",
       "board": "adjoe",
       "lastSeenURL": "https://jobs.ashbyhq.com/adjoe/25fd58c5-def8-4ba2-8216-8d651df6129d",
       "company": "adjoe",
@@ -822,6 +848,19 @@
     },
     {
       "platform": "ashby",
+      "board": "advanced-systems-group",
+      "lastSeenURL": "https://jobs.ashbyhq.com/advanced-systems-group/form/join-our-talent-network",
+      "company": "advanced-systems-group",
+      "jobCount": 41,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/advanced-systems-group",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastValidatedAt": "2026-10-04T15:59:16.887Z"
+    },
+    {
+      "platform": "ashby",
       "board": "aerovect",
       "lastSeenURL": "https://jobs.ashbyhq.com/aerovect/40041544-b11e-401b-b585-b8160593303b",
       "company": "aerovect",
@@ -858,6 +897,19 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "ashby",
+      "board": "afference",
+      "lastSeenURL": "https://jobs.ashbyhq.com/afference/0bda8d1b-91fb-4999-ac98-3fb172f791d8?utm_source=JobsOhio+Ventures+job+board&utm_medium=getro.com&gh_src=JobsOhio+Ventures+job+board",
+      "company": "afference",
+      "jobCount": 8,
+      "validationURL": "https://api.ashbyhq.com/posting-api/job-board/afference",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastValidatedAt": "2026-10-04T15:59:16.887Z"
     },
     {
       "platform": "ashby",
@@ -2486,6 +2538,19 @@
     },
     {
       "platform": "smartrecruiters",
+      "board": "ApplaudoStudios",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/ApplaudoStudios/743999822642050-scala-developer-remote-",
+      "company": "Applaudo Studios",
+      "jobCount": 34,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/ApplaudoStudios/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastValidatedAt": "2026-10-04T15:59:16.887Z"
+    },
+    {
+      "platform": "smartrecruiters",
       "board": "ApplusIDIADA1",
       "lastSeenURL": "https://jobs.smartrecruiters.com/ApplusIDIADA1/744000058868994-ingeniero-a-de-ensayos-de-motores-electricos",
       "company": "Applus IDIADA",
@@ -2522,6 +2587,19 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "Ardentis1",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/Ardentis1/744000060941037-medecin-dentiste-omnipraticien-clinique-de-martigny",
+      "company": "Ardentis",
+      "jobCount": 38,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/Ardentis1/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastValidatedAt": "2026-10-04T15:59:16.887Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2574,6 +2652,19 @@
       "firstDiscoveredAt": "2026-07-05T12:53:06.695Z",
       "lastDiscoveredAt": "2026-07-05T12:53:06.695Z",
       "lastValidatedAt": "2026-07-05T12:53:06.695Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "Arvida",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/Arvida/6000000000538835-sous-chef-baker-cook-",
+      "company": "Arvida",
+      "jobCount": 46,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/Arvida/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastValidatedAt": "2026-10-04T15:59:16.887Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2756,6 +2847,32 @@
       "firstDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastDiscoveredAt": "2026-06-21T13:25:45.380Z",
       "lastValidatedAt": "2026-06-21T13:25:45.380Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "ATUAuto-Teile-Unger",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/ATUAuto-Teile-Unger/744000142634549-auszubildende-kaufleute-im-einzelhandel-m-w-d-2027",
+      "company": "A.T.U Auto-Teile-Unger",
+      "jobCount": 658,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/ATUAuto-Teile-Unger/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastValidatedAt": "2026-10-04T15:59:16.887Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "AUDIENCEX",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/AUDIENCEX/95757342",
+      "company": "AUDIENCEX",
+      "jobCount": 1,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/AUDIENCEX/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastValidatedAt": "2026-10-04T15:59:16.887Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3315,6 +3432,19 @@
       "firstDiscoveredAt": "2026-08-09T12:02:18.877Z",
       "lastDiscoveredAt": "2026-08-09T12:02:18.877Z",
       "lastValidatedAt": "2026-08-09T12:02:18.877Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "BlockDeliver",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/BlockDeliver/743999761809792-human-resources-intern-remote-",
+      "company": "BlockDeliver",
+      "jobCount": 5,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/BlockDeliver/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastDiscoveredAt": "2026-10-04T15:59:16.887Z",
+      "lastValidatedAt": "2026-10-04T15:59:16.887Z"
     },
     {
       "platform": "smartrecruiters",
