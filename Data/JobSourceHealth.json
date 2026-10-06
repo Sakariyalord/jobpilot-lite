@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05T19:25:55.837Z",
+  "updatedAt": "2026-10-06T16:57:46.621Z",
   "sources": [
     {
       "platform": "ashby",
@@ -7,7 +7,7 @@
       "company": "0g",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -15,7 +15,7 @@
       "company": "0x",
       "status": "active",
       "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -23,23 +23,23 @@
       "company": "10xteam",
       "status": "active",
       "jobCount": 133,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "1bios",
       "company": "1bios",
       "status": "active",
-      "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 3,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "1mind",
       "company": "1mind",
       "status": "active",
-      "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 6,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -47,7 +47,7 @@
       "company": "1Password",
       "status": "active",
       "jobCount": 69,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -55,15 +55,15 @@
       "company": "1st Formations",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "1x",
       "company": "1x",
       "status": "active",
-      "jobCount": 94,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 98,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -71,7 +71,7 @@
       "company": "2ndwave",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -79,7 +79,7 @@
       "company": "3e",
       "status": "active",
       "jobCount": 10,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -87,7 +87,7 @@
       "company": "3imembers",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -95,7 +95,7 @@
       "company": "42dot",
       "status": "active",
       "jobCount": 91,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -103,7 +103,7 @@
       "company": "5bluesoftware",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -111,7 +111,7 @@
       "company": "80000hours",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -119,7 +119,7 @@
       "company": "805title",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -127,15 +127,15 @@
       "company": "829studios",
       "status": "active",
       "jobCount": 18,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "8fleet-inc",
       "company": "8fleet-inc",
       "status": "active",
-      "jobCount": 19,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 18,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -143,7 +143,7 @@
       "company": "8returns",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -151,7 +151,7 @@
       "company": "8vc",
       "status": "active",
       "jobCount": 5,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -159,7 +159,7 @@
       "company": "9-mothers",
       "status": "active",
       "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -167,15 +167,15 @@
       "company": "9fin",
       "status": "active",
       "jobCount": 31,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "a-place-for-mom",
       "company": "a-place-for-mom",
       "status": "active",
-      "jobCount": 39,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 41,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -183,15 +183,15 @@
       "company": "a-team",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "A1 Garage Door Service",
       "company": "A1 Garage Door Service",
       "status": "active",
-      "jobCount": 41,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 40,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -199,7 +199,7 @@
       "company": "a16z-new-media",
       "status": "active",
       "jobCount": 14,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -207,7 +207,7 @@
       "company": "a37",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -215,7 +215,7 @@
       "company": "aacigroup",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -223,15 +223,15 @@
       "company": "Aaron-School",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "abacum",
       "company": "abacum",
       "status": "active",
-      "jobCount": 12,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 14,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -239,7 +239,7 @@
       "company": "abby-care",
       "status": "active",
       "jobCount": 23,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -247,15 +247,15 @@
       "company": "abound",
       "status": "active",
       "jobCount": 16,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "abridge",
       "company": "abridge",
       "status": "active",
-      "jobCount": 48,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 49,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -263,15 +263,15 @@
       "company": "absentia-labs",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "absorblms",
       "company": "absorblms",
       "status": "active",
-      "jobCount": 31,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 27,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -279,7 +279,7 @@
       "company": "abundant",
       "status": "active",
       "jobCount": 9,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -288,15 +288,15 @@
       "status": "failed",
       "jobCount": 0,
       "error": "Accelevents: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "access",
       "company": "access",
       "status": "active",
-      "jobCount": 21,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 23,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -304,7 +304,7 @@
       "company": "Accord",
       "status": "active",
       "jobCount": 5,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -312,7 +312,7 @@
       "company": "accurx",
       "status": "active",
       "jobCount": 18,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -320,15 +320,16 @@
       "company": "acd",
       "status": "active",
       "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "ace-1-media",
       "company": "ace-1-media",
-      "status": "active",
-      "jobCount": 3,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "status": "failed",
+      "jobCount": 0,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z",
+      "error": "ace-1-media: 404"
     },
     {
       "platform": "ashby",
@@ -336,7 +337,7 @@
       "company": "achilleshr",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -344,15 +345,15 @@
       "company": "achira",
       "status": "active",
       "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "acorns",
       "company": "acorns",
       "status": "active",
-      "jobCount": 9,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 10,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -360,15 +361,15 @@
       "company": "acquird",
       "status": "active",
       "jobCount": 10,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "acquisition",
       "company": "acquisition",
       "status": "active",
-      "jobCount": 12,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 14,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -376,7 +377,7 @@
       "company": "activesite",
       "status": "active",
       "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -384,7 +385,7 @@
       "company": "adapt",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -392,7 +393,7 @@
       "company": "adaption",
       "status": "active",
       "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -400,7 +401,7 @@
       "company": "adaptive",
       "status": "active",
       "jobCount": 11,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -408,7 +409,7 @@
       "company": "adaptive-innovations",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -417,7 +418,7 @@
       "status": "failed",
       "jobCount": 0,
       "error": "adaptive-ml: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -425,7 +426,7 @@
       "company": "adaptivesecurity",
       "status": "active",
       "jobCount": 10,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -433,7 +434,7 @@
       "company": "adapty-io",
       "status": "active",
       "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -441,7 +442,7 @@
       "company": "adaptyv",
       "status": "active",
       "jobCount": 31,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -449,7 +450,7 @@
       "company": "adclear",
       "status": "active",
       "jobCount": 6,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -457,7 +458,7 @@
       "company": "addi",
       "status": "active",
       "jobCount": 32,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -465,7 +466,7 @@
       "company": "additiveai",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -473,7 +474,7 @@
       "company": "adelphi-ai",
       "status": "active",
       "jobCount": 3,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -481,7 +482,7 @@
       "company": "adexis",
       "status": "active",
       "jobCount": 3,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -489,15 +490,15 @@
       "company": "adjoe",
       "status": "active",
       "jobCount": 47,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "adonis",
       "company": "adonis",
       "status": "active",
-      "jobCount": 10,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 9,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -505,7 +506,7 @@
       "company": "adthena",
       "status": "active",
       "jobCount": 10,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -513,15 +514,15 @@
       "company": "aduro-advisors",
       "status": "active",
       "jobCount": 6,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "advanced-systems-group",
       "company": "advanced-systems-group",
       "status": "active",
-      "jobCount": 41,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 42,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -529,7 +530,7 @@
       "company": "aerovect",
       "status": "active",
       "jobCount": 43,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -537,15 +538,15 @@
       "company": "aerovy",
       "status": "active",
       "jobCount": 5,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "aescape",
       "company": "aescape",
       "status": "active",
-      "jobCount": 10,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 11,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -553,7 +554,7 @@
       "company": "afference",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -561,7 +562,7 @@
       "company": "AfterQuery",
       "status": "active",
       "jobCount": 39,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -569,15 +570,15 @@
       "company": "agavegames",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "Agent",
       "company": "Agent",
       "status": "active",
-      "jobCount": 23,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 22,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -585,7 +586,7 @@
       "company": "agentio",
       "status": "active",
       "jobCount": 21,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -593,15 +594,15 @@
       "company": "agentis-capital-advisors",
       "status": "active",
       "jobCount": 25,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "agentmail",
       "company": "agentmail",
       "status": "active",
-      "jobCount": 6,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 7,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -609,7 +610,7 @@
       "company": "agi-inc",
       "status": "active",
       "jobCount": 6,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -618,7 +619,7 @@
       "status": "failed",
       "jobCount": 0,
       "error": "agreena: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -626,7 +627,7 @@
       "company": "aibidia",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -634,7 +635,7 @@
       "company": "aida",
       "status": "active",
       "jobCount": 3,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -642,7 +643,7 @@
       "company": "aidkit",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -650,7 +651,7 @@
       "company": "aim",
       "status": "active",
       "jobCount": 22,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -658,7 +659,7 @@
       "company": "aim4hire",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -666,7 +667,7 @@
       "company": "AION Biosciences",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -674,7 +675,7 @@
       "company": "aios",
       "status": "active",
       "jobCount": 14,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -682,7 +683,7 @@
       "company": "aiprise",
       "status": "active",
       "jobCount": 16,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -690,7 +691,7 @@
       "company": "airapps",
       "status": "active",
       "jobCount": 498,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -698,7 +699,7 @@
       "company": "airbyte",
       "status": "active",
       "jobCount": 12,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -706,47 +707,47 @@
       "company": "airgarage",
       "status": "active",
       "jobCount": 14,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "airops",
       "company": "airops",
       "status": "active",
-      "jobCount": 20,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 21,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "airtasker",
       "company": "airtasker",
-      "status": "active",
-      "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "status": "empty",
+      "jobCount": 0,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "airwallex",
       "company": "Airwallex",
       "status": "active",
-      "jobCount": 550,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 545,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "ashby",
       "company": "ashby",
       "status": "active",
-      "jobCount": 62,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 64,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "astronomer",
       "company": "Astronomer",
       "status": "active",
-      "jobCount": 25,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 24,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -754,23 +755,23 @@
       "company": "Attio",
       "status": "active",
       "jobCount": 36,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "benchling",
       "company": "Benchling",
       "status": "active",
-      "jobCount": 56,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 53,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "brightwheel",
       "company": "Brightwheel",
       "status": "active",
-      "jobCount": 13,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 14,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -778,7 +779,7 @@
       "company": "Browserbase",
       "status": "active",
       "jobCount": 9,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -786,7 +787,7 @@
       "company": "Cartesia",
       "status": "active",
       "jobCount": 31,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -794,39 +795,39 @@
       "company": "ClassDojo",
       "status": "active",
       "jobCount": 10,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "claylabs",
       "company": "claylabs",
       "status": "active",
-      "jobCount": 58,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 57,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "clipboard",
       "company": "clipboard",
       "status": "active",
-      "jobCount": 37,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 38,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "cognition",
       "company": "Cognition",
       "status": "active",
-      "jobCount": 101,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 100,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "cohere",
       "company": "Cohere",
       "status": "active",
-      "jobCount": 133,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 130,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -835,7 +836,7 @@
       "status": "failed",
       "jobCount": 0,
       "error": "commonroom: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -843,7 +844,7 @@
       "company": "Confluent",
       "status": "active",
       "jobCount": 17,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -851,7 +852,7 @@
       "company": "Cursor",
       "status": "active",
       "jobCount": 132,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -859,7 +860,7 @@
       "company": "Decagon",
       "status": "active",
       "jobCount": 145,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -867,7 +868,7 @@
       "company": "Deel",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -875,15 +876,15 @@
       "company": "Deepgram",
       "status": "active",
       "jobCount": 95,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "elevenlabs",
       "company": "ElevenLabs",
       "status": "active",
-      "jobCount": 164,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 139,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -891,15 +892,15 @@
       "company": "flock safety",
       "status": "active",
       "jobCount": 15,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "formenergy",
       "company": "Form Energy",
       "status": "active",
-      "jobCount": 202,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 205,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -907,23 +908,23 @@
       "company": "Guild",
       "status": "active",
       "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "handshake",
       "company": "Handshake",
       "status": "active",
-      "jobCount": 79,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 80,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "harvey",
       "company": "Harvey",
       "status": "active",
-      "jobCount": 323,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 326,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -931,23 +932,23 @@
       "company": "Hightouch",
       "status": "active",
       "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "langchain",
       "company": "LangChain",
       "status": "active",
-      "jobCount": 103,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 100,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "linear",
       "company": "Linear",
       "status": "active",
-      "jobCount": 30,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 31,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -955,7 +956,7 @@
       "company": "mechanize",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -963,15 +964,15 @@
       "company": "Mercor",
       "status": "active",
       "jobCount": 114,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "modal",
       "company": "Modal",
       "status": "active",
-      "jobCount": 35,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 38,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -979,31 +980,31 @@
       "company": "Neon",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "notion",
       "company": "Notion",
       "status": "active",
-      "jobCount": 135,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 133,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "onebrief",
       "company": "Onebrief",
       "status": "active",
-      "jobCount": 30,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 31,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "openai",
       "company": "OpenAI",
       "status": "active",
-      "jobCount": 830,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 819,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -1011,15 +1012,15 @@
       "company": "Oso",
       "status": "active",
       "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "perplexity",
       "company": "Perplexity",
       "status": "active",
-      "jobCount": 129,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 130,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -1027,15 +1028,15 @@
       "company": "Pinecone",
       "status": "active",
       "jobCount": 5,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "plaid",
       "company": "Plaid",
       "status": "active",
-      "jobCount": 119,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 122,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -1043,15 +1044,15 @@
       "company": "Poolside",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "prefect",
       "company": "Prefect",
       "status": "active",
-      "jobCount": 9,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 8,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -1059,15 +1060,15 @@
       "company": "Railway",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "ramp",
       "company": "Ramp",
       "status": "active",
-      "jobCount": 159,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 160,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -1075,7 +1076,7 @@
       "company": "Reflection AI",
       "status": "active",
       "jobCount": 48,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -1083,23 +1084,23 @@
       "company": "Render",
       "status": "active",
       "jobCount": 38,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "replit",
       "company": "Replit",
       "status": "active",
-      "jobCount": 71,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 70,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "rula",
       "company": "rula",
       "status": "active",
-      "jobCount": 35,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 36,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
@@ -1107,87 +1108,87 @@
       "company": "Runway",
       "status": "active",
       "jobCount": 3,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "saronic",
       "company": "Saronic",
       "status": "active",
-      "jobCount": 206,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 204,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "sierra",
       "company": "Sierra",
       "status": "active",
-      "jobCount": 193,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 197,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "supabase",
       "company": "Supabase",
       "status": "active",
-      "jobCount": 49,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 51,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "synthesia",
       "company": "Synthesia",
       "status": "active",
-      "jobCount": 48,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 45,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "watershed",
       "company": "Watershed",
       "status": "active",
-      "jobCount": 37,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 38,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "wealthsimple",
       "company": "Wealthsimple",
       "status": "active",
-      "jobCount": 48,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 45,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "writer",
       "company": "Writer",
       "status": "active",
-      "jobCount": 51,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 50,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "ashby",
       "board": "zapier",
       "company": "Zapier",
       "status": "active",
-      "jobCount": 11,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 9,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "affirm",
       "company": "Affirm",
       "status": "active",
-      "jobCount": 187,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 186,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "airbnb",
       "company": "Airbnb",
       "status": "active",
-      "jobCount": 150,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 155,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
@@ -1195,7 +1196,7 @@
       "company": "Airtable",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1204,23 +1205,23 @@
       "status": "failed",
       "jobCount": 0,
       "error": "amplitude: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "andurilindustries",
       "company": "Anduril Industries",
       "status": "active",
-      "jobCount": 2446,
-      "lastFetchedAt": "2026-10-05T19:25:55.835Z"
+      "jobCount": 2459,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "anthropic",
       "company": "Anthropic",
       "status": "active",
-      "jobCount": 640,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 639,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1229,23 +1230,23 @@
       "status": "failed",
       "jobCount": 0,
       "error": "appliedintuition: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "asana",
       "company": "Asana",
       "status": "active",
-      "jobCount": 99,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 100,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "astranis",
       "company": "Astranis",
       "status": "active",
-      "jobCount": 183,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 182,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1254,7 +1255,7 @@
       "status": "failed",
       "jobCount": 0,
       "error": "aurorainnovation: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1262,7 +1263,7 @@
       "company": "Bird",
       "status": "active",
       "jobCount": 30,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1270,39 +1271,39 @@
       "company": "BitGo",
       "status": "active",
       "jobCount": 39,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "block",
       "company": "Block",
       "status": "active",
-      "jobCount": 225,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 228,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "boxinc",
       "company": "Box",
       "status": "active",
-      "jobCount": 127,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 126,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "braze",
       "company": "Braze",
       "status": "active",
-      "jobCount": 351,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 350,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "brex",
       "company": "Brex",
       "status": "active",
-      "jobCount": 285,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 283,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
@@ -1310,7 +1311,7 @@
       "company": "Calendly",
       "status": "active",
       "jobCount": 10,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1318,7 +1319,7 @@
       "company": "Calm.com",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1326,15 +1327,15 @@
       "company": "Canonical",
       "status": "active",
       "jobCount": 311,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "chargepoint",
       "company": "ChargePoint",
       "status": "active",
-      "jobCount": 32,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 31,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1342,15 +1343,15 @@
       "company": "Checkr",
       "status": "active",
       "jobCount": 44,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "chime",
       "company": "Chime Financial, Inc",
       "status": "active",
-      "jobCount": 66,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 65,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1358,23 +1359,23 @@
       "company": "CircleCI",
       "status": "active",
       "jobCount": 12,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "cloudflare",
       "company": "Cloudflare",
       "status": "active",
-      "jobCount": 412,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 418,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "cockroachlabs",
       "company": "Cockroach Labs",
       "status": "active",
-      "jobCount": 19,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 18,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1382,31 +1383,31 @@
       "company": "Collective Health",
       "status": "active",
       "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "coursera",
       "company": "Coursera",
       "status": "active",
-      "jobCount": 15,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 17,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "databricks",
       "company": "Databricks",
       "status": "active",
-      "jobCount": 889,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 888,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "datadog",
       "company": "Datadog",
       "status": "active",
-      "jobCount": 441,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 432,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1414,87 +1415,87 @@
       "company": "Descript",
       "status": "active",
       "jobCount": 11,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "discord",
       "company": "Discord",
       "status": "active",
-      "jobCount": 51,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 50,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "doctolib",
       "company": "Doctolib",
       "status": "active",
-      "jobCount": 155,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 156,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "doordashusa",
       "company": "DoorDash USA",
       "status": "active",
-      "jobCount": 463,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 462,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "dropbox",
       "company": "Dropbox",
       "status": "active",
-      "jobCount": 40,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 38,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "duolingo",
       "company": "Duolingo",
       "status": "active",
-      "jobCount": 59,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 60,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "elastic",
       "company": "Elastic",
       "status": "active",
-      "jobCount": 397,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 405,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "faire",
       "company": "Faire",
       "status": "active",
-      "jobCount": 75,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 77,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "fanduel",
       "company": "FanDuel",
       "status": "active",
-      "jobCount": 82,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 83,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "fastly",
       "company": "Fastly",
       "status": "active",
-      "jobCount": 43,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 45,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "figma",
       "company": "Figma",
       "status": "active",
-      "jobCount": 162,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 159,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
@@ -1502,31 +1503,31 @@
       "company": "Flatiron Health",
       "status": "active",
       "jobCount": 25,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "flexport",
       "company": "Flexport",
       "status": "active",
-      "jobCount": 198,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 197,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "formlabs",
       "company": "Formlabs",
       "status": "active",
-      "jobCount": 233,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 231,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "freenome",
       "company": "Freenome",
       "status": "active",
-      "jobCount": 22,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 23,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1534,31 +1535,31 @@
       "company": "Gemini",
       "status": "active",
       "jobCount": 34,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "gitlab",
       "company": "GitLab",
       "status": "active",
-      "jobCount": 211,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 210,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "glossier",
       "company": "Glossier",
       "status": "active",
-      "jobCount": 26,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 24,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "gomotive",
       "company": "Motive",
       "status": "active",
-      "jobCount": 144,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 149,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1566,7 +1567,7 @@
       "company": "Greenhouse",
       "status": "active",
       "jobCount": 19,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1575,7 +1576,7 @@
       "status": "failed",
       "jobCount": 0,
       "error": "growtherapy: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1583,7 +1584,7 @@
       "company": "Guild",
       "status": "active",
       "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1591,7 +1592,7 @@
       "company": "Gusto, Inc.",
       "status": "active",
       "jobCount": 94,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1600,15 +1601,15 @@
       "status": "failed",
       "jobCount": 0,
       "error": "headway: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "hellofresh",
       "company": "HelloFresh",
       "status": "active",
-      "jobCount": 412,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 416,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1616,7 +1617,7 @@
       "company": "Honor",
       "status": "active",
       "jobCount": 14,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1625,55 +1626,55 @@
       "status": "failed",
       "jobCount": 0,
       "error": "instabase: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "instacart",
       "company": "Instacart",
       "status": "active",
-      "jobCount": 121,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 122,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "instawork",
       "company": "Instawork",
       "status": "active",
-      "jobCount": 57,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 58,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "intercom",
       "company": "Fin",
       "status": "active",
-      "jobCount": 108,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 107,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "jfrog",
       "company": "JFrog",
       "status": "active",
-      "jobCount": 64,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 67,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "khanacademy",
       "company": "Khan Academy",
       "status": "active",
-      "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 7,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "komodohealth",
       "company": "Komodo Health",
       "status": "active",
-      "jobCount": 28,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 26,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1681,15 +1682,15 @@
       "company": "Labelbox",
       "status": "active",
       "jobCount": 9,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "launchdarkly",
       "company": "LaunchDarkly",
       "status": "active",
-      "jobCount": 58,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 56,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1697,23 +1698,23 @@
       "company": "Life360",
       "status": "active",
       "jobCount": 15,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "lucidmotors",
       "company": "Lucid Motors",
       "status": "active",
-      "jobCount": 434,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 438,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "lyft",
       "company": "Lyft",
       "status": "active",
-      "jobCount": 188,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 192,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1722,7 +1723,7 @@
       "status": "failed",
       "jobCount": 0,
       "error": "marqeta: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1730,31 +1731,31 @@
       "company": "Maven Clinic",
       "status": "active",
       "jobCount": 38,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "maymobility",
       "company": "May Mobility",
       "status": "active",
-      "jobCount": 39,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 38,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "mercury",
       "company": "Mercury",
       "status": "active",
-      "jobCount": 62,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 64,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "mixpanel",
       "company": "Mixpanel",
       "status": "active",
-      "jobCount": 61,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 56,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1762,15 +1763,15 @@
       "company": "Modern Health",
       "status": "active",
       "jobCount": 11,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "mongodb",
       "company": "MongoDB",
       "status": "active",
-      "jobCount": 389,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 393,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
@@ -1778,23 +1779,23 @@
       "company": "Motional",
       "status": "active",
       "jobCount": 73,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "natera",
       "company": "Natera",
       "status": "active",
-      "jobCount": 204,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 208,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "newrelic",
       "company": "New Relic",
       "status": "active",
-      "jobCount": 47,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 48,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1802,31 +1803,31 @@
       "company": "Newsela",
       "status": "active",
       "jobCount": 12,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "nextdoor",
       "company": "Nextdoor",
       "status": "active",
-      "jobCount": 19,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 20,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "nuro",
       "company": "Nuro",
       "status": "active",
-      "jobCount": 103,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 104,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "okta",
       "company": "Okta",
       "status": "active",
-      "jobCount": 365,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 377,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
@@ -1834,15 +1835,15 @@
       "company": "Omada Health",
       "status": "active",
       "jobCount": 17,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "oscar",
       "company": "Oscar Health",
       "status": "active",
-      "jobCount": 247,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 263,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
@@ -1851,7 +1852,7 @@
       "status": "failed",
       "jobCount": 0,
       "error": "outschool: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1859,15 +1860,15 @@
       "company": "PathAI",
       "status": "active",
       "jobCount": 14,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "peloton",
       "company": "Peloton",
       "status": "active",
-      "jobCount": 57,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 60,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1875,31 +1876,31 @@
       "company": "Pendo",
       "status": "active",
       "jobCount": 23,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "pinterest",
       "company": "Pinterest",
       "status": "active",
-      "jobCount": 169,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 175,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "planetlabs",
       "company": "Planet",
       "status": "active",
-      "jobCount": 116,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 119,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "planetscale",
       "company": "PlanetScale",
       "status": "active",
-      "jobCount": 12,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 13,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1908,15 +1909,15 @@
       "status": "failed",
       "jobCount": 0,
       "error": "postman: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "project44",
       "company": "project44",
       "status": "active",
-      "jobCount": 33,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 32,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1924,7 +1925,7 @@
       "company": "Recorded Future",
       "status": "active",
       "jobCount": 51,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1932,23 +1933,23 @@
       "company": "Reddit",
       "status": "active",
       "jobCount": 152,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "redwoodmaterials",
       "company": "Redwood Materials",
       "status": "active",
-      "jobCount": 137,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 138,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "relativity",
       "company": "Relativity Space",
       "status": "active",
-      "jobCount": 346,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 348,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -1956,71 +1957,71 @@
       "company": null,
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "renttherunway",
       "company": "Rent the Runway",
       "status": "active",
-      "jobCount": 22,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 23,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "ripple",
       "company": "Ripple ",
       "status": "active",
-      "jobCount": 130,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 128,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "robinhood",
       "company": "Robinhood",
       "status": "active",
-      "jobCount": 161,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 159,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "roblox",
       "company": "Roblox",
       "status": "active",
-      "jobCount": 253,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 256,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "rocketlab",
       "company": "Rocket Lab Corporation",
       "status": "active",
-      "jobCount": 560,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 558,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "rubrik",
       "company": "Rubrik Job Board",
       "status": "active",
-      "jobCount": 129,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 130,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "samsara",
       "company": "Samsara",
       "status": "active",
-      "jobCount": 245,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 240,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "scaleai",
       "company": "Scale AI",
       "status": "active",
-      "jobCount": 192,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 188,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
@@ -2028,7 +2029,7 @@
       "company": "Sendbird",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -2036,7 +2037,7 @@
       "company": "Shopmonkey",
       "status": "active",
       "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -2045,39 +2046,39 @@
       "status": "failed",
       "jobCount": 0,
       "error": "skyscanner: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "smartsheet",
       "company": "Smartsheet",
       "status": "active",
-      "jobCount": 91,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 93,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "snorkelai",
       "company": "Snorkel AI",
       "status": "active",
-      "jobCount": 41,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 42,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "sofi",
       "company": "SoFi",
       "status": "active",
-      "jobCount": 55,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 56,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "spacex",
       "company": "SpaceX",
       "status": "active",
-      "jobCount": 2656,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 2668,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -2085,23 +2086,23 @@
       "company": "Starburst",
       "status": "active",
       "jobCount": 30,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "stockx",
       "company": "StockX",
       "status": "active",
-      "jobCount": 35,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 34,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "stripe",
       "company": "Stripe",
       "status": "active",
-      "jobCount": 718,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 721,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
@@ -2109,7 +2110,7 @@
       "company": " sweetgreen",
       "status": "active",
       "jobCount": 64,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -2117,15 +2118,15 @@
       "company": "Taskrabbit",
       "status": "active",
       "jobCount": 18,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "thetradedesk",
       "company": "The Trade Desk",
       "status": "active",
-      "jobCount": 103,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 101,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -2134,23 +2135,23 @@
       "status": "failed",
       "jobCount": 0,
       "error": "thirtymadison: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "thrivemarket",
       "company": "Thrive Market",
       "status": "active",
-      "jobCount": 16,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 15,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "toast",
       "company": "Toast",
       "status": "active",
-      "jobCount": 325,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 328,
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
@@ -2159,7 +2160,7 @@
       "status": "failed",
       "jobCount": 0,
       "error": "transcarent: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -2167,15 +2168,15 @@
       "company": "Navan",
       "status": "active",
       "jobCount": 211,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "twilio",
       "company": "Twilio",
       "status": "active",
-      "jobCount": 129,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 131,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -2183,15 +2184,15 @@
       "company": "Twitch",
       "status": "active",
       "jobCount": 49,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "udacity",
       "company": "Udacity",
       "status": "active",
-      "jobCount": 18,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 20,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -2199,7 +2200,7 @@
       "company": "Udemy",
       "status": "active",
       "jobCount": 9,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -2207,15 +2208,15 @@
       "company": "Verkada",
       "status": "active",
       "jobCount": 305,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.619Z"
     },
     {
       "platform": "greenhouse",
       "board": "waymo",
       "company": "Waymo",
       "status": "active",
-      "jobCount": 364,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 363,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -2223,7 +2224,7 @@
       "company": "Webflow",
       "status": "active",
       "jobCount": 24,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -2231,15 +2232,15 @@
       "company": "Wiz, Inc.",
       "status": "active",
       "jobCount": 131,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "workato",
       "company": "Workato",
       "status": "active",
-      "jobCount": 75,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 73,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
@@ -2247,15 +2248,15 @@
       "company": "ZenBusiness Inc.",
       "status": "active",
       "jobCount": 3,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "greenhouse",
       "board": "ziprecruiter",
       "company": "ZipRecruiter",
       "status": "active",
-      "jobCount": 40,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 41,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
@@ -2263,7 +2264,7 @@
       "company": "Basis",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
@@ -2271,15 +2272,15 @@
       "company": "CTI",
       "status": "active",
       "jobCount": 34,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
       "board": "dnb",
       "company": "Dun & Bradstreet",
       "status": "active",
-      "jobCount": 106,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 109,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
@@ -2287,15 +2288,15 @@
       "company": "Field Nation",
       "status": "active",
       "jobCount": 17,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
       "board": "Flex",
       "company": "Flex",
       "status": "active",
-      "jobCount": 29,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 30,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
@@ -2303,15 +2304,15 @@
       "company": "HappyCo",
       "status": "active",
       "jobCount": 9,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
       "board": "palantir",
       "company": "Palantir",
       "status": "active",
-      "jobCount": 318,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 313,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
@@ -2319,23 +2320,23 @@
       "company": "Patch My PC",
       "status": "active",
       "jobCount": 5,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
       "board": "pattern",
       "company": "Pattern",
       "status": "active",
-      "jobCount": 95,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 99,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
       "board": "spotify",
       "company": "Spotify",
       "status": "active",
-      "jobCount": 81,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 74,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
@@ -2343,7 +2344,7 @@
       "company": "Supermove",
       "status": "active",
       "jobCount": 3,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
@@ -2351,7 +2352,7 @@
       "company": "Toku",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
@@ -2359,15 +2360,15 @@
       "company": "Whoop",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "lever",
       "board": "zoox",
       "company": "Zoox",
       "status": "active",
-      "jobCount": 231,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 232,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "recruitee",
@@ -2376,15 +2377,15 @@
       "status": "failed",
       "jobCount": 0,
       "error": "1x: 404",
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "recruitee",
       "board": "asmpthk",
       "company": "ASMPT",
       "status": "active",
-      "jobCount": 13,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 11,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "recruitee",
@@ -2392,15 +2393,15 @@
       "company": "Tech Allies",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "recruitee",
       "board": "greatminds",
       "company": "Great Minds",
       "status": "active",
-      "jobCount": 24,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 26,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "recruitee",
@@ -2408,15 +2409,15 @@
       "company": "David Joseph & Company",
       "status": "active",
       "jobCount": 16,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "recruitee",
       "board": "sahl",
       "company": "Sahl",
       "status": "active",
-      "jobCount": 5,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 6,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "recruitee",
@@ -2424,7 +2425,7 @@
       "company": "Technica Engineering GmbH",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "recruitee",
@@ -2432,7 +2433,7 @@
       "company": "xneelo",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2440,7 +2441,7 @@
       "company": "10x Value Partners GmbH",
       "status": "active",
       "jobCount": 5,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2448,7 +2449,7 @@
       "company": "1Huddle",
       "status": "active",
       "jobCount": 9,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2456,15 +2457,15 @@
       "company": "1perTInent inc",
       "status": "active",
       "jobCount": 10,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "2NTELEKOMUNIKACEAs",
       "company": "2N TELEKOMUNIKACE a.s.",
       "status": "active",
-      "jobCount": 13,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 14,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2472,7 +2473,7 @@
       "company": "336 Express LLC",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2480,7 +2481,7 @@
       "company": "3H Partners",
       "status": "active",
       "jobCount": 6,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2488,7 +2489,7 @@
       "company": "A2 Design",
       "status": "active",
       "jobCount": 3,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2496,7 +2497,7 @@
       "company": "Abano Healthcare",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2504,7 +2505,7 @@
       "company": "AbbVie",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2512,7 +2513,7 @@
       "company": "Abercrombie and Fitch Co.",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2520,7 +2521,7 @@
       "company": "AbhiBus",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2528,7 +2529,7 @@
       "company": "ABInBev",
       "status": "active",
       "jobCount": 15,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2536,7 +2537,7 @@
       "company": "ABL",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2544,7 +2545,7 @@
       "company": "ABOUT YOU SE & Co. KG",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2552,15 +2553,15 @@
       "company": "Abstrabit Technologies Pvt Ltd",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "accesa",
       "company": "Accesa",
       "status": "active",
-      "jobCount": 25,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 27,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2568,7 +2569,7 @@
       "company": "AccorCorpo",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2576,7 +2577,7 @@
       "company": "AccorHotel",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2584,7 +2585,7 @@
       "company": "Aceli Africa",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2592,7 +2593,7 @@
       "company": "Achieve",
       "status": "active",
       "jobCount": 15,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2600,7 +2601,7 @@
       "company": "ACRELEC",
       "status": "active",
       "jobCount": 5,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2608,7 +2609,7 @@
       "company": "Activy",
       "status": "active",
       "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2616,7 +2617,7 @@
       "company": "ADGA Group Consultants Inc",
       "status": "active",
       "jobCount": 28,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2624,7 +2625,7 @@
       "company": "Adgeco Group",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2632,7 +2633,7 @@
       "company": "AdGlobe",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2640,7 +2641,7 @@
       "company": "AditiStaffing",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2648,7 +2649,7 @@
       "company": "Adjective & Co.",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2656,7 +2657,7 @@
       "company": "Adker Recruit",
       "status": "active",
       "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2664,7 +2665,7 @@
       "company": "Adler & Allan",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2672,15 +2673,15 @@
       "company": "Advantage Group",
       "status": "active",
       "jobCount": 9,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "ADVENS",
       "company": "ADVENS",
       "status": "active",
-      "jobCount": 31,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 30,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2688,7 +2689,7 @@
       "company": "AECOM",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2696,15 +2697,15 @@
       "company": "AeroVect",
       "status": "active",
       "jobCount": 6,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "AFCA",
       "company": "AFCA",
       "status": "active",
-      "jobCount": 48,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 46,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2712,7 +2713,7 @@
       "company": "AFRY",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2720,7 +2721,7 @@
       "company": "Agile IT",
       "status": "active",
       "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2728,7 +2729,7 @@
       "company": "Agriaku",
       "status": "active",
       "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2736,15 +2737,15 @@
       "company": "AG Technologies",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "AHRCNYC1",
       "company": "AHRC NYC",
       "status": "active",
-      "jobCount": 71,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 73,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2752,15 +2753,15 @@
       "company": "AireSpring",
       "status": "active",
       "jobCount": 11,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "AJBell1",
       "company": "AJ Bell",
       "status": "active",
-      "jobCount": 22,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 23,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2768,7 +2769,7 @@
       "company": "Ajua",
       "status": "active",
       "jobCount": 9,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2776,7 +2777,7 @@
       "company": "akirolabs",
       "status": "active",
       "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2784,7 +2785,7 @@
       "company": "Akuo",
       "status": "active",
       "jobCount": 13,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2792,7 +2793,7 @@
       "company": "Aldelia",
       "status": "active",
       "jobCount": 4,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2800,7 +2801,7 @@
       "company": "ALDI Stores",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2808,7 +2809,7 @@
       "company": "All Care Therapies",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2816,7 +2817,7 @@
       "company": "Allegro",
       "status": "active",
       "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2824,7 +2825,7 @@
       "company": "Alliance Animal Health",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2832,7 +2833,7 @@
       "company": "Allye Energy",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2840,7 +2841,7 @@
       "company": "Alphabe Insight Inc",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2848,7 +2849,7 @@
       "company": "Alpha Mead Group",
       "status": "active",
       "jobCount": 6,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2856,15 +2857,15 @@
       "company": "Alpha Technologies Inc USA",
       "status": "active",
       "jobCount": 73,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "ALTAREA",
       "company": "ALTAREA",
       "status": "active",
-      "jobCount": 81,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 82,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2872,15 +2873,15 @@
       "company": "ALTEN",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "ALTEREA",
       "company": "ALTEREA",
       "status": "active",
-      "jobCount": 64,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 65,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2888,7 +2889,7 @@
       "company": "act digital",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2896,7 +2897,7 @@
       "company": "ALTEX S.A.",
       "status": "active",
       "jobCount": 24,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2904,7 +2905,7 @@
       "company": "Altisource",
       "status": "active",
       "jobCount": 84,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2912,7 +2913,7 @@
       "company": "AmaliTech",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2920,7 +2921,7 @@
       "company": "Amara",
       "status": "active",
       "jobCount": 2,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2928,7 +2929,7 @@
       "company": "American Iron and Metal",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2936,7 +2937,7 @@
       "company": "American Montessori Society",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2944,7 +2945,7 @@
       "company": "AMOL TECHNOLOGIES",
       "status": "active",
       "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2952,31 +2953,31 @@
       "company": "Ample Insight Inc.",
       "status": "active",
       "jobCount": 9,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "AmrefHealthAfrica4",
       "company": "Amref Health Africa",
       "status": "active",
-      "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 8,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "AnalysysMason1",
       "company": "Analysys Mason",
       "status": "active",
-      "jobCount": 38,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 37,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "AngloAmericanDeBeersGroup",
       "company": "Anglo American / De Beers Group",
       "status": "active",
-      "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 93,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2984,7 +2985,7 @@
       "company": "Anne's Pantry",
       "status": "active",
       "jobCount": 6,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -2992,7 +2993,7 @@
       "company": "Anton Paar",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3000,7 +3001,7 @@
       "company": "Apex Clean Energy",
       "status": "active",
       "jobCount": 14,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3008,7 +3009,7 @@
       "company": "APF ENTREPRISES",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3016,15 +3017,15 @@
       "company": "APM Group",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "ApplaudoStudios",
       "company": "Applaudo Studios",
       "status": "active",
-      "jobCount": 34,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 33,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3032,7 +3033,7 @@
       "company": "Applus IDIADA",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3040,7 +3041,7 @@
       "company": "Arch Global Services (Philippines) Inc.",
       "status": "active",
       "jobCount": 34,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3048,15 +3049,15 @@
       "company": "Archirodon Group N.V",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "Ardentis1",
       "company": "Ardentis",
       "status": "active",
-      "jobCount": 37,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 35,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3064,7 +3065,7 @@
       "company": "Arista Networks",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3072,7 +3073,7 @@
       "company": "Artelia",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3080,7 +3081,7 @@
       "company": "Artemed SE",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3088,15 +3089,15 @@
       "company": "ArtmanStudio",
       "status": "active",
       "jobCount": 6,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "Arvida",
       "company": "Arvida",
       "status": "active",
-      "jobCount": 47,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 43,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3104,7 +3105,7 @@
       "company": "Asbury Communities",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3112,7 +3113,7 @@
       "company": "Ashburn Consulting",
       "status": "active",
       "jobCount": 7,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3120,23 +3121,23 @@
       "company": "ASI",
       "status": "active",
       "jobCount": 47,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "asos",
       "company": "ASOS",
       "status": "active",
-      "jobCount": 67,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 66,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "Aspect2",
       "company": "Aspect",
       "status": "active",
-      "jobCount": 14,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 12,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3144,7 +3145,7 @@
       "company": "Aspen Skiing Company",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3152,7 +3153,7 @@
       "company": "Assent",
       "status": "active",
       "jobCount": 21,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3160,7 +3161,7 @@
       "company": "ASSYSTEM",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3168,7 +3169,7 @@
       "company": "Astroscale U.S.",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3176,23 +3177,23 @@
       "company": "Astucemedia",
       "status": "active",
       "jobCount": 6,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "AsureQuality",
       "company": "AsureQuality",
       "status": "active",
-      "jobCount": 5,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 4,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "atexis",
       "company": "ATEXIS",
       "status": "active",
-      "jobCount": 86,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 90,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3200,7 +3201,7 @@
       "company": "ATP architekten ingenieure",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3208,7 +3209,7 @@
       "company": "ATPCO",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3216,7 +3217,7 @@
       "company": "A.T.U Auto-Teile-Unger",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3224,7 +3225,7 @@
       "company": "AUDIENCEX",
       "status": "active",
       "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3232,7 +3233,7 @@
       "company": "Audi Interaction GmbH",
       "status": "active",
       "jobCount": 5,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3240,7 +3241,7 @@
       "company": "Augment CXM",
       "status": "active",
       "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3248,7 +3249,7 @@
       "company": "Augsburg University",
       "status": "active",
       "jobCount": 50,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3256,15 +3257,15 @@
       "company": "Aumovio",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "auroradairies",
       "company": "Aurora Dairies Management Pty Ltd",
       "status": "active",
-      "jobCount": 12,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 15,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3272,7 +3273,7 @@
       "company": "Austro Holding",
       "status": "active",
       "jobCount": 25,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3280,7 +3281,7 @@
       "company": "AUTENTI Sp. z o.o.",
       "status": "active",
       "jobCount": 6,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3288,7 +3289,7 @@
       "company": "AUTO1 Group",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3296,7 +3297,7 @@
       "company": "Avaloq",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3304,15 +3305,15 @@
       "company": "AVANCO GmbH",
       "status": "active",
       "jobCount": 12,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "Averna1",
       "company": "Averna",
       "status": "active",
-      "jobCount": 16,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 15,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3320,7 +3321,7 @@
       "company": "Avery Dennison",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3328,7 +3329,7 @@
       "company": "AVIV Group",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3336,15 +3337,15 @@
       "company": "AWP Safety",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "AxelSpringerNewsMediaNational",
       "company": "Axel Springer News Media National",
       "status": "active",
-      "jobCount": 62,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 61,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3352,7 +3353,7 @@
       "company": "Axiado",
       "status": "active",
       "jobCount": 54,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3360,7 +3361,7 @@
       "company": "Ayming",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3368,15 +3369,15 @@
       "company": "baddpizza - Buffalo, NY Style Pizza & Wings",
       "status": "active",
       "jobCount": 5,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
       "board": "Ballantynes",
       "company": "Ballantynes",
       "status": "active",
-      "jobCount": 8,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "jobCount": 9,
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3384,7 +3385,7 @@
       "company": "Baptist Rainbow Primary School",
       "status": "active",
       "jobCount": 1,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3392,7 +3393,7 @@
       "company": "BarmeniaGothaer AG",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3400,7 +3401,7 @@
       "company": "Barrière",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3408,7 +3409,7 @@
       "company": "Bausch+Stroebel",
       "status": "active",
       "jobCount": 3,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3416,7 +3417,7 @@
       "company": "BayWa AG",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.837Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.621Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3616,7 +3617,7 @@
       "company": "Bosch Group",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3639,8 +3640,8 @@
       "board": "CityFibre",
       "company": "CityFibre",
       "status": "active",
-      "jobCount": 12,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "jobCount": 5,
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3648,7 +3649,7 @@
       "company": "SmartRecruiters",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3656,7 +3657,7 @@
       "company": "Visa",
       "status": "empty",
       "jobCount": 0,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     },
     {
       "platform": "smartrecruiters",
@@ -3664,7 +3665,7 @@
       "company": "Western Digital",
       "status": "active",
       "jobCount": 100,
-      "lastFetchedAt": "2026-10-05T19:25:55.836Z"
+      "lastFetchedAt": "2026-10-06T16:57:46.620Z"
     }
   ]
 }
