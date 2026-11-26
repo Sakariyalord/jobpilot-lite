@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-25T19:57:02.842Z",
+  "updatedAt": "2026-11-26T19:37:43.761Z",
   "sourcePolicy": {
     "publicOnly": true,
     "noLoginOrAntiBotBypass": true,
@@ -2587,6 +2587,19 @@
       "firstDiscoveredAt": "2026-07-29T12:21:21.636Z",
       "lastDiscoveredAt": "2026-07-29T12:21:21.636Z",
       "lastValidatedAt": "2026-07-29T12:21:21.636Z"
+    },
+    {
+      "platform": "smartrecruiters",
+      "board": "2Talent-MijnNieuweCarriere",
+      "lastSeenURL": "https://jobs.smartrecruiters.com/2Talent-MijnNieuweCarriere/743999681148131-kun-jij-wel-wat-hulp-gebruiken-bij-het-vinden-van-een-nieuwe-baan-of-bij-jouw-volgende-carierrestap-",
+      "company": "2Talent-MijnNieuweCarrière",
+      "jobCount": 2,
+      "validationURL": "https://api.smartrecruiters.com/v1/companies/2Talent-MijnNieuweCarriere/postings?limit=1",
+      "status": "active",
+      "discoveredBy": "common_crawl",
+      "firstDiscoveredAt": "2026-11-26T19:37:43.761Z",
+      "lastDiscoveredAt": "2026-11-26T19:37:43.761Z",
+      "lastValidatedAt": "2026-11-26T19:37:43.761Z"
     },
     {
       "platform": "smartrecruiters",
